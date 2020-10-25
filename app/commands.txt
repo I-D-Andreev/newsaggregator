@@ -1,1 +1,3 @@
 Select Refactor > Migrate to AndroidX from the menu bar
+padding - dp
+text - sp
