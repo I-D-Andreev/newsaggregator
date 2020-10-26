@@ -2,6 +2,8 @@
     <string name="app_name">NewsAggregator</string>
     <string name="username">User123</string>
     <string name="preferences">Preferences</string>
+    <string name="topics">Topics</string>
+    <string name="keywords">Keywords</string>
 
     <string-array name="news_types_list">
         <item>Breaking News</item>

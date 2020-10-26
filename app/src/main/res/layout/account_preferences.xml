@@ -43,6 +43,16 @@
 
     <View style="@style/DividingLine" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:textSize="@dimen/text_heading2"
+        android:gravity="center"
+        android:text="@string/topics"
+        android:layout_marginTop="@dimen/indent_small"
+         />
+
     <GridLayout
         android:id="@+id/news_type_grid"
         android:layout_width="match_parent"
@@ -69,5 +79,15 @@
         <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
         <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
     </GridLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:textSize="@dimen/text_heading2"
+        android:gravity="center"
+        android:text="@string/keywords"
+        android:layout_marginTop="@dimen/indent_small"
+        />
 
 </LinearLayout>
