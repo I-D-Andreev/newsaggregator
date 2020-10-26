@@ -2,9 +2,9 @@
 <resources>
     <dimen name="text_heading1">30sp</dimen>
     <dimen name="text_heading2">25sp</dimen>
-    <dimen name="text_normal">20sp</dimen>
+    <dimen name="text_normal">15sp</dimen>
 
-    <dimen name="indent_small">10</dimen>
+    <dimen name="indent_small">10dp</dimen>
     <dimen name="indent_medium">20dp</dimen>
     <dimen name="indent_large">30dp</dimen>
 </resources>

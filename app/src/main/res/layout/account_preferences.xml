@@ -32,8 +32,33 @@
             android:layout_marginEnd="@dimen/indent_medium" />
     </RelativeLayout>
 
-    <View style="@style/DividingLine"/>
+    <View style="@style/DividingLine" />
 
+    <GridLayout
+        android:id="@+id/news_type_grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30"
+        android:layout_marginTop="@dimen/indent_small"
+        android:columnCount="3"
+        android:rowCount="4">
 
+        <!-- Checkboxes get filled in programmatically-->
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+    </GridLayout>
 
 </LinearLayout>

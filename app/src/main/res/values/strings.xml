@@ -2,4 +2,22 @@
     <string name="app_name">NewsAggregator</string>
     <string name="username">User123</string>
     <string name="preferences">Preferences</string>
+
+    <string-array name="news_types_list">
+        <item>Breaking News</item>
+        <item>Trending News</item>
+        <item>Local News</item>
+
+        <item>Business</item>
+        <item>Politics</item>
+        <item>World</item>
+
+        <item>Entertainment</item>
+        <item>Sports</item>
+        <item>Health</item>
+
+        <item>Technology</item>
+        <item>Science</item>
+        <item>Other</item>
+    </string-array>
 </resources>

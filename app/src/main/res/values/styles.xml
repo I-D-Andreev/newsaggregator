@@ -12,4 +12,11 @@
         <item name="android:layout_height">2dp</item>
         <item name="android:background">@color/colorPrimary</item>
     </style>
+
+    <style name="GridCell">
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+    </style>
+
 </resources>

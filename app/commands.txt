@@ -1,3 +1,4 @@
 Select Refactor > Migrate to AndroidX from the menu bar
 padding - dp
 text - sp
+Can do println() to print to console
