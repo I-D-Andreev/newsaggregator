@@ -4,33 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="100">
+    android:weightSum="100"
+    tools:ignore="NestedWeights">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/username"
-            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical||start"
+
             android:text="@string/username"
-            android:textSize="@dimen/text_heading1"
-            android:layout_marginStart="@dimen/indent_medium" />
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="@dimen/text_normal"
+            android:autoSizeMaxTextSize="@dimen/text_heading1"
+            android:layout_marginStart="@dimen/indent_medium"
+             />
 
 
         <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical||end"
+
             android:text="@string/preferences"
-            android:textSize="@dimen/text_heading1"
-            android:layout_marginEnd="@dimen/indent_medium" />
-    </RelativeLayout>
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="@dimen/text_normal"
+            android:autoSizeMaxTextSize="@dimen/text_heading1"
+            android:layout_marginEnd="@dimen/indent_medium"
+            />
+    </LinearLayout>
 
     <View style="@style/DividingLine" />
 
