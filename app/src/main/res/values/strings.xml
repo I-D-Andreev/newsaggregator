@@ -6,6 +6,9 @@
     <string name="keywords">Keywords</string>
     <string name="remove_entry_button">Remove entry button</string>
 
+    <string name="navigation_bar_search">Search</string>
+
+
     <string-array name="news_types_list">
         <item>Breaking News</item>
         <item>Trending News</item>
@@ -38,7 +41,6 @@
         <item>Topic 11</item>
         <item>Topic 12</item>
         <item>Topic 13</item>
-
     </string-array>
 
 </resources>
