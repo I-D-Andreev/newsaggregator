@@ -1,4 +1,4 @@
-package com.example.ivanandreev.newsaggregator
+package com.example.ivanandreev.newsaggregator.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,14 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.keyword_entry.view.*
 import android.widget.Toast
+import com.example.ivanandreev.newsaggregator.*
 
 
+class KeywordAdapter(private val keywordList: MutableList<KeywordEntry>) :
+    RecyclerView.Adapter<KeywordAdapter.ViewHolder>() {
 
-
-class KeywordAdapter (private val keywordList: MutableList<KeywordEntry>):
-        RecyclerView.Adapter<KeywordAdapter.ViewHolder>() {
-
-    inner class ViewHolder(var layout: View): RecyclerView.ViewHolder(layout){
+    inner class ViewHolder(var layout: View) : RecyclerView.ViewHolder(layout) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +29,8 @@ class KeywordAdapter (private val keywordList: MutableList<KeywordEntry>):
         val data = keywordList[position]
         holder.layout.keyword.text = data.keyword
         holder.layout.remove.setOnClickListener {
-            Toast.makeText(holder.layout.context, "Delete hit!", Toast.LENGTH_LONG).show() }
+            Toast.makeText(holder.layout.context, "Delete hit!", Toast.LENGTH_LONG).show()
+        }
     }
 
 }
