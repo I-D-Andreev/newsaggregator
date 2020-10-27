@@ -4,6 +4,7 @@
     <string name="preferences">Preferences</string>
     <string name="topics">Topics</string>
     <string name="keywords">Keywords</string>
+    <string name="remove_entry_button">Remove entry button</string>
 
     <string-array name="news_types_list">
         <item>Breaking News</item>
@@ -22,4 +23,22 @@
         <item>Science</item>
         <item>Other</item>
     </string-array>
+
+    <string-array name="keywords_list">
+        <item>Topic 1</item> <!-- 18 characters length max -->
+        <item>Topic 2</item>
+        <item>Topic 3</item>
+        <item>Topic 4</item>
+        <item>Topic 5</item>
+        <item>Topic 6</item>
+        <item>Topic 7</item>
+        <item>Topic 8</item>
+        <item>Topic 9</item>
+        <item>Topic 10</item>
+        <item>Topic 11</item>
+        <item>Topic 12</item>
+        <item>Topic 13</item>
+
+    </string-array>
+
 </resources>

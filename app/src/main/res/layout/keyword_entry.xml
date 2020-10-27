@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/height_medium"
     android:layout_width="match_parent"
-    android:weightSum="10"
     android:padding="@dimen/indent_small">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/keyword"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="8"
         android:gravity="center"
-        android:textSize="@dimen/text_normal"
+        android:layout_centerVertical="true"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="@dimen/text_small"
+        android:autoSizeMaxTextSize="@dimen/text_normal"
         />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/remove"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:text="X"/>
-</LinearLayout>
+        android:layout_width="@dimen/height_very_small"
+        android:layout_height= "@dimen/height_very_small"
+        android:background="@drawable/round_button_cross"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_toEndOf="@+id/keyword"
+        android:layout_marginStart="@dimen/indent_very_small"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/remove_entry_button" />
+</RelativeLayout>
