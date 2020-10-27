@@ -15,7 +15,8 @@
 
     <style name="GridCell">
         <item name="android:layout_columnWeight">1</item>
-        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+<!--        <item name="android:layout_rowWeight">1</item>-->
         <item name="android:textSize">@dimen/text_normal</item>
     </style>
 

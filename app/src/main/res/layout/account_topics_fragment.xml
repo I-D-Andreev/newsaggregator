@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/news_type_grid"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:columnCount="2"
+    android:rowCount="6"
+    android:padding="@dimen/indent_small">
+
+    <!-- Checkboxes get filled in programmatically-->
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+</GridLayout>

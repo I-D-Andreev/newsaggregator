@@ -2,48 +2,51 @@ package com.example.ivanandreev.newsaggregator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.GridLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.example.ivanandreev.newsaggregator.adapters.KeywordAdapter
+import com.example.ivanandreev.newsaggregator.adapters.TabsPagerAdapter
+import com.google.android.material.tabs.TabLayout
 
 class AccountPreferences : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.account_preferences)
 
-        loadGridView()
-        loadRecyclerView()
+        loadViewPager()
     }
 
-    private fun loadGridView() {
-        val grid = findViewById<GridLayout>(R.id.news_type_grid)
-        val newsTypes: Array<String> = resources.getStringArray(R.array.news_types_list)
+    private fun loadViewPager() {
+        val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
+        val viewPager = findViewById<ViewPager>(R.id.view_pager)
+        tabLayout!!.tabGravity = TabLayout.GRAVITY_FILL
 
-        for (i in 0 until grid.childCount) {
-            (grid.getChildAt(i) as TextView).text = newsTypes[i]
-        }
+        val tabTitles = resources.getStringArray(R.array.account_preferences_tabs)
+        val tabAdapter = TabsPagerAdapter(supportFragmentManager, tabTitles)
+
+        viewPager.adapter = tabAdapter
+
+        viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+
+        tabLayout.addOnTabSelectedListener(object :
+            TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewPager.currentItem = tab.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+            }
+        })
+
+
     }
 
-    private fun loadRecyclerView() {
-        val keywordsList: ArrayList<KeywordEntry> = populateDummyData()
-        val recyclerView = findViewById<RecyclerView>(R.id.keywords_recyclerview)
-        val layoutManager = GridLayoutManager(this, 2)
-        val recyclerAdapter = KeywordAdapter(keywordsList)
 
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = recyclerAdapter
-    }
-
-    private fun populateDummyData(): ArrayList<KeywordEntry> {
-        val keywords = ArrayList<KeywordEntry>()
-        val stringList: Array<String> = resources.getStringArray(R.array.keywords_list)
-        for (elem in stringList) {
-            val temp = KeywordEntry()
-            temp.keyword = elem
-            keywords.add(temp)
-        }
-        return keywords
-    }
 }

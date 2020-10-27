@@ -10,20 +10,17 @@
 
 
     <string-array name="news_types_list">
-        <item>Breaking News</item>
-        <item>Trending News</item>
-        <item>Local News</item>
-
+        <item>Breaking News </item>
+        <item>Trending News </item>
+        <item>Local News </item>
         <item>Business</item>
-        <item>Politics</item>
-        <item>World</item>
-
         <item>Entertainment</item>
-        <item>Sports</item>
-        <item>Health</item>
-
-        <item>Technology</item>
+        <item>Health </item>
+        <item>Politics</item>
         <item>Science</item>
+        <item>Sports</item>
+        <item>Technology</item>
+        <item>World</item>
         <item>Other</item>
     </string-array>
 
@@ -43,4 +40,8 @@
         <item>Topic 13</item>
     </string-array>
 
+    <string-array name="account_preferences_tabs">
+        <item>Topics</item>
+        <item>Keywords</item>
+    </string-array>
 </resources>
