@@ -7,4 +7,7 @@
     <dimen name="indent_small">10dp</dimen>
     <dimen name="indent_medium">20dp</dimen>
     <dimen name="indent_large">30dp</dimen>
+
+    <dimen name="recycler_view_height">30dp</dimen>
+
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:weightSum="10"
+    android:padding="@dimen/indent_small">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/keyword"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:gravity="center"
+        android:textSize="@dimen/text_normal"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/remove"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:text="X"/>
+</LinearLayout>
