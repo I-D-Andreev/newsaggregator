@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.keyword_entry.view.*
 import android.widget.Toast
 import com.example.ivanandreev.newsaggregator.*
+import com.example.ivanandreev.newsaggregator.fragments.KeywordEntry
 
 
 class KeywordAdapter(private val keywordList: MutableList<KeywordEntry>) :

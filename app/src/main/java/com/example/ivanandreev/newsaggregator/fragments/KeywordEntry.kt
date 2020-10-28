@@ -1,4 +1,4 @@
-package com.example.ivanandreev.newsaggregator
+package com.example.ivanandreev.newsaggregator.fragments
 
 import com.google.android.material.button.MaterialButton
 

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ivanandreev.newsaggregator.KeywordEntry
 import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.adapters.KeywordAdapter
 
