@@ -6,8 +6,11 @@
     <string name="keywords">Keywords</string>
     <string name="remove_entry_button">Remove entry button</string>
 
-    <string name="navigation_bar_search">Search</string>
+    <string name="search">Search</string>
     <string name="sign_out">Sign out</string>
+    <string name="saved_articles">Saved Articles</string>
+    <string name="news">News</string>
+    <string name="account">Account</string>
 
 
     <string-array name="news_types_list">
