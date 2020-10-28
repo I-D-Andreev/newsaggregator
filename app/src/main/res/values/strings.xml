@@ -38,19 +38,19 @@
     </string-array>
 
     <string-array name="keywords_list">
-        <item>Topic 1</item> <!-- 18 characters length max -->
-        <item>Topic 2</item>
-        <item>Topic 3</item>
-        <item>Topic 4</item>
-        <item>Topic 5</item>
-        <item>Topic 6</item>
-        <item>Topic 7</item>
-        <item>Topic 8</item>
-        <item>Topic 9</item>
-        <item>Topic 10</item>
-        <item>Topic 11</item>
-        <item>Topic 12</item>
-        <item>Topic 13</item>
+        <item>Keyword 1</item> <!-- 18 characters length max -->
+        <item>Keyword 2</item>
+        <item>Keyword 3</item>
+        <item>Keyword 4</item>
+        <item>Keyword 5</item>
+        <item>Keyword 6</item>
+        <item>Keyword 7</item>
+        <item>Keyword 8</item>
+        <item>Keyword 9</item>
+        <item>Keyword 10</item>
+        <item>Keyword 11</item>
+        <item>Keyword 12</item>
+        <item>Keyword 13</item>
     </string-array>
 
     <string-array name="account_preferences_tabs">
