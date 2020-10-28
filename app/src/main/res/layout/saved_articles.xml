@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="100"
-        tools:ignore="NestedWeights">
+        android:weightSum="100">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="80"
-            android:layout_marginTop="@dimen/indent_medium" />
+            android:layout_marginTop="@dimen/indent_medium"/>
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

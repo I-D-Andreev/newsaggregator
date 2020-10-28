@@ -11,6 +11,7 @@
     <string name="saved_articles">Saved Articles</string>
     <string name="news">News</string>
     <string name="account">Account</string>
+    <string name="article_image">Article Image</string>
 
 
     <string-array name="news_types_list">

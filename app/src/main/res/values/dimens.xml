@@ -11,8 +11,9 @@
     <dimen name="indent_large">30dp</dimen>
 
     <dimen name="height_very_small">20dp</dimen>
-    <dimen name="height_small">40dp</dimen>
+    <dimen name="height_small">35dp</dimen>
     <dimen name="height_medium">50dp</dimen>
-    <dimen name="height_large">70dp</dimen>
+    <dimen name="height_large">65dp</dimen>
+    <dimen name="height_very_large">80dp</dimen>
 
 </resources>
