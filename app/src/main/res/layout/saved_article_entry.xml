@@ -4,8 +4,10 @@
     android:layout_height="@dimen/height_very_large"
     android:layout_width="match_parent"
     android:padding="@dimen/indent_very_small"
+    android:layout_marginTop="@dimen/indent_medium"
     android:weightSum="100"
-    tools:ignore="NestedWeights">
+    tools:ignore="NestedWeights"
+    android:background="@drawable/layout_border">
 
     <ImageView
         android:id="@+id/image"
@@ -27,8 +29,10 @@
             android:layout_height="0dp"
             android:layout_weight="7"
             android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="@dimen/text_small"
-            android:autoSizeMaxTextSize="@dimen/text_normal" />
+            android:autoSizeMinTextSize="@dimen/text_normal"
+            android:autoSizeMaxTextSize="@dimen/text_heading2"
+            android:textStyle="bold"
+            android:gravity="center" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -36,17 +40,17 @@
             android:layout_weight="3">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/date"
+                android:id="@+id/article_date"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="@dimen/text_small"
                 android:autoSizeMaxTextSize="@dimen/text_normal"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"/>
+                android:layout_alignParentBottom="true" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/publisher"
+                android:id="@+id/article_publisher"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:autoSizeTextType="uniform"
@@ -58,12 +62,17 @@
         </RelativeLayout>
     </LinearLayout>
 
+<!--    <LinearLayout-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_weight="25">-->
         <ImageButton
             android:id="@+id/remove"
             android:layout_width="@dimen/height_small"
-            android:layout_height= "@dimen/height_small"
+            android:layout_height="@dimen/height_small"
             android:background="@drawable/round_button_cross"
-            android:layout_marginStart="@dimen/indent_very_small"
             android:contentDescription="@string/remove_entry_button"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/indent_large" />
+<!--    </LinearLayout>-->
 </LinearLayout>

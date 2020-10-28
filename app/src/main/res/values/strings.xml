@@ -29,6 +29,14 @@
         <item>Other</item>
     </string-array>
 
+    <string-array name="publisher_list">
+        <item>BBC</item>
+        <item>The Guardian</item>
+        <item>The Independent</item>
+        <item>The Times</item>
+        <item>Bloomberg</item>
+    </string-array>
+
     <string-array name="keywords_list">
         <item>Topic 1</item> <!-- 18 characters length max -->
         <item>Topic 2</item>
