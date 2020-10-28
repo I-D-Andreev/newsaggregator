@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/news_type_grid"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:columnCount="2"
-    android:rowCount="6"
-    android:padding="@dimen/indent_small">
+    android:layout_width="match_parent">
 
-    <!-- Checkboxes get filled in programmatically-->
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+    <GridLayout
+        android:id="@+id/news_type_grid"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:columnCount="2"
+        android:rowCount="6"
+        android:padding="@dimen/indent_small"
+        android:layout_marginTop="@dimen/indent_medium">
 
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <!-- Checkboxes get filled in programmatically-->
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
-</GridLayout>
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox style="@style/GridCell" />
+    </GridLayout>
+</LinearLayout>
