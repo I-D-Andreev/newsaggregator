@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "884333230094",
+    "firebase_url": "https://newsaggregator-19bb5.firebaseio.com",
+    "project_id": "newsaggregator-19bb5",
+    "storage_bucket": "newsaggregator-19bb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884333230094:android:30214f673a6e2e8a2c645f",
+        "android_client_info": {
+          "package_name": "com.example.ivanandreev.newsaggregator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884333230094-bs737qig98seskb33ir4q2e3fgmeoj3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUdekfxdB_14NuaSmYshpOA-Puasht46M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "884333230094-bs737qig98seskb33ir4q2e3fgmeoj3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
