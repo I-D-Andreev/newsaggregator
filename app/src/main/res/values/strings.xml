@@ -9,12 +9,12 @@
     <string name="search">Search</string>
     <string name="sign_out">Sign out</string>
     <string name="saved_articles">Saved Articles</string>
-    <string name="news">News</string>
     <string name="account">Account</string>
     <string name="article_image">Article Image</string>
     <string name="password">Password</string>
     <string name="log_in">LOG IN</string>
     <string name="email">Email</string>
+    <string name="news">News</string>
 
 
     <string-array name="news_types_list">
