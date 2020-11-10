@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="@dimen/height_very_large"
     android:layout_width="match_parent"
     android:padding="@dimen/indent_very_small"
     android:layout_marginTop="@dimen/indent_medium"
     android:weightSum="100"
-    tools:ignore="NestedWeights"
-    android:background="@drawable/layout_border">
+    android:background="@drawable/layout_border"
+    tools:ignore="NestedWeights">
 
     <ImageView
         android:id="@+id/image"
@@ -16,7 +16,7 @@
         android:layout_weight="25"
         android:contentDescription="@string/article_image" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="70"
@@ -60,19 +60,14 @@
                 android:layout_alignParentBottom="true"
                 tools:ignore="RelativeOverlap" />
         </RelativeLayout>
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-<!--    <LinearLayout-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_weight="25">-->
-        <ImageButton
-            android:id="@+id/remove"
-            android:layout_width="@dimen/height_small"
-            android:layout_height="@dimen/height_small"
-            android:background="@drawable/round_button_cross"
-            android:contentDescription="@string/remove_entry_button"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/indent_large" />
-<!--    </LinearLayout>-->
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/remove"
+        android:layout_width="@dimen/height_small"
+        android:layout_height="@dimen/height_small"
+        android:background="@drawable/round_button_cross"
+        android:contentDescription="@string/remove_entry_button"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/indent_large" />
+</androidx.appcompat.widget.LinearLayoutCompat>
