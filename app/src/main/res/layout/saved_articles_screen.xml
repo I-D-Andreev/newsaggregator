@@ -1,44 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="100">
+        android:layout_height="0dp"
+        android:layout_weight="10">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:gravity="center"
-                android:text="@string/saved_articles"
-                android:textSize="@dimen/text_heading1" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <View style="@style/DividingLine" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/saved_articles_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="80"
-            android:layout_marginTop="@dimen/indent_medium"/>
+            android:gravity="center"
+            android:text="@string/saved_articles"
+            android:textSize="@dimen/text_heading1" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <View style="@style/DividingLine" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/saved_articles_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_navigation_bar_menu" />
-</RelativeLayout>
+        android:layout_height="0dp"
+        android:layout_weight="89"
+        android:layout_marginTop="@dimen/indent_medium" />
+</androidx.appcompat.widget.LinearLayoutCompat>

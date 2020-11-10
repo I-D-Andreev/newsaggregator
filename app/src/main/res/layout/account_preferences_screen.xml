@@ -1,94 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="NestedWeights"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="100"
-        tools:ignore="NestedWeights">
+        android:layout_height="0dp"
+        android:layout_weight="10">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/username"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical|start"
+
+            android:text="@string/username"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="@dimen/text_normal"
+            android:autoSizeMaxTextSize="@dimen/text_heading1"
+            android:layout_marginStart="@dimen/indent_medium" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/sign_out_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_exit_to_app_24"
+                android:background="#00FFFFFF"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/indent_medium"
+                android:layout_marginTop="@dimen/indent_medium"
+                android:contentDescription="@string/sign_out" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/username"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical|start"
-
-                android:text="@string/username"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/sign_out"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="@dimen/text_normal"
-                android:autoSizeMaxTextSize="@dimen/text_heading1"
-                android:layout_marginStart="@dimen/indent_medium" />
+                android:textSize="@dimen/text_normal"
+                android:layout_marginEnd="@dimen/indent_small" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/sign_out_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_exit_to_app_24"
-                    android:background="#00FFFFFF"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/indent_medium"
-                    android:layout_marginTop="@dimen/indent_medium"
-                    android:contentDescription="@string/sign_out" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="@string/sign_out"
-                    android:autoSizeTextType="uniform"
-                    android:textSize="@dimen/text_normal"
-                    android:layout_marginEnd="@dimen/indent_small" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <View style="@style/DividingLine" />
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="80"
-            android:layout_marginTop="@dimen/indent_small">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.tabs.TabLayout>
-        </androidx.viewpager.widget.ViewPager>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <View style="@style/DividingLine" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_navigation_bar_menu"
-        app:labelVisibilityMode="labeled"/>
-</RelativeLayout>
+        android:layout_height="0dp"
+        android:layout_weight="89"
+        android:layout_marginTop="@dimen/indent_small">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.viewpager.widget.ViewPager>
+</androidx.appcompat.widget.LinearLayoutCompat>
