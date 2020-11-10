@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
@@ -17,13 +18,21 @@
             android:weightSum="10"
             android:gravity="center">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/username"
-                android:layout_height="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:hint="@string/username"
-                />
+                app:startIconContentDescription="@string/email"
+                app:startIconDrawable="@drawable/ic_baseline_email_24"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="@string/email"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -33,26 +42,37 @@
             android:weightSum="10"
             android:gravity="center">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password"
-                android:layout_height="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:hint="@string/password"
-                />
+                android:layout_marginTop="@dimen/indent_very_small"
+                app:startIconContentDescription="@string/password"
+                app:startIconDrawable="@drawable/ic_baseline_lock_24"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="@string/password" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="10"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginTop="@dimen/indent_very_small">
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
-                android:text="@string/log_in"/>
+                android:text="@string/log_in" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
