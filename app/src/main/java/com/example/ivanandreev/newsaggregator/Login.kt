@@ -46,7 +46,7 @@ class Login : AppCompatActivity() {
     }
 
     private fun logInSuccess(user: FirebaseUser?){
-        val intent = Intent(this, AccountPreferences::class.java)
+        val intent = Intent(this, News::class.java)
         startActivity(intent)
     }
 
