@@ -12,7 +12,7 @@ import kotlin.collections.ArrayList
 class SavedArticles : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.saved_articles)
+        setContentView(R.layout.saved_articles_screen)
 
         loadRecyclerView()
     }

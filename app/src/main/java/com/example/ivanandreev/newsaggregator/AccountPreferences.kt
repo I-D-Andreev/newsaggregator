@@ -2,20 +2,14 @@ package com.example.ivanandreev.newsaggregator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.GridLayout
-import android.widget.TextView
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import com.example.ivanandreev.newsaggregator.adapters.KeywordAdapter
 import com.example.ivanandreev.newsaggregator.adapters.TabsPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
 class AccountPreferences : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.account_preferences)
+        setContentView(R.layout.account_preferences_screen)
 
         loadViewPager()
     }
