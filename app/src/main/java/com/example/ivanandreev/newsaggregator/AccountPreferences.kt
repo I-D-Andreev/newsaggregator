@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.example.ivanandreev.newsaggregator.adapters.TabsPagerAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 
 class AccountPreferences : AppCompatActivity() {
@@ -11,7 +12,13 @@ class AccountPreferences : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.account_preferences_screen)
 
+        setUpNavBar()
         loadViewPager()
+    }
+
+    private fun setUpNavBar() {
+        val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        NavBar.setUpBar(navBar, this)
     }
 
     private fun loadViewPager() {

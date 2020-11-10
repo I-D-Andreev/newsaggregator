@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.adapters.SavedArticleAdapter
 import com.example.ivanandreev.newsaggregator.fragments.SavedArticleEntry
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -14,7 +15,13 @@ class SavedArticles : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.saved_articles_screen)
 
+        setUpNavBar()
         loadRecyclerView()
+    }
+
+    private fun setUpNavBar() {
+        val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        NavBar.setUpBar(navBar, this)
     }
 
     private fun loadRecyclerView() {
