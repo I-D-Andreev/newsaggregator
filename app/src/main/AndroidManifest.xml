@@ -23,6 +23,7 @@
         <activity android:name=".SavedArticles"/>
         <activity android:name=".AccountPreferences"/>
         <activity android:name=".Search"/>
+        <activity android:name=".MainActivity"/>
 
 
     </application>
