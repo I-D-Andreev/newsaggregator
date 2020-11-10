@@ -21,6 +21,7 @@ class SavedArticles : AppCompatActivity() {
 
     private fun setUpNavBar() {
         val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        navBar.menu.getItem(1).isChecked = true
         NavBar.setUpBar(navBar, this)
     }
 

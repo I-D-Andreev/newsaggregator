@@ -14,6 +14,7 @@ class Search : AppCompatActivity() {
 
     private fun setUpNavBar() {
         val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        navBar.menu.getItem(3).isChecked = true
         NavBar.setUpBar(navBar, this)
     }
 }

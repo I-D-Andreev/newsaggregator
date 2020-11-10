@@ -18,6 +18,7 @@ class AccountPreferences : AppCompatActivity() {
 
     private fun setUpNavBar() {
         val navBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        navBar.menu.getItem(2).isChecked = true
         NavBar.setUpBar(navBar, this)
     }
 
