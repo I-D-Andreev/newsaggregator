@@ -17,11 +17,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setBottomNavBar()
+    }
 
+    private fun setBottomNavBar(){
         val navBar = findViewById<View>(R.id.bottom_navigation) as BottomNavigationView
 
         navBar.setOnNavigationItemSelectedListener { item ->
-            var frag: Fragment = when (item.itemId) {
+            val frag: Fragment = when (item.itemId) {
                 R.id.news -> NewsFragment()
                 R.id.saved_articles -> SavedArticlesFragment()
                 R.id.preferences -> AccountPreferencesFragment()
@@ -39,4 +42,5 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.frame_layout, NewsFragment())
         transaction.commit()
     }
+
 }
