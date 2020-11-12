@@ -29,7 +29,7 @@ class SavedArticleAdapter(private val savedArticlesList: MutableList<SavedArticl
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = savedArticlesList[position]
-        val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.US)
+        val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.UK)
 
         holder.layout.image.setImageResource(article.image)
         holder.layout.article_title.text = article.title
