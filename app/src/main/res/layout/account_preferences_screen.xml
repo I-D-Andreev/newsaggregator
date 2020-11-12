@@ -39,7 +39,7 @@
                 android:background="#00FFFFFF"
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/indent_medium"
-                android:layout_marginTop="@dimen/indent_medium"
+                android:layout_marginTop="@dimen/indent_small"
                 android:contentDescription="@string/sign_out" />
 
             <com.google.android.material.textview.MaterialTextView
