@@ -17,5 +17,7 @@
             android:text="@string/search"
             android:textSize="@dimen/text_heading1" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+    <View style="@style/DividingLine" />
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
