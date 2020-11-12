@@ -29,11 +29,11 @@ class Login : AppCompatActivity() {
     }
 
     fun signIn(view: View) {
-        val emailTextbox = findViewById<TextInputEditText>(R.id.email)
-        val passwordTextbox = findViewById<TextInputEditText>(R.id.password)
+        val emailTextBox = findViewById<TextInputEditText>(R.id.email)
+        val passwordTextBox = findViewById<TextInputEditText>(R.id.password)
 
-        val email: String = emailTextbox.text.toString()
-        val password: String = passwordTextbox.text.toString()
+        val email: String = emailTextBox.text.toString()
+        val password: String = passwordTextBox.text.toString()
 
         mAuth!!.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
