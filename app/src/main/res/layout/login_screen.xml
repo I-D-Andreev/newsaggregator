@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <!-- TODO: Icon at start + hide password + hidden button + fields to be wrapped around-->
-    <!-- https://material.io/develop/android/components/text-fields -->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -33,7 +31,6 @@
                     android:layout_width="match_parent"
                     android:hint="@string/email"/>
             </com.google.android.material.textfield.TextInputLayout>
-
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
