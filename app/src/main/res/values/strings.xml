@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">NewsAggregator</string>
+    <string name="news_file">news.txt</string>
+
     <string name="username">username</string>
     <string name="preferences">Preferences</string>
     <string name="topics">Topics</string>
@@ -60,4 +62,5 @@
         <item>Topics</item>
         <item>Keywords</item>
     </string-array>
+
 </resources>

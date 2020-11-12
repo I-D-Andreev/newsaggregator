@@ -19,7 +19,13 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_screen)
+        startNewsFetchService()
         mAuth = FirebaseAuth.getInstance()
+    }
+
+    private fun startNewsFetchService(){
+        val serviceIntent = Intent(this, FetchNewsService::class.java)
+        startService(serviceIntent)
     }
 
     fun signIn(view: View) {

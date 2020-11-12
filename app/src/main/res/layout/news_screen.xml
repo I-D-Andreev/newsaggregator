@@ -20,6 +20,14 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
     <View style="@style/DividingLine" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/show_text"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textSize="@dimen/text_normal" />
+
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
 
