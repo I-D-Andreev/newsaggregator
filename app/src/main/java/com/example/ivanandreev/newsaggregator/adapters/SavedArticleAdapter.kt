@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.*
-import com.example.ivanandreev.newsaggregator.fragments.SavedArticleEntry
+import com.example.ivanandreev.newsaggregator.fragments.NewsEntry
 import kotlinx.android.synthetic.main.saved_article_entry.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class SavedArticleAdapter(private val savedArticlesList: MutableList<SavedArticleEntry>) :
+class SavedArticleAdapter(private val savedArticlesList: MutableList<NewsEntry>) :
     RecyclerView.Adapter<SavedArticleAdapter.ViewHolder>() {
 
     inner class ViewHolder(var layout: View) : RecyclerView.ViewHolder(layout)

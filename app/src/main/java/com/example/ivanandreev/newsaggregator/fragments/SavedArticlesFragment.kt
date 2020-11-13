@@ -32,7 +32,7 @@ class SavedArticlesFragment : Fragment() {
     }
 
     private fun loadRecyclerView(view: View) {
-        val articlesList: ArrayList<SavedArticleEntry> = populateDummyData()
+        val articlesList: ArrayList<NewsEntry> = populateDummyData()
         val recyclerView = view.findViewById<RecyclerView>(R.id.saved_articles_recyclerview)
         val layoutManager = LinearLayoutManager(view.context)
         val recyclerAdapter = SavedArticleAdapter(articlesList)
@@ -41,17 +41,17 @@ class SavedArticlesFragment : Fragment() {
         recyclerView.adapter = recyclerAdapter
     }
 
-    private fun populateDummyData(): ArrayList<SavedArticleEntry> {
+    private fun populateDummyData(): ArrayList<NewsEntry> {
         val publishers: Array<String> = resources.getStringArray(R.array.publisher_list)
         val image = R.drawable.human
 
-        val articles = ArrayList<SavedArticleEntry>()
+        val articles = ArrayList<NewsEntry>()
         for (i in 1..10) {
             val title = "Article $i Title"
             val publisher = publishers[(0..4).random()]
             val date = Calendar.getInstance()
 
-            articles.add(SavedArticleEntry(title, publisher, image, date))
+            articles.add(NewsEntry(title, publisher, image, date))
         }
 
         return articles

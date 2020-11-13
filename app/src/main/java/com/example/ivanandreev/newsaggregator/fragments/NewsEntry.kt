@@ -3,7 +3,7 @@ package com.example.ivanandreev.newsaggregator.fragments
 import java.util.*
 
 
-class SavedArticleEntry {
+class NewsEntry {
     var title: String = ""
     var publisher: String = ""
     var image : Int = 0
