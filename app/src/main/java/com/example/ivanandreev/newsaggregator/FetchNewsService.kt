@@ -10,6 +10,8 @@ import java.io.OutputStreamWriter
 import java.text.SimpleDateFormat
 
 class FetchNewsService : Service() {
+    private val tempNewsFileName = "tempNews.txt"
+
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
@@ -22,11 +24,14 @@ class FetchNewsService : Service() {
                 .setHeader("user-agent", "insomnia/2020.4.1")
                 .asString().get()
 
-            val fileOut = openFileOutput(getString(R.string.news_file), Context.MODE_PRIVATE)
+            val fileOut = openFileOutput(tempNewsFileName, Context.MODE_PRIVATE)
             val writer = OutputStreamWriter(fileOut)
             writer.write(newsJSONString)
             writer.close()
+
+            stopSelf()
         }).start()
+
         return START_STICKY
     }
 
@@ -63,5 +68,20 @@ class FetchNewsService : Service() {
             }
         }
         return domains
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // On main thread!
+        // Delete the news.txt file and rename the tempNews.txt file to become the new news.txt
+        // Done to protect against simultaneous reading and writing to the news.txt file.
+        val newsFileName = getString(R.string.news_file)
+        deleteFile(newsFileName)
+
+        // rename tempNews.txt to news.txt
+        val oldFile = getFileStreamPath(tempNewsFileName)
+        val newFile = getFileStreamPath(newsFileName)
+        oldFile.renameTo(newFile)
     }
 }
