@@ -37,6 +37,6 @@ class NewsFragment : Fragment() {
     private fun readNewsFile(): String {
         val fileIn = context?.openFileInput(getString(R.string.news_file))
         val fileReader = InputStreamReader(fileIn)
-        return fileReader.readText()
+        return fileReader.readText().substring(0, 200);
     }
 }
