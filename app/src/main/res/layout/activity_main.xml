@@ -10,11 +10,6 @@
         android:orientation="vertical"
         android:weightSum="100">
 
-<!--        <androidx.viewpager.widget.ViewPager-->
-<!--            android:id="@+id/view_pager"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="650dp"-->
-<!--            />-->
         <FrameLayout
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"

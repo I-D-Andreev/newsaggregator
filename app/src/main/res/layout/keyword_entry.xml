@@ -16,7 +16,7 @@
         android:autoSizeMaxTextSize="@dimen/text_normal"
         />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/remove"
         android:layout_width="@dimen/height_very_small"
         android:layout_height= "@dimen/height_very_small"

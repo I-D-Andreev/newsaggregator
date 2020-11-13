@@ -9,7 +9,7 @@
     android:background="@drawable/layout_border"
     tools:ignore="NestedWeights">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -62,7 +62,7 @@
         </RelativeLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/remove"
         android:layout_width="@dimen/height_small"
         android:layout_height="@dimen/height_small"

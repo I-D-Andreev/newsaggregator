@@ -27,7 +27,5 @@
         android:gravity="center"
         android:textSize="@dimen/text_normal" />
 
-
-
 </androidx.appcompat.widget.LinearLayoutCompat>
 
