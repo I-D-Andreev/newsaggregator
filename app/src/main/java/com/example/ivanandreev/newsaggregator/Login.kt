@@ -40,8 +40,7 @@ class Login : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     println("Sign in successful")
-                    val user = mAuth!!.currentUser
-                    logInSuccess(user)
+                    logInSuccess()
                 } else {
                     // If sign in fails, display a message to the user.
                     print("Sign in failure: ${task.exception}")
@@ -51,7 +50,7 @@ class Login : AppCompatActivity() {
             }
     }
 
-    private fun logInSuccess(user: FirebaseUser?){
+    private fun logInSuccess(){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
