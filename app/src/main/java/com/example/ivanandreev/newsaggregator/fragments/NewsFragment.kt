@@ -1,6 +1,5 @@
 package com.example.ivanandreev.newsaggregator.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.adapters.NewsArticleAdapter
+import com.example.ivanandreev.newsaggregator.json.JsonArticle
+import com.example.ivanandreev.newsaggregator.json.JsonNews
 import java.io.InputStreamReader
 import java.util.*
 import kotlin.collections.ArrayList
@@ -30,10 +31,11 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadRecyclerView(view)
+//        testStuff()
     }
 
     private fun loadRecyclerView(view: View) {
-        val articlesList: ArrayList<NewsEntry> = populateDummyData()
+        val articlesList: ArrayList<NewsEntry> = populateData()
         val recyclerView = view.findViewById<RecyclerView>(R.id.news_recyclerview)
         val layoutManager = LinearLayoutManager(view.context)
         val recyclerAdapter = NewsArticleAdapter(articlesList)
@@ -42,25 +44,28 @@ class NewsFragment : Fragment() {
         recyclerView.adapter = recyclerAdapter
     }
 
-    private fun populateDummyData(): ArrayList<NewsEntry> {
-        val publishers: Array<String> = resources.getStringArray(R.array.publisher_list)
+    private fun populateData(): ArrayList<NewsEntry> {
+        val jsonNewsString: String = readFromFile(getString(R.string.news_file))
+        val news = JsonNews(jsonNewsString)
+
         val image = R.drawable.human
 
         val articles = ArrayList<NewsEntry>()
         for (i in 1..10) {
-            val title = "Article $i Title"
-            val publisher = publishers[(0..4).random()]
-            val date = Calendar.getInstance()
-
-            articles.add(NewsEntry(title, publisher, image, date))
+            val entry: JsonArticle = news.articles[i]
+            articles.add(NewsEntry(entry.title, entry.publisher, image, entry.publishedAt))
         }
 
         return articles
     }
 
-    private fun readNewsFile(): String {
-        val fileIn = context?.openFileInput(getString(R.string.news_file))
+    private fun readFromFile(fileName: String): String {
+        val fileIn = context?.openFileInput(fileName)
         val fileReader = InputStreamReader(fileIn)
-        return fileReader.readText().substring(0,10);
+        val json = fileReader.readText()
+        fileReader.close()
+        return json
     }
+
+
 }

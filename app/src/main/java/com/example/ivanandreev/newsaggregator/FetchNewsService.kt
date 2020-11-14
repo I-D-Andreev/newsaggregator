@@ -24,6 +24,7 @@ class FetchNewsService : Service() {
                 .setHeader("user-agent", "insomnia/2020.4.1")
                 .asString().get()
 
+//            val newsJSONString = "Hello World Hello World Hello"
             val fileOut = openFileOutput(tempNewsFileName, Context.MODE_PRIVATE)
             val writer = OutputStreamWriter(fileOut)
             writer.write(newsJSONString)
