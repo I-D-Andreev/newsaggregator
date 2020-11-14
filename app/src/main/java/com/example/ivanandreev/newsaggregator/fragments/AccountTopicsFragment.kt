@@ -42,7 +42,7 @@ class AccountTopicsFragment : Fragment() {
 
         if (userEmail != null) {
             db.getData(userEmail) { doc: DocumentSnapshot? ->
-                if (doc != null) {
+                if (doc != null && doc.data != null) {
                     userTopics = UserTopics(loadedView.context, doc.data)
 
                     for (i in 0 until grid.childCount) {
