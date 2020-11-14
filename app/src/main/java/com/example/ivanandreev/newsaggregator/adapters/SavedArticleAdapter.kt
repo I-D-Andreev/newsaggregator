@@ -31,7 +31,7 @@ class SavedArticleAdapter(private val savedArticlesList: MutableList<NewsEntry>)
         val article = savedArticlesList[position]
         val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.UK)
 
-        holder.layout.image.setImageResource(article.image)
+        holder.layout.image.setImageResource(R.drawable.human)
         holder.layout.article_title.text = article.title
         holder.layout.article_date.text = sdf.format(article.date.time)
         holder.layout.article_publisher.text = article.publisher

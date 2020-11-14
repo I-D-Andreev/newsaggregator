@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.*
 import com.example.ivanandreev.newsaggregator.fragments.NewsEntry
+import com.koushikdutta.ion.Ion
 import kotlinx.android.synthetic.main.saved_article_entry.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,7 +31,11 @@ class NewsArticleAdapter(private val newsArticlesList: MutableList<NewsEntry>) :
         val article = newsArticlesList[position]
         val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.UK)
 
-        holder.layout.image.setImageResource(article.image)
+        Ion.with(holder.layout.image)
+            .placeholder(R.drawable.white)
+            .error(R.drawable.error)
+            .load(article.imageUrl)
+
         holder.layout.article_title.text = article.title
         holder.layout.article_date.text = sdf.format(article.date.time)
         holder.layout.article_publisher.text = article.publisher

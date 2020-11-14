@@ -43,7 +43,8 @@ class SavedArticlesFragment : Fragment() {
 
     private fun populateDummyData(): ArrayList<NewsEntry> {
         val publishers: Array<String> = resources.getStringArray(R.array.publisher_list)
-        val image = R.drawable.human
+//        val image = R.drawable.human
+        val image = "https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg"
 
         val articles = ArrayList<NewsEntry>()
         for (i in 1..10) {

@@ -31,7 +31,6 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadRecyclerView(view)
-//        testStuff()
     }
 
     private fun loadRecyclerView(view: View) {
@@ -48,12 +47,10 @@ class NewsFragment : Fragment() {
         val jsonNewsString: String = readFromFile(getString(R.string.news_file))
         val news = JsonNews(jsonNewsString)
 
-        val image = R.drawable.human
-
         val articles = ArrayList<NewsEntry>()
-        for (i in 1..10) {
+        for (i in 0..10) {
             val entry: JsonArticle = news.articles[i]
-            articles.add(NewsEntry(entry.title, entry.publisher, image, entry.publishedAt))
+            articles.add(NewsEntry(entry.title, entry.publisher, entry.urlToImage, entry.publishedAt))
         }
 
         return articles
@@ -65,6 +62,22 @@ class NewsFragment : Fragment() {
         val json = fileReader.readText()
         fileReader.close()
         return json
+    }
+
+    // for testing purposes only, so as not to use API calls
+    private fun populateDummyData(): ArrayList<NewsEntry> {
+        val publishers: Array<String> = resources.getStringArray(R.array.publisher_list)
+        val image = "https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg"
+        val articles = ArrayList<NewsEntry>()
+        for (i in 0..10) {
+            val title = "Article $i Title"
+            val publisher = publishers[(0..4).random()]
+            val date = Calendar.getInstance()
+
+            articles.add(NewsEntry(title, publisher, image, date))
+        }
+
+        return articles
     }
 
 

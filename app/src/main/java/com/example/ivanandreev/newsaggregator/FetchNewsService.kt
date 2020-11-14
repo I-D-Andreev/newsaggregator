@@ -19,6 +19,7 @@ class FetchNewsService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Thread(Runnable {
             val url: String = buildAPICall()
+            println("!!! URL is $url")
             val newsJSONString = Ion.with(this)
                 .load("GET", url)
                 .setHeader("user-agent", "insomnia/2020.4.1")
