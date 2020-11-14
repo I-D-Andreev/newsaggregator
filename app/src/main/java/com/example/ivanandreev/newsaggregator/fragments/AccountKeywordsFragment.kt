@@ -42,4 +42,10 @@ class AccountKeywordsFragment : Fragment() {
         }
         return keywords
     }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        println("!!! Keywords Destroyed")
+    }
 }

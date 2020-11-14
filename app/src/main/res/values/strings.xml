@@ -20,7 +20,7 @@
     <string name="news">News</string>
 
 
-    <string-array name="news_types_list">
+    <string-array name="topics_list">
         <item>Breaking News </item>
         <item>Trending News </item>
         <item>Local News </item>
