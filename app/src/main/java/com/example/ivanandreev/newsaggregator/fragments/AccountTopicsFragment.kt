@@ -1,19 +1,17 @@
 package com.example.ivanandreev.newsaggregator.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserTopics
+import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 
 class AccountTopicsFragment : Fragment() {
     private val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
@@ -39,28 +37,35 @@ class AccountTopicsFragment : Fragment() {
         userTopics = UserTopics(loadedView.context)
 
         for (i in 0 until grid.childCount) {
-            (grid.getChildAt(i) as TextView).text = userTopics.topicsList[i]
+            (grid.getChildAt(i) as MaterialCheckBox).text = userTopics.topicsList[i]
         }
 
-        loadDB()
-    }
-
-    private fun loadDB() {
         if (userEmail != null) {
-            db.getData("adsadsd") { doc: DocumentSnapshot? ->
-                if (doc!=null) {
-                    println("!!! Document is ${doc.data}")
-                } else {
-                    println("!!! doc is null")
+            db.getData(userEmail) { doc: DocumentSnapshot? ->
+                if (doc != null) {
+                    userTopics = UserTopics(loadedView.context, doc.data)
+
+                    for (i in 0 until grid.childCount) {
+                        (grid.getChildAt(i) as MaterialCheckBox).isChecked =
+                            (userTopics.isChecked(userTopics.topicsList[i]) == true)
+                    }
+                    println("!!! Successfully loaded from DB!")
                 }
             }
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        println("!!! Topics Destroyed")
+
+    override fun onStop() {
+        super.onStop()
+        println("!!! On Stop")
+
         if (userEmail != null) {
+            val grid = loadedView.findViewById<GridLayout>(R.id.news_type_grid)
+            for (i in 0 until grid.childCount) {
+                val gridElem = grid.getChildAt(i) as MaterialCheckBox
+                userTopics.updateTopic(gridElem.text.toString(), gridElem.isChecked)
+            }
             db.save(userEmail, userTopics.topics)
         }
     }
