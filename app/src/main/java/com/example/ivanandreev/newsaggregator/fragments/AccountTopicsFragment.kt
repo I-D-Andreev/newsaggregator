@@ -9,17 +9,17 @@ import android.widget.GridLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.ivanandreev.newsaggregator.R
+import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserTopics
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AccountTopicsFragment : Fragment() {
-    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
-    private val TAG: String = AccountTopicsFragment::class.java.simpleName
-
-    lateinit var userTopics: UserTopics
-    lateinit var loadedView: View
+    private val db: FireDB = FireDB("userTopics")
+    private lateinit var userTopics: UserTopics
+    private lateinit var loadedView: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,17 +47,13 @@ class AccountTopicsFragment : Fragment() {
 
     private fun loadDB() {
         if (userEmail != null) {
-            db.collection("userTopics").document(userEmail).get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        println("!!! DocumentSnapshot data: ${document.data}")
-                    } else {
-                        println("!!! No such document")
-                    }
+            db.getData("adsadsd") { doc: DocumentSnapshot? ->
+                if (doc!=null) {
+                    println("!!! Document is ${doc.data}")
+                } else {
+                    println("!!! doc is null")
                 }
-                .addOnFailureListener { exception ->
-                    println("!! Get failed with ${exception.message}")
-                }
+            }
         }
     }
 
@@ -65,12 +61,7 @@ class AccountTopicsFragment : Fragment() {
         super.onDestroy()
         println("!!! Topics Destroyed")
         if (userEmail != null) {
-            db.collection("userTopics").document(userEmail).set(userTopics.topics)
-                .addOnSuccessListener {
-                    Log.i(TAG, "Successfully written to DB!")
-                }.addOnFailureListener { ex ->
-                    Log.e(TAG, "Failure writing to DB - ${ex.message}")
-                }
+            db.save(userEmail, userTopics.topics)
         }
     }
 
