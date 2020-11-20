@@ -30,7 +30,6 @@ class KeywordAdapter(val keywordList: MutableList<KeywordEntry>) :
         val data = keywordList[position]
         holder.layout.keyword.text = data.keyword
         holder.layout.remove.setOnClickListener {
-            println("!!! Position is $position")
             keywordList.removeAt(position)
             this.notifyItemRemoved(position)
             this.notifyItemRangeChanged(position, itemCount)
