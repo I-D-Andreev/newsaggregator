@@ -1,5 +1,7 @@
 package com.example.ivanandreev.newsaggregator.fragments
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import com.example.ivanandreev.newsaggregator.adapters.KeywordAdapter
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 
@@ -31,15 +34,31 @@ class AccountKeywordsFragment : Fragment() {
         loadedView = view
         loadData()
         loadedView.findViewById<FloatingActionButton>(R.id.addKeyword)
-            .setOnClickListener(this::addKeyword)
+            .setOnClickListener(this::showAddKeywordDialog)
     }
 
-    private fun addKeyword(view: View) {
+    private fun showAddKeywordDialog(view: View){
+        val textBox: TextInputEditText = TextInputEditText(loadedView.context)
+        val dialog: AlertDialog = AlertDialog.Builder(loadedView.context)
+            .setTitle("Add Keyword")
+            .setMessage("Message")
+            .setView(textBox)
+            .setPositiveButton("Add") { _: DialogInterface, _: Int ->
+                val keyword: String = textBox.text.toString()
+                addKeyword(keyword)
+            }
+            .setNegativeButton("Cancel", null)
+            .create()
+        dialog.show()
+
+    }
+
+    private fun addKeyword(keywordText: String) {
         val rv: RecyclerView = loadedView.findViewById<RecyclerView>(R.id.keywords_recyclerview)
         val adapter: KeywordAdapter = rv.adapter as KeywordAdapter
 
         val keyword = KeywordEntry()
-        keyword.keyword = "New keyword"
+        keyword.keyword = keywordText
 
         adapter.keywordList.add(keyword)
         adapter.notifyItemInserted(adapter.itemCount)
