@@ -37,7 +37,7 @@ class AccountKeywordsFragment : Fragment() {
             .setOnClickListener(this::showAddKeywordDialog)
     }
 
-    private fun showAddKeywordDialog(view: View){
+    private fun showAddKeywordDialog(view: View) {
         val textBox = EditText(loadedView.context)
         val dialog: AlertDialog = AlertDialog.Builder(loadedView.context)
             .setTitle("Add Keyword")
@@ -60,7 +60,7 @@ class AccountKeywordsFragment : Fragment() {
         keyword.keyword = keywordText
 
         adapter.keywordList.add(keyword)
-        adapter.notifyItemInserted(adapter.itemCount)
+        adapter.notifyItemInserted(adapter.itemCount - 1)
     }
 
     private fun loadData() {
