@@ -17,7 +17,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/indent_medium">
+        android:layout_marginTop="@dimen/indent_small">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addKeyword"
@@ -29,4 +29,11 @@
 
             app:fabSize="mini" />
     </RelativeLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight = "20"
+        android:id="@+id/myCoordinatorLayout"/>
+
 </androidx.appcompat.widget.LinearLayoutCompat>

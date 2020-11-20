@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.keyword_entry.view.*
-import android.widget.Toast
 import com.example.ivanandreev.newsaggregator.*
 import com.example.ivanandreev.newsaggregator.fragments.KeywordEntry
+import com.google.android.material.snackbar.Snackbar
 
 
 class KeywordAdapter(val keywordList: MutableList<KeywordEntry>) :
@@ -32,7 +32,8 @@ class KeywordAdapter(val keywordList: MutableList<KeywordEntry>) :
         holder.layout.remove.setOnClickListener {
             keywordList.removeAt(position)
             this.notifyItemRemoved(position)
-            Toast.makeText(holder.layout.context, "Keyword \"${data.keyword}\" removed!", Toast.LENGTH_LONG).show()
+            val snackBar = Snackbar.make(holder.layout.rootView.findViewById(R.id.myCoordinatorLayout), "Keyword \"${data.keyword}\" removed!", Snackbar.LENGTH_LONG)
+            snackBar.show()
         }
     }
 
