@@ -49,7 +49,7 @@ class AccountTopicsFragment : Fragment() {
                         (grid.getChildAt(i) as MaterialCheckBox).isChecked =
                             (userTopics.isChecked(userTopics.topicsList[i]) == true)
                     }
-                    println("!!! Successfully loaded from DB!")
+                    println("!!! Successfully loaded Topics from DB!")
                 }
             }
         }
