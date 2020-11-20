@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +15,6 @@ import com.example.ivanandreev.newsaggregator.adapters.KeywordAdapter
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 
@@ -38,7 +38,7 @@ class AccountKeywordsFragment : Fragment() {
     }
 
     private fun showAddKeywordDialog(view: View){
-        val textBox: TextInputEditText = TextInputEditText(loadedView.context)
+        val textBox = EditText(loadedView.context)
         val dialog: AlertDialog = AlertDialog.Builder(loadedView.context)
             .setTitle("Add Keyword")
             .setView(textBox)
