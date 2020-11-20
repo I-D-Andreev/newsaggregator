@@ -12,6 +12,7 @@ import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.adapters.KeywordAdapter
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textview.MaterialTextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
@@ -31,6 +32,19 @@ class AccountKeywordsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadedView = view
         loadData()
+        loadedView.findViewById<FloatingActionButton>(R.id.addKeyword)
+            .setOnClickListener(this::addKeyword)
+    }
+
+    private fun addKeyword(view: View) {
+        val rv: RecyclerView = loadedView.findViewById<RecyclerView>(R.id.keywords_recyclerview)
+        val adapter: KeywordAdapter = rv.adapter as KeywordAdapter
+
+        val keyword = KeywordEntry()
+        keyword.keyword = "New keyword"
+
+        adapter.keywordList.add(keyword)
+        adapter.notifyItemInserted(adapter.itemCount)
     }
 
     private fun loadData() {

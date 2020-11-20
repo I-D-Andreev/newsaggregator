@@ -10,7 +10,7 @@ import com.example.ivanandreev.newsaggregator.*
 import com.example.ivanandreev.newsaggregator.fragments.KeywordEntry
 
 
-class KeywordAdapter(private val keywordList: MutableList<KeywordEntry>) :
+class KeywordAdapter(val keywordList: MutableList<KeywordEntry>) :
     RecyclerView.Adapter<KeywordAdapter.ViewHolder>() {
 
     inner class ViewHolder(var layout: View) : RecyclerView.ViewHolder(layout) {

@@ -20,7 +20,7 @@
         android:layout_marginTop="@dimen/indent_medium">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/addKeyword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_add_24"
