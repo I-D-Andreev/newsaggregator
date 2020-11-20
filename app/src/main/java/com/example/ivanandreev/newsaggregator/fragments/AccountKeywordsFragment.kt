@@ -33,13 +33,13 @@ class AccountKeywordsFragment : Fragment() {
         loadData()
     }
 
-    private fun loadData(){
+    private fun loadData() {
         val keywords = ArrayList<KeywordEntry>()
 
         if (userEmail != null) {
             db.getData(userEmail) { doc: DocumentSnapshot? ->
                 if (doc != null && doc.data != null) {
-                    for(keyword: String in doc.data!!["keywords"] as ArrayList<String>){
+                    for (keyword: String in doc.data!![UserKeywords::keywords.name] as ArrayList<String>) {
                         val entry = KeywordEntry()
                         entry.keyword = keyword
                         keywords.add(entry)
