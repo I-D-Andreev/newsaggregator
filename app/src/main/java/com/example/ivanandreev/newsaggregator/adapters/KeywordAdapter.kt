@@ -33,6 +33,7 @@ class KeywordAdapter(val keywordList: MutableList<KeywordEntry>) :
             println("!!! Position is $position")
             keywordList.removeAt(position)
             this.notifyItemRemoved(position)
+            this.notifyItemRangeChanged(position, itemCount)
 
             val snackBar = Snackbar.make(
                 holder.layout.rootView.findViewById(R.id.myCoordinatorLayout),
