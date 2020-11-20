@@ -30,7 +30,9 @@ class KeywordAdapter(val keywordList: MutableList<KeywordEntry>) :
         val data = keywordList[position]
         holder.layout.keyword.text = data.keyword
         holder.layout.remove.setOnClickListener {
-            Toast.makeText(holder.layout.context, "Delete hit!", Toast.LENGTH_LONG).show()
+            keywordList.removeAt(position)
+            this.notifyItemRemoved(position)
+            Toast.makeText(holder.layout.context, "Keyword \"${data.keyword}\" removed!", Toast.LENGTH_LONG).show()
         }
     }
 
