@@ -34,7 +34,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun loadRecyclerView(view: View) {
-        val articlesList: ArrayList<NewsEntry> = populateData()
+        val articlesList: ArrayList<NewsEntry> = populateDummyData()
         val recyclerView = view.findViewById<RecyclerView>(R.id.news_recyclerview)
         val layoutManager = LinearLayoutManager(view.context)
         val recyclerAdapter = NewsArticleAdapter(articlesList)
