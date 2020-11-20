@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +12,6 @@ import com.example.ivanandreev.newsaggregator.adapters.KeywordAdapter
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.textview.MaterialTextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 
@@ -83,10 +81,9 @@ class AccountKeywordsFragment : Fragment() {
         println("!!! Keywords Stopped")
 
         if (userEmail != null) {
-            val recyclerView = loadedView.findViewById<RecyclerView>(R.id.keywords_recyclerview)
-            val keywords = recyclerView.children.map {
-                it.findViewById<MaterialTextView>(R.id.keyword).text.toString()
-            }.toMutableList()
+            val recyclerViewAdapter: KeywordAdapter =
+                loadedView.findViewById<RecyclerView>(R.id.keywords_recyclerview).adapter as KeywordAdapter
+            val keywords = recyclerViewAdapter.keywordList.map { it.keyword }.toMutableList()
 
             // need to wrap in POJO before saving to DB
             db.save(userEmail, UserKeywords(keywords))
