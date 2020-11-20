@@ -41,7 +41,6 @@ class AccountKeywordsFragment : Fragment() {
         val textBox: TextInputEditText = TextInputEditText(loadedView.context)
         val dialog: AlertDialog = AlertDialog.Builder(loadedView.context)
             .setTitle("Add Keyword")
-            .setMessage("Message")
             .setView(textBox)
             .setPositiveButton("Add") { _: DialogInterface, _: Int ->
                 val keyword: String = textBox.text.toString()
