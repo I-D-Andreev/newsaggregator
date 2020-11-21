@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.*
 import com.example.ivanandreev.newsaggregator.fragments.NewsEntry
+import com.google.android.material.textview.MaterialTextView
 import com.koushikdutta.ion.Ion
 import kotlinx.android.synthetic.main.saved_article_entry.view.*
 import java.text.SimpleDateFormat
@@ -20,7 +21,14 @@ class NewsArticleAdapter(private val newsArticlesList: MutableList<NewsEntry>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.news_article_entry, parent, false)
+        view.setOnClickListener(this::onItemClicked)
         return ViewHolder(view)
+    }
+
+    private fun onItemClicked(view: View){
+        println("!!! Item clicked")
+        println("!!! View is $view")
+        println("!!! Text is ${view.findViewById<MaterialTextView>(R.id.article_title).text}")
     }
 
     override fun getItemCount(): Int {
