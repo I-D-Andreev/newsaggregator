@@ -18,6 +18,8 @@
     <string name="log_in">LOG IN</string>
     <string name="email">Email</string>
     <string name="news">News</string>
+    <string name="no_account">No account?</string>
+    <string name="register_here"><u>Register here</u></string>
 
 
     <string-array name="topics_list">

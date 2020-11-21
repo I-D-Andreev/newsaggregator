@@ -2,10 +2,12 @@ package com.example.ivanandreev.newsaggregator
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 
@@ -24,6 +26,10 @@ class Login : AppCompatActivity() {
     private fun startNewsFetchService(){
         val serviceIntent = Intent(this, FetchNewsService::class.java)
         startService(serviceIntent)
+    }
+
+    fun registerHere(view: View){
+
     }
 
     fun signIn(view: View) {
