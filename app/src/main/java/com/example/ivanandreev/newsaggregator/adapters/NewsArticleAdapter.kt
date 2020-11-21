@@ -1,6 +1,7 @@
 package com.example.ivanandreev.newsaggregator.adapters
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
@@ -28,19 +29,28 @@ class NewsArticleAdapter(private val newsArticlesList: MutableList<NewsEntry>) :
     }
 
     private fun onItemClicked(view: View){
-        println("!!! Item clicked")
-        println("!!! View is $view")
-        println("!!! Text is ${view.findViewById<MaterialTextView>(R.id.article_title).text}")
+        val ctx: Context = view.context
+        val actions: Array<String> = ctx.resources.getStringArray(R.array.news_article_actions)
 
-        val possibilities: Array<String> = arrayOf("Visit", "Save")
         val dialog: AlertDialog = AlertDialog.Builder(view.context)
-            .setTitle("Choose an Action")
-            .setItems(possibilities) {dialog: DialogInterface?, which: Int ->
-                println("!!! The user clicked on ${possibilities[which]}")
+            .setTitle(ctx.getString(R.string.choose_action))
+            .setItems(actions) {_: DialogInterface?, which: Int ->
+                when(which){
+                    0 -> visitArticle()
+                    1 -> saveArticle()
+                }
             }
-            .setNegativeButton(view.context.getString(R.string.cancel), null)
+            .setNegativeButton(ctx.getString(R.string.cancel), null)
             .create()
         dialog.show()
+    }
+
+    private fun visitArticle(){
+
+    }
+
+    private fun saveArticle() {
+
     }
 
     override fun getItemCount(): Int {

@@ -31,6 +31,7 @@
     <string name="cancel">Cancel</string>
     <string name="undo">Undo</string>
     <string name="keyword_removed">Keyword removed</string>
+    <string name="choose_action">Choose an Action</string>
 
 
     <string-array name="topics_list">
@@ -54,6 +55,12 @@
         <item>The Independent</item>
         <item>The Times</item>
         <item>Bloomberg</item>
+    </string-array>
+
+    <string-array name="news_article_actions">
+        <!-- Do not reorder. -->
+        <item>Visit</item>
+        <item>Save</item>
     </string-array>
 
     <string-array name="news_sites_domains_list">
