@@ -57,22 +57,6 @@
         <item>thetimes.co.uk</item>
     </string-array>
 
-    <string-array name="keywords_list">
-        <item>Keyword 1</item> <!-- 18 characters length max -->
-        <item>Keyword 2</item>
-        <item>Keyword 3</item>
-        <item>Keyword 4</item>
-        <item>Keyword 5</item>
-        <item>Keyword 6</item>
-        <item>Keyword 7</item>
-        <item>Keyword 8</item>
-        <item>Keyword 9</item>
-        <item>Keyword 10</item>
-        <item>Keyword 11</item>
-        <item>Keyword 12</item>
-        <item>Keyword 13</item>
-    </string-array>
-
     <string-array name="account_preferences_tabs">
         <item>Topics</item>
         <item>Keywords</item>
