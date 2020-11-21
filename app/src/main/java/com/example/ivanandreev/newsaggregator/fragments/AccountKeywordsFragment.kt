@@ -52,27 +52,23 @@ class AccountKeywordsFragment : Fragment() {
 
     }
 
-    private fun addKeyword(keywordText: String) {
+    private fun addKeyword(keyword: String) {
         val rv: RecyclerView = loadedView.findViewById<RecyclerView>(R.id.keywords_recyclerview)
         val adapter: KeywordAdapter = rv.adapter as KeywordAdapter
 
-        val keyword = KeywordEntry()
-        keyword.keyword = keywordText
 
         adapter.keywordList.add(keyword)
         adapter.notifyItemInserted(adapter.itemCount - 1)
     }
 
     private fun loadData() {
-        val keywords = ArrayList<KeywordEntry>()
+        val keywords = ArrayList<String>()
 
         if (userEmail != null) {
             db.getData(userEmail) { doc: DocumentSnapshot? ->
                 if (doc != null && doc.data != null) {
                     for (keyword: String in doc.data!![UserKeywords::keywords.name] as ArrayList<String>) {
-                        val entry = KeywordEntry()
-                        entry.keyword = keyword
-                        keywords.add(entry)
+                        keywords.add(keyword)
                     }
                     println("!!! Successfully loaded Keywords from DB")
                 } else {
@@ -85,7 +81,7 @@ class AccountKeywordsFragment : Fragment() {
 
     }
 
-    private fun loadRecyclerView(keywordsList: ArrayList<KeywordEntry>) {
+    private fun loadRecyclerView(keywordsList: ArrayList<String>) {
         val recyclerView = loadedView.findViewById<RecyclerView>(R.id.keywords_recyclerview)
         val layoutManager = GridLayoutManager(loadedView.context, 2)
         val recyclerAdapter = KeywordAdapter(keywordsList)
@@ -101,10 +97,9 @@ class AccountKeywordsFragment : Fragment() {
         if (userEmail != null) {
             val recyclerViewAdapter: KeywordAdapter =
                 loadedView.findViewById<RecyclerView>(R.id.keywords_recyclerview).adapter as KeywordAdapter
-            val keywords = recyclerViewAdapter.keywordList.map { it.keyword }.toMutableList()
 
             // need to wrap in POJO before saving to DB
-            db.save(userEmail, UserKeywords(keywords))
+            db.save(userEmail, UserKeywords(recyclerViewAdapter.keywordList))
 
             println("!!! Keywords saved")
         }

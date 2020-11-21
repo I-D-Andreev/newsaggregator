@@ -5,12 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.R
-import com.example.ivanandreev.newsaggregator.fragments.KeywordEntry
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.keyword_entry.view.*
 
 
-class KeywordAdapter(val keywordList: MutableList<KeywordEntry>) :
+class KeywordAdapter(val keywordList: MutableList<String>) :
     RecyclerView.Adapter<KeywordAdapter.ViewHolder>() {
 
     inner class ViewHolder(var layout: View) : RecyclerView.ViewHolder(layout) {
@@ -27,8 +26,9 @@ class KeywordAdapter(val keywordList: MutableList<KeywordEntry>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data = keywordList[position]
-        holder.layout.keyword.text = data.keyword
+        val keyword = keywordList[position]
+        holder.layout.keyword.text = keyword
+
         holder.layout.remove.setOnClickListener {
             keywordList.removeAt(position)
             this.notifyItemRemoved(position)
@@ -36,12 +36,10 @@ class KeywordAdapter(val keywordList: MutableList<KeywordEntry>) :
 
             val snackBar = Snackbar.make(
                 holder.layout.rootView.findViewById(R.id.myCoordinatorLayout),
-                "Keyword \"${data.keyword}\" removed!",
+                "Keyword \"${keyword}\" removed!",
                 Snackbar.LENGTH_LONG
             ).setAction("Undo") {
-                val kw = KeywordEntry()
-                kw.keyword = data.keyword
-                keywordList.add(position, kw)
+                keywordList.add(position, keyword)
                 notifyItemInserted(position)
             }
             snackBar.show()
