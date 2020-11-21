@@ -44,6 +44,8 @@ class SavedArticlesFragment : Fragment() {
     }
 
     private fun populateData(): ArrayList<NewsEntry>{
+        // todo1: keep JsonSavedArticles as a global variable and add/remove from it
+        // or pass it to the adapter (might be better)!!
         val fileName: String = getString(R.string.saved_articles_file)
         val currentData: String = RWFile.readFromFile(fileName, context!!)
 
