@@ -3,7 +3,6 @@ package com.example.ivanandreev.newsaggregator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ivanandreev.newsaggregator.helpers.Keyboard
@@ -45,7 +44,6 @@ class LoginActivity : AppCompatActivity() {
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
                         println("!!! Sign in successful")
                         emailTextBox.text?.clear()
                         passwordTextBox.text?.clear()
@@ -53,9 +51,8 @@ class LoginActivity : AppCompatActivity() {
                         emailTextBox.clearFocus()
                         passwordTextBox.clearFocus()
 
-                        logInSuccess()
+                        signInUser()
                     } else {
-                        // If sign in fails, display a message to the user.
                         print("!!! Sign in failure: ${task.exception}")
                         Toast.makeText(this, getString(R.string.authentication_failed), Toast.LENGTH_SHORT).show()
                     }
@@ -65,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun logInSuccess() {
+    private fun signInUser() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
