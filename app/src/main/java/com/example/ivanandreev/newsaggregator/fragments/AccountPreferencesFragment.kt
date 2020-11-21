@@ -1,16 +1,22 @@
 package com.example.ivanandreev.newsaggregator.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import com.example.ivanandreev.newsaggregator.Login
 import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.adapters.TabsPagerAdapter
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.textview.MaterialTextView
+import com.google.firebase.auth.FirebaseAuth
 
 class AccountPreferencesFragment : Fragment() {
+    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +32,16 @@ class AccountPreferencesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         loadViewPager(view)
+        view.findViewById<AppCompatImageButton>(R.id.sign_out_button).setOnClickListener(this::onSignOutClicked)
+        view.findViewById<MaterialTextView>(R.id.sign_out_text_view).setOnClickListener(this::onSignOutClicked)
+    }
+
+    private fun onSignOutClicked(view: View) {
+        firebaseAuth.signOut()
+        val intent = Intent(activity, Login::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+        activity?.finish()
     }
 
     private fun loadViewPager(view: View) {
