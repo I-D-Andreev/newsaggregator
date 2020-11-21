@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.adapters.NewsArticleAdapter
+import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonArticle
 import com.example.ivanandreev.newsaggregator.json.JsonNews
 import java.io.InputStreamReader
@@ -44,7 +45,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun populateData(): ArrayList<NewsEntry> {
-        val jsonNewsString: String = readFromFile(getString(R.string.news_file))
+        val jsonNewsString: String = RWFile.readFromFile(getString(R.string.news_file), context!!)
         val news = JsonNews(jsonNewsString)
 
         val articles = ArrayList<NewsEntry>()
@@ -62,14 +63,6 @@ class NewsFragment : Fragment() {
         }
 
         return articles
-    }
-
-    private fun readFromFile(fileName: String): String {
-        val fileIn = context?.openFileInput(fileName)
-        val fileReader = InputStreamReader(fileIn)
-        val json = fileReader.readText()
-        fileReader.close()
-        return json
     }
 
     // for testing purposes only, so as not to use API calls
