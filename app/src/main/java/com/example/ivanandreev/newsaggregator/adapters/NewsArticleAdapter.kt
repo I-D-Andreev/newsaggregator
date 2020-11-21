@@ -38,7 +38,7 @@ class NewsArticleAdapter(private val newsArticlesList: MutableList<NewsEntry>) :
             .setItems(possibilities) {dialog: DialogInterface?, which: Int ->
                 println("!!! The user clicked on ${possibilities[which]}")
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton(view.context.getString(R.string.cancel), null)
             .create()
         dialog.show()
     }

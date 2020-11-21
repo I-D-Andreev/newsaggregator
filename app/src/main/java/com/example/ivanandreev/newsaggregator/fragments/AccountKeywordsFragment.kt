@@ -40,13 +40,13 @@ class AccountKeywordsFragment : Fragment() {
     private fun showAddKeywordDialog(view: View) {
         val textBox = EditText(loadedView.context)
         val dialog: AlertDialog = AlertDialog.Builder(loadedView.context)
-            .setTitle("Add a Keyword")
+            .setTitle(getString(R.string.add_keyword))
             .setView(textBox)
-            .setPositiveButton("Add") { _: DialogInterface, _: Int ->
+            .setPositiveButton(getString(R.string.add)) { _: DialogInterface, _: Int ->
                 val keyword: String = textBox.text.toString()
                 addKeyword(keyword)
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton(getString(R.string.cancel), null)
             .create()
         dialog.show()
 

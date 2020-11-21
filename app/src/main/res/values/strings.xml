@@ -26,6 +26,11 @@
     <string name="username_and_password_no_empty">Username and Password fields cannot be empty!</string>
     <string name="all_fields_filled">All fields must be filled!</string>
     <string name="passwords_must_match">Passwords must match!</string>
+    <string name="add_keyword">Add a Keyword</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="undo">Undo</string>
+    <string name="keyword_removed">Keyword removed</string>
 
 
     <string-array name="topics_list">

@@ -1,5 +1,6 @@
 package com.example.ivanandreev.newsaggregator.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class KeywordAdapter(val keywordList: MutableList<String>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val keyword = keywordList[position]
         holder.layout.keyword.text = keyword
+        val ctx: Context = holder.layout.context
 
         holder.layout.remove.setOnClickListener {
             keywordList.removeAt(position)
@@ -36,9 +38,9 @@ class KeywordAdapter(val keywordList: MutableList<String>) :
 
             val snackBar = Snackbar.make(
                 holder.layout.rootView.findViewById(R.id.myCoordinatorLayout),
-                "Keyword \"${keyword}\" removed!",
+                "${ctx.getString(R.string.keyword_removed)} : \"$keyword\"!",
                 Snackbar.LENGTH_LONG
-            ).setAction("Undo") {
+            ).setAction(ctx.getString(R.string.undo)) {
                 keywordList.add(position, keyword)
                 notifyItemInserted(position)
             }
