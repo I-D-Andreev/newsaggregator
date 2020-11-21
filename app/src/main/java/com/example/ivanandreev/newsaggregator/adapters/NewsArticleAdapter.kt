@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ivanandreev.newsaggregator.*
+import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.fragments.NewsEntry
-import com.google.android.material.textview.MaterialTextView
+import com.example.ivanandreev.newsaggregator.helpers.RWFile
+import com.example.ivanandreev.newsaggregator.json.JsonSavedArticles
 import com.koushikdutta.ion.Ion
 import kotlinx.android.synthetic.main.saved_article_entry.view.*
 import java.text.SimpleDateFormat
@@ -24,17 +25,17 @@ class NewsArticleAdapter(private val newsArticlesList: MutableList<NewsEntry>) :
             layout.setOnClickListener(this::onItemClicked)
         }
 
-        private fun onItemClicked(view: View){
+        private fun onItemClicked(view: View) {
             val ctx: Context = view.context
             val actions: Array<String> = ctx.resources.getStringArray(R.array.news_article_actions)
             val articlePosition: Int = this.layoutPosition
 
             val dialog: AlertDialog = AlertDialog.Builder(view.context)
                 .setTitle(ctx.getString(R.string.choose_action))
-                .setItems(actions) {_: DialogInterface?, which: Int ->
-                    when(which){
-                        0 -> visitArticle(articlePosition)
-                        1 -> saveArticle(articlePosition)
+                .setItems(actions) { _: DialogInterface?, which: Int ->
+                    when (which) {
+                        0 -> visitArticle(ctx, articlePosition)
+                        1 -> saveArticle(ctx, articlePosition)
                     }
                 }
                 .setNegativeButton(ctx.getString(R.string.cancel), null)
@@ -43,10 +44,23 @@ class NewsArticleAdapter(private val newsArticlesList: MutableList<NewsEntry>) :
         }
     }
 
-    private fun saveArticle(position: Int) {
+    private fun saveArticle(ctx: Context, position: Int) {
+        // todo1: initialize jsonarticles at top and then save only once on view exit
+        // this way we can also check that we can't save the same article twice
+        println("!!! Save article")
+        val fileName = ctx.getString(R.string.saved_articles_file)
+        val article: NewsEntry = newsArticlesList[position]
+
+        val currentData: String = RWFile.readFromFile(fileName, ctx)
+
+        val currentSavedArticles: JsonSavedArticles =
+            if (currentData.isNotEmpty()) JsonSavedArticles(currentData) else JsonSavedArticles()
+
+        currentSavedArticles.addArticle(article)
+        RWFile.writeToFile(fileName, currentSavedArticles.toJsonArray(), ctx)
     }
 
-    private fun visitArticle(position: Int){
+    private fun visitArticle(ctx: Context, position: Int) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
