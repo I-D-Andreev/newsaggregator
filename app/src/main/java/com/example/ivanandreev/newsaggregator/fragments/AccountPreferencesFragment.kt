@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
-import com.example.ivanandreev.newsaggregator.Login
+import com.example.ivanandreev.newsaggregator.LoginActivity
 import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.adapters.TabsPagerAdapter
 import com.google.android.material.tabs.TabLayout
@@ -38,7 +38,7 @@ class AccountPreferencesFragment : Fragment() {
 
     private fun onSignOutClicked(view: View) {
         firebaseAuth.signOut()
-        val intent = Intent(activity, Login::class.java)
+        val intent = Intent(activity, LoginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
         activity?.finish()
