@@ -22,6 +22,8 @@
     <string name="register_here"><u>Register here</u></string>
     <string name="create_account">Create Account</string>
     <string name="repeat_password">Repeat Password</string>
+    <string name="authentication_failed">Authentication failed.</string>
+    <string name="username_and_password_no_empty">Username and Password fields cannot be empty!</string>
 
 
     <string-array name="topics_list">
