@@ -50,7 +50,15 @@ class NewsFragment : Fragment() {
         val articles = ArrayList<NewsEntry>()
         for (i in 0..10) {
             val entry: JsonArticle = news.articles[i]
-            articles.add(NewsEntry(entry.title, entry.publisher, entry.urlToImage, entry.publishedAt))
+            articles.add(
+                NewsEntry(
+                    entry.title,
+                    entry.publisher,
+                    entry.url,
+                    entry.urlToImage,
+                    entry.publishedAt
+                )
+            )
         }
 
         return articles
@@ -74,7 +82,7 @@ class NewsFragment : Fragment() {
             val publisher = publishers[(0..4).random()]
             val date = Calendar.getInstance()
 
-            articles.add(NewsEntry(title, publisher, image, date))
+            articles.add(NewsEntry(title, publisher, "", image, date))
         }
 
         return articles

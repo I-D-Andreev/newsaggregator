@@ -52,7 +52,7 @@ class SavedArticlesFragment : Fragment() {
             val publisher = publishers[(0..4).random()]
             val date = Calendar.getInstance()
 
-            articles.add(NewsEntry(title, publisher, image, date))
+            articles.add(NewsEntry(title, publisher, "",image, date))
         }
 
         return articles
