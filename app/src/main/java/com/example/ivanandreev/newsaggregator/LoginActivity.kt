@@ -21,6 +21,16 @@ class LoginActivity : AppCompatActivity() {
         startNewsFetchService()
     }
 
+    override fun onResume() {
+        super.onResume()
+        val emailTextBox = findViewById<TextInputEditText>(R.id.email)
+        val passwordTextBox = findViewById<TextInputEditText>(R.id.password)
+
+        emailTextBox.text?.clear()
+        passwordTextBox.text?.clear()
+        emailTextBox.clearFocus()
+        passwordTextBox.clearFocus()
+    }
     private fun startNewsFetchService() {
         val serviceIntent = Intent(this, FetchNewsService::class.java)
         startService(serviceIntent)
@@ -45,11 +55,6 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         println("!!! Sign in successful")
-                        emailTextBox.text?.clear()
-                        passwordTextBox.text?.clear()
-
-                        emailTextBox.clearFocus()
-                        passwordTextBox.clearFocus()
 
                         signInUser()
                     } else {
@@ -66,4 +71,5 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
+
 }
