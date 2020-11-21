@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.adapters.SavedArticleAdapter
+import com.example.ivanandreev.newsaggregator.helpers.RWFile
+import com.example.ivanandreev.newsaggregator.json.JsonSavedArticles
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -32,7 +34,7 @@ class SavedArticlesFragment : Fragment() {
     }
 
     private fun loadRecyclerView(view: View) {
-        val articlesList: ArrayList<NewsEntry> = populateDummyData()
+        val articlesList: ArrayList<NewsEntry> = populateData()
         val recyclerView = view.findViewById<RecyclerView>(R.id.saved_articles_recyclerview)
         val layoutManager = LinearLayoutManager(view.context)
         val recyclerAdapter = SavedArticleAdapter(articlesList)
@@ -41,22 +43,13 @@ class SavedArticlesFragment : Fragment() {
         recyclerView.adapter = recyclerAdapter
     }
 
-    private fun populateDummyData(): ArrayList<NewsEntry> {
-        val publishers: Array<String> = resources.getStringArray(R.array.publisher_list)
-//        val image = R.drawable.human
-        val image = "https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg"
+    private fun populateData(): ArrayList<NewsEntry>{
+        val fileName: String = getString(R.string.saved_articles_file)
+        val currentData: String = RWFile.readFromFile(fileName, context!!)
 
-        val articles = ArrayList<NewsEntry>()
-        for (i in 1..10) {
-            val title = "Article $i Title"
-            val publisher = publishers[(0..4).random()]
-            val date = Calendar.getInstance()
+        val currentSavedArticles: JsonSavedArticles =
+            if (currentData.isNotEmpty()) JsonSavedArticles(currentData) else JsonSavedArticles()
 
-            articles.add(NewsEntry(title, publisher, "",image, date))
-        }
-
-        return articles
+        return ArrayList(currentSavedArticles.articles)
     }
-
-
 }
