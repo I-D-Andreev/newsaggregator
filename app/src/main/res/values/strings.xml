@@ -24,6 +24,8 @@
     <string name="repeat_password">Repeat Password</string>
     <string name="authentication_failed">Authentication failed.</string>
     <string name="username_and_password_no_empty">Username and Password fields cannot be empty!</string>
+    <string name="all_fields_filled">All fields must be filled!</string>
+    <string name="passwords_must_match">Passwords must match!</string>
 
 
     <string-array name="topics_list">
