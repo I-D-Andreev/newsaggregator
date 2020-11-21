@@ -13,13 +13,12 @@ import com.google.firebase.auth.FirebaseAuth
 // password: 123456
 
 class Login : AppCompatActivity() {
-    private var mAuth: FirebaseAuth? = null
+    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_screen)
         startNewsFetchService()
-        mAuth = FirebaseAuth.getInstance()
     }
 
     private fun startNewsFetchService(){
@@ -34,11 +33,17 @@ class Login : AppCompatActivity() {
         val email: String = emailTextBox.text.toString()
         val password: String = passwordTextBox.text.toString()
 
-        mAuth!!.signInWithEmailAndPassword(email, password)
+        firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     println("Sign in successful")
+                    emailTextBox.text?.clear()
+                    passwordTextBox.text?.clear()
+
+                    emailTextBox.clearFocus()
+                    passwordTextBox.clearFocus()
+
                     logInSuccess()
                 } else {
                     // If sign in fails, display a message to the user.
