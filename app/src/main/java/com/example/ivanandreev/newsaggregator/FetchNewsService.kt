@@ -1,12 +1,11 @@
 package com.example.ivanandreev.newsaggregator
 
 import android.app.Service
-import android.content.Context
 import android.content.Intent
 import java.util.*
 import android.os.IBinder
+import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.koushikdutta.ion.Ion
-import java.io.OutputStreamWriter
 import java.text.SimpleDateFormat
 
 class FetchNewsService : Service() {
@@ -26,11 +25,7 @@ class FetchNewsService : Service() {
 //                .asString().get()
 
             val newsJSONString = "Hello World Hello World Hello"
-            val fileOut = openFileOutput(tempNewsFileName, Context.MODE_PRIVATE)
-            val writer = OutputStreamWriter(fileOut)
-            writer.write(newsJSONString)
-            writer.close()
-
+            RWFile.writeToFile(tempNewsFileName, newsJSONString, this)
             stopSelf()
         }).start()
 
