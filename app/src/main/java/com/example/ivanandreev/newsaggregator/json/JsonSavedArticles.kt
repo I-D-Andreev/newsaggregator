@@ -15,6 +15,11 @@ class JsonSavedArticles(json: String) : JSONArray(json) {
         articles.add(entry)
     }
 
+    fun contains(entry: NewsEntry): Boolean{
+        // doesn't work.. todo1
+        return articles.contains(entry)
+    }
+
     fun removeArticleAt(position: Int) {
         articles.removeAt(position)
     }

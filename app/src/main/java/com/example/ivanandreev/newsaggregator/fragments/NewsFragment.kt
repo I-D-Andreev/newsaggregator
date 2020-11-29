@@ -2,7 +2,6 @@ package com.example.ivanandreev.newsaggregator.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +11,6 @@ import com.example.ivanandreev.newsaggregator.adapters.NewsArticleAdapter
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonArticle
 import com.example.ivanandreev.newsaggregator.json.JsonNews
-import java.io.InputStreamReader
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,16 +27,25 @@ class NewsFragment : Fragment() {
     )!!
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        loadRecyclerView(view)
+    override fun onResume() {
+        super.onResume()
+        loadRecyclerView()
+        println("!!! Fragment onResume")
     }
 
-    private fun loadRecyclerView(view: View) {
+    override fun onStop() {
+        super.onStop()
+        // detach adapter to trigger a callback
+        view!!.findViewById<RecyclerView>(R.id.news_recyclerview)!!.adapter = null
+        println("!!! Fragment onStop")
+    }
+
+    private fun loadRecyclerView() {
+        println("!!! Load Recycler View")
         val articlesList: ArrayList<NewsEntry> = populateDummyData()
-        val recyclerView = view.findViewById<RecyclerView>(R.id.news_recyclerview)
-        val layoutManager = LinearLayoutManager(view.context)
-        val recyclerAdapter = NewsArticleAdapter(articlesList)
+        val recyclerView = view!!.findViewById<RecyclerView>(R.id.news_recyclerview)
+        val layoutManager = LinearLayoutManager(context)
+        val recyclerAdapter = NewsArticleAdapter(articlesList, context!!)
 
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = recyclerAdapter
@@ -65,14 +72,14 @@ class NewsFragment : Fragment() {
         return articles
     }
 
-    // for testing purposes only, so as not to use API calls
+    // for testing purposes only, so as not to use up API calls
     private fun populateDummyData(): ArrayList<NewsEntry> {
         val publishers: Array<String> = resources.getStringArray(R.array.publisher_list)
         val image = "https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg"
         val articles = ArrayList<NewsEntry>()
         for (i in 0..10) {
             val title = "Article $i Title"
-            val publisher = publishers[(0..4).random()]
+            val publisher = publishers[i%publishers.size]
             val date = Calendar.getInstance()
 
             articles.add(NewsEntry(title, publisher, "", image, date))
@@ -80,6 +87,4 @@ class NewsFragment : Fragment() {
 
         return articles
     }
-
-
 }

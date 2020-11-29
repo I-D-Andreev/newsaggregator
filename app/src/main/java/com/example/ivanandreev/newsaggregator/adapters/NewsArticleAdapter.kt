@@ -17,8 +17,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class NewsArticleAdapter(private val newsArticlesList: MutableList<NewsEntry>) :
+class NewsArticleAdapter(
+    private val newsArticlesList: MutableList<NewsEntry>,
+    private val context: Context
+) :
     RecyclerView.Adapter<NewsArticleAdapter.ViewHolder>() {
+    private val savedArticlesFileName = context.getString(R.string.saved_articles_file)
+    private lateinit var currentSavedArticles: JsonSavedArticles
 
     inner class ViewHolder(val layout: View) : RecyclerView.ViewHolder(layout) {
         init {
@@ -26,41 +31,54 @@ class NewsArticleAdapter(private val newsArticlesList: MutableList<NewsEntry>) :
         }
 
         private fun onItemClicked(view: View) {
-            val ctx: Context = view.context
-            val actions: Array<String> = ctx.resources.getStringArray(R.array.news_article_actions)
+            val actions: Array<String> = context.resources.getStringArray(R.array.news_article_actions)
             val articlePosition: Int = this.layoutPosition
 
             val dialog: AlertDialog = AlertDialog.Builder(view.context)
-                .setTitle(ctx.getString(R.string.choose_action))
+                .setTitle(context.getString(R.string.choose_action))
                 .setItems(actions) { _: DialogInterface?, which: Int ->
                     when (which) {
-                        0 -> visitArticle(ctx, articlePosition)
-                        1 -> saveArticle(ctx, articlePosition)
+                        0 -> visitArticle(articlePosition)
+                        1 -> addArticle(articlePosition)
                     }
                 }
-                .setNegativeButton(ctx.getString(R.string.cancel), null)
+                .setNegativeButton(context.getString(R.string.cancel), null)
                 .create()
             dialog.show()
         }
     }
 
-    private fun saveArticle(ctx: Context, position: Int) {
-        // todo1: initialize jsonarticles at top and then save only once on view exit
-        // this way we can also check that we can't save the same article twice
-        println("!!! Save article")
-        val fileName = ctx.getString(R.string.saved_articles_file)
-        val article: NewsEntry = newsArticlesList[position]
-
-        val currentData: String = RWFile.readFromFile(fileName, ctx)
-
-        val currentSavedArticles: JsonSavedArticles =
-            if (currentData.isNotEmpty()) JsonSavedArticles(currentData) else JsonSavedArticles()
-
-        currentSavedArticles.addArticle(article)
-        RWFile.writeToFile(fileName, currentSavedArticles.toJsonArray(), ctx)
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        currentSavedArticles = loadSavedArticles()
     }
 
-    private fun visitArticle(ctx: Context, position: Int) {
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        saveSavedArticlesToFile()
+    }
+
+
+    private fun loadSavedArticles(): JsonSavedArticles {
+        println("!!! Articles loaded into variable")
+        val currentData: String = RWFile.readFromFile(savedArticlesFileName, context)
+        return if (currentData.isNotEmpty()) JsonSavedArticles(currentData) else JsonSavedArticles()
+    }
+
+    private fun addArticle(position: Int) {
+        val article: NewsEntry = newsArticlesList[position]
+        println("!!! AddArticle::article = ${article.publisher}")
+        if(!currentSavedArticles.contains(article)) {
+            currentSavedArticles.addArticle(article)
+        }
+    }
+
+    private fun saveSavedArticlesToFile() {
+        println("!!! Articles saved to file")
+        RWFile.writeToFile(savedArticlesFileName, currentSavedArticles.toJsonArray(), context)
+    }
+
+    private fun visitArticle(position: Int) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -85,5 +103,6 @@ class NewsArticleAdapter(private val newsArticlesList: MutableList<NewsEntry>) :
         holder.layout.article_date.text = sdf.format(article.date.time)
         holder.layout.article_publisher.text = article.publisher
     }
+
 
 }
