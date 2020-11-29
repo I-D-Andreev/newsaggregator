@@ -13,7 +13,8 @@
         <FrameLayout
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"
-            android:layout_height="650dp"
+            android:layout_height="0dp"
+            android:layout_weight="90"
             android:animateLayoutChanges="true">
         </FrameLayout>
 
