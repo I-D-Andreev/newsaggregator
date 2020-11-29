@@ -3,6 +3,8 @@
     <string name="news_file">news.txt</string>
     <string name="saved_articles_file">saved_articles.txt</string>
     <string name="news_api_key">ea680a6d70b64c1f87d47dd0aaa065ba</string>
+    <string name="read_article_url_field">read_article_url</string>
+
 
     <string name="username">username</string>
     <string name="preferences">Preferences</string>
@@ -63,7 +65,7 @@
 
     <string-array name="news_article_actions">
         <!-- Do not reorder. -->
-        <item>Visit</item>
+        <item>Read</item>
         <item>Save</item>
     </string-array>
 

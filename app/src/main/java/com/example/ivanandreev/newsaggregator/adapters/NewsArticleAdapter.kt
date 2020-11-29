@@ -3,6 +3,7 @@ package com.example.ivanandreev.newsaggregator.adapters
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.R
+import com.example.ivanandreev.newsaggregator.ReadArticleActivity
 import com.example.ivanandreev.newsaggregator.fragments.NewsEntry
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonSavedArticles
@@ -41,7 +43,7 @@ class NewsArticleAdapter(
                 .setTitle(context.getString(R.string.choose_action))
                 .setItems(actions) { _: DialogInterface?, which: Int ->
                     when (which) {
-                        0 -> visitArticle(articlePosition)
+                        0 -> readArticle(articlePosition)
                         1 -> addArticle(articlePosition)
                     }
                 }
@@ -87,7 +89,11 @@ class NewsArticleAdapter(
         RWFile.writeToFile(savedArticlesFileName, currentSavedArticles.toJsonArrayString(), context)
     }
 
-    private fun visitArticle(position: Int) {
+    private fun readArticle(position: Int) {
+        val article: NewsEntry = newsArticlesList[position]
+        val intent = Intent(context, ReadArticleActivity::class.java)
+        intent.putExtra(context.getString(R.string.read_article_url_field), article.articleUrl)
+        context.startActivity(intent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

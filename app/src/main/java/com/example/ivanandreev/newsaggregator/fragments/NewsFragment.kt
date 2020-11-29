@@ -73,13 +73,14 @@ class NewsFragment : Fragment() {
     private fun populateDummyData(): ArrayList<NewsEntry> {
         val publishers: Array<String> = resources.getStringArray(R.array.publisher_list)
         val image = "https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg"
+        val articleUrl = "https://www.bbc.co.uk/news/uk-55118467"
         val articles = ArrayList<NewsEntry>()
         for (i in 0..10) {
             val title = "Article $i Title"
             val publisher = publishers[i%publishers.size]
             val date = Calendar.getInstance()
 
-            articles.add(NewsEntry(title, publisher, "", image, date))
+            articles.add(NewsEntry(title, publisher, articleUrl, image, date))
         }
 
         return articles
