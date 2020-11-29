@@ -23,7 +23,7 @@ class FetchNewsService : Service() {
 //                .load("GET", url)
 //                .setHeader("user-agent", "insomnia/2020.4.1")
 //                .asString().get()
-
+            // dummy data
             val newsJSONString = "Hello World Hello World Hello"
             RWFile.writeToFile(tempNewsFileName, newsJSONString, this)
             stopSelf()
