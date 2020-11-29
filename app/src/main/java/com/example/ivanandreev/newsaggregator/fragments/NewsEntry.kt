@@ -20,7 +20,23 @@ class NewsEntry(
         newsEntryJson.put("articleUrl", articleUrl)
         newsEntryJson.put("imageUrl", imageUrl)
         newsEntryJson.put("date", date.toInstant().toString())
+
         return newsEntryJson.toString()
+    }
+
+    override fun toString(): String {
+        return "$title | $publisher | $articleUrl | $imageUrl | $date"
+    }
+
+    override fun hashCode(): Int {
+        // override hashCode() based on reference as we are not doing reference comparison anymore
+        return this.title.hashCode()
+    }
+
+    override fun equals(other: Any?): Boolean {
+        return (other != null) && (other is NewsEntry) && this.title == other.title
+                && this.publisher == other.publisher && this.articleUrl == other.articleUrl
+                && this.imageUrl == other.imageUrl
     }
 
     companion object {
@@ -36,6 +52,7 @@ class NewsEntry(
                     Instant.parse(jsonObj.getString("date")), ZoneId.systemDefault()
                 )
             )
+
             return NewsEntry(title, publisher, articleUrl, imageUrl, date)
         }
     }

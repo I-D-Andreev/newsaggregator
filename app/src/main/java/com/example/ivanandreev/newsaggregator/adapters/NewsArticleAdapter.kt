@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.fragments.NewsEntry
@@ -67,10 +68,14 @@ class NewsArticleAdapter(
 
     private fun addArticle(position: Int) {
         val article: NewsEntry = newsArticlesList[position]
-        println("!!! AddArticle::article = ${article.publisher}")
         if(!currentSavedArticles.contains(article)) {
             currentSavedArticles.addArticle(article)
+            // todo1: fix location and externalise the string
+            Toast.makeText(context, "Article saved!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Article is already saved!", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun saveSavedArticlesToFile() {

@@ -10,7 +10,7 @@ class JsonSavedArticles(json: String) : JSONArray(json) {
         .map { NewsEntry.fromJson(it.toString()) }.toMutableList()
 
     constructor() : this("[]")
-    constructor(articles_: MutableList<NewsEntry>) : this("[]"){
+    constructor(articles_: MutableList<NewsEntry>) : this("[]") {
         articles = articles_
     }
 
@@ -18,8 +18,7 @@ class JsonSavedArticles(json: String) : JSONArray(json) {
         articles.add(entry)
     }
 
-    fun contains(entry: NewsEntry): Boolean{
-        // doesn't work.. todo1
+    fun contains(entry: NewsEntry): Boolean {
         return articles.contains(entry)
     }
 

@@ -52,7 +52,7 @@ class SavedArticleAdapter(
 
             val snackBar = Snackbar.make(
                 holder.layout.rootView.findViewById<CoordinatorLayout>(R.id.coordinatorLayout),
-                ctx.getString(R.string.saved_article_removed),
+                ctx.getString(R.string.article_removed),
                 Snackbar.LENGTH_LONG
             ).setAction(ctx.getString(R.string.undo)) {
                 savedArticlesList.add(position, article)
