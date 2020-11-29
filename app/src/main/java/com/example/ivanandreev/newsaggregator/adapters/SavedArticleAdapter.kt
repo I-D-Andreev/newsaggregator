@@ -8,6 +8,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.fragments.NewsEntry
+import com.example.ivanandreev.newsaggregator.helpers.ArticleReader
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonSavedArticles
 import com.google.android.material.snackbar.Snackbar
@@ -24,7 +25,16 @@ class SavedArticleAdapter(
     RecyclerView.Adapter<SavedArticleAdapter.ViewHolder>() {
     private val savedArticlesFileName = context.getString(R.string.saved_articles_file)
 
-    inner class ViewHolder(var layout: View) : RecyclerView.ViewHolder(layout)
+    inner class ViewHolder(var layout: View) : RecyclerView.ViewHolder(layout) {
+        init{
+            layout.setOnClickListener(this::onItemClicked)
+        }
+
+        private fun onItemClicked(view: View){
+            val articleUrl = savedArticlesList[layoutPosition].articleUrl
+            ArticleReader.readArticle(articleUrl, context)
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
