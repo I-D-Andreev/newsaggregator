@@ -63,7 +63,7 @@ class NewsArticleAdapter(
 
 
     private fun loadSavedArticles(): JsonSavedArticles {
-        println("!!! Articles loaded into variable")
+        println("!!! Saved Articles loaded into variable")
         val currentData: String = RWFile.readFromFile(savedArticlesFileName, context)
         return if (currentData.isNotEmpty()) JsonSavedArticles(currentData) else JsonSavedArticles()
     }
@@ -83,7 +83,7 @@ class NewsArticleAdapter(
     }
 
     private fun saveSavedArticlesToFile() {
-        println("!!! Articles saved to file")
+        println("!!! Saved Articles saved to file")
         RWFile.writeToFile(savedArticlesFileName, currentSavedArticles.toJsonArrayString(), context)
     }
 

@@ -64,7 +64,6 @@ class SavedArticleAdapter(
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
-        println("!!! Saved Articles Adapter Detached")
 
         val jsonSavedArticles = JsonSavedArticles(savedArticlesList)
         RWFile.writeToFile(savedArticlesFileName, jsonSavedArticles.toJsonArrayString(), context)

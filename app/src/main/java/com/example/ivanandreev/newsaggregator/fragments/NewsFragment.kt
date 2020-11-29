@@ -30,18 +30,15 @@ class NewsFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         loadRecyclerView()
-        println("!!! Fragment onResume")
     }
 
     override fun onStop() {
         super.onStop()
         // Trigger adapter detach callback
         view!!.findViewById<RecyclerView>(R.id.news_recyclerview)!!.adapter = null
-        println("!!! Fragment onStop")
     }
 
     private fun loadRecyclerView() {
-        println("!!! Load Recycler View")
         val articlesList: ArrayList<NewsEntry> = populateDummyData()
         val recyclerView = view!!.findViewById<RecyclerView>(R.id.news_recyclerview)
         val layoutManager = LinearLayoutManager(context)
