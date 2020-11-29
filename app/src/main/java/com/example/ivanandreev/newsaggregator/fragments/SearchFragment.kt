@@ -40,6 +40,13 @@ class SearchFragment : Fragment() {
         searchButton.setOnClickListener(this::onSearchButtonClicked)
     }
 
+    override fun onStop() {
+        super.onStop()
+        // Trigger adapter detach callback
+        view!!.findViewById<RecyclerView>(R.id.search_recyclerview)!!.adapter = null
+    }
+
+
     private fun onTextChanged(view: View, keyCode: Int, event: KeyEvent): Boolean {
         if(event.action == KeyEvent.ACTION_DOWN
             && keyCode == KeyEvent.KEYCODE_ENTER){
@@ -102,6 +109,7 @@ class SearchFragment : Fragment() {
 
         return articles
     }
+
 
 
 }
