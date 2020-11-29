@@ -4,7 +4,7 @@
     android:layout_height="@dimen/height_very_large"
     android:layout_width="match_parent"
     android:padding="@dimen/indent_very_small"
-    android:layout_marginTop="@dimen/indent_medium"
+    android:layout_marginTop="@dimen/indent_small"
     android:weightSum="100"
     android:background="@drawable/layout_border"
     android:layout_marginStart="@dimen/indent_very_small"
