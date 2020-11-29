@@ -34,6 +34,8 @@
     <string name="keyword_removed">Keyword removed</string>
     <string name="article_removed">Article removed</string>
     <string name="choose_action">Choose an Action</string>
+    <string name="article_saved">Article saved!</string>
+    <string name="article_already_saved">Article is already saved!</string>
 
 
     <string-array name="topics_list">

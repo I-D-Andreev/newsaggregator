@@ -3,6 +3,7 @@ package com.example.ivanandreev.newsaggregator.adapters
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,8 @@ class NewsArticleAdapter(
         }
 
         private fun onItemClicked(view: View) {
-            val actions: Array<String> = context.resources.getStringArray(R.array.news_article_actions)
+            val actions: Array<String> =
+                context.resources.getStringArray(R.array.news_article_actions)
             val articlePosition: Int = this.layoutPosition
 
             val dialog: AlertDialog = AlertDialog.Builder(view.context)
@@ -68,14 +70,16 @@ class NewsArticleAdapter(
 
     private fun addArticle(position: Int) {
         val article: NewsEntry = newsArticlesList[position]
-        if(!currentSavedArticles.contains(article)) {
+        val message: String = if (!currentSavedArticles.contains(article)) {
             currentSavedArticles.addArticle(article)
-            // todo1: fix location and externalise the string
-            Toast.makeText(context, "Article saved!", Toast.LENGTH_SHORT).show()
+            context.getString(R.string.article_saved)
         } else {
-            Toast.makeText(context, "Article is already saved!", Toast.LENGTH_SHORT).show()
+            context.getString(R.string.article_already_saved)
         }
 
+        val toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+        toast.setGravity(Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL, 0, 200)
+        toast.show()
     }
 
     private fun saveSavedArticlesToFile() {
