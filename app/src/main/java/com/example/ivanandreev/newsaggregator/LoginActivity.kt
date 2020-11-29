@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun signIn(view: View) {
-        Keyboard.hideKeyboard(this, view)
+        Keyboard.hideKeyboard(view)
 
         val emailTextBox = findViewById<TextInputEditText>(R.id.email)
         val passwordTextBox = findViewById<TextInputEditText>(R.id.password)
