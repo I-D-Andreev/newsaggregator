@@ -32,7 +32,10 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <View style="@style/DividingLine" />
+    <View style="@style/DividingLine"
+        android:id="@+id/dividing_line"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_recyclerview"

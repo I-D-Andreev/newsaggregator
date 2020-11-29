@@ -51,9 +51,15 @@ class SearchFragment : Fragment() {
 
     private fun onSearchButtonClicked(view: View) {
         val searchBox = view.rootView.findViewById<TextInputEditText>(R.id.search_text_box)
+        val dividingLine = view.rootView.findViewById<View>(R.id.dividing_line)
+
         val searchPhrase = searchBox.text.toString()
 
-        searchBox.clearFocus()
+        // Need to shift focus to another element in order to "un-focus" the search text box
+        // as there needs to be a focused element and clearFocus() will just refocus the search
+        // text box again...
+        dividingLine.requestFocus()
+
         Keyboard.hideKeyboard(view)
 
         loadRecyclerView(view, searchPhrase)
