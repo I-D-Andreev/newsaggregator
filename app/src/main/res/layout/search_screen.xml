@@ -8,15 +8,39 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10">
+        android:layout_weight="10"
+        android:weightSum="10"
+        android:gravity="center">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_text_box"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:hint="@string/search"
             android:gravity="center"
-            android:text="@string/search"
-            android:textSize="@dimen/text_heading1" />
+            android:background="#D3D3D3"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_search_24"
+            android:contentDescription="@string/search"
+            android:layout_marginStart="@dimen/indent_very_small"
+            />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
+
     <View style="@style/DividingLine" />
+    <!-- add a button and search box somewhere here -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="89"
+        android:layout_marginTop="@dimen/indent_medium" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
