@@ -15,12 +15,11 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/search_text_box"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/height_small"
             android:layout_weight="5"
             android:hint="@string/search"
             android:gravity="center"
-            android:background="#D3D3D3"
-            />
+            android:background="@drawable/gray_round_corners" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/search_button"
@@ -28,8 +27,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_search_24"
             android:contentDescription="@string/search"
-            android:layout_marginStart="@dimen/indent_very_small"
-            />
+            android:layout_marginStart="@dimen/indent_very_small" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
