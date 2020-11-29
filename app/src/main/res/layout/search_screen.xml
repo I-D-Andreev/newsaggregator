@@ -18,6 +18,7 @@
             android:layout_height="@dimen/height_small"
             android:layout_weight="5"
             android:hint="@string/search"
+            android:maxLines="1"
             android:gravity="center"
             android:background="@drawable/gray_round_corners" />
 

@@ -1,6 +1,7 @@
 package com.example.ivanandreev.newsaggregator.fragments
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,8 +34,19 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val searchTextBox = view.findViewById<TextInputEditText>(R.id.search_text_box)
         val searchButton = view.findViewById<AppCompatImageButton>(R.id.search_button)
+        searchTextBox.setOnKeyListener(this::onTextChanged)
         searchButton.setOnClickListener(this::onSearchButtonClicked)
+    }
+
+    private fun onTextChanged(view: View, keyCode: Int, event: KeyEvent): Boolean {
+        if(event.action == KeyEvent.ACTION_DOWN
+            && keyCode == KeyEvent.KEYCODE_ENTER){
+            val searchButton = view.rootView.findViewById<AppCompatImageButton>(R.id.search_button)
+            searchButton.performClick()
+        }
+        return true
     }
 
     private fun onSearchButtonClicked(view: View) {
