@@ -32,16 +32,29 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <View style="@style/DividingLine"
+    <View
         android:id="@+id/dividing_line"
+        style="@style/DividingLine"
         android:focusable="true"
-        android:focusableInTouchMode="true"/>
+        android:focusableInTouchMode="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="89"
+        android:layout_weight="79"
         android:layout_marginTop="@dimen/indent_medium" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:gravity="center">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_to_keywords"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_search_to_keywords" />
+    </RelativeLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

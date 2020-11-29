@@ -14,6 +14,7 @@ import com.example.ivanandreev.newsaggregator.adapters.NewsArticleAdapter
 import com.example.ivanandreev.newsaggregator.helpers.Keyboard
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonNews
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import java.util.*
 import kotlin.collections.ArrayList
@@ -36,8 +37,16 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val searchTextBox = view.findViewById<TextInputEditText>(R.id.search_text_box)
         val searchButton = view.findViewById<AppCompatImageButton>(R.id.search_button)
-        searchTextBox.setOnKeyListener(this::onTextChanged)
+        val addToKeywordsButton = view.findViewById<MaterialButton>(R.id.add_to_keywords)
+
         searchButton.setOnClickListener(this::onSearchButtonClicked)
+        searchTextBox.setOnKeyListener { _, keyCode: Int, event: KeyEvent ->
+            onTextChanged(keyCode, event, searchButton)
+        }
+
+        addToKeywordsButton.setOnClickListener { v: View ->
+            addCurrentSearchToKeywords(v, searchTextBox)
+        }
     }
 
     override fun onStop() {
@@ -46,11 +55,15 @@ class SearchFragment : Fragment() {
         view!!.findViewById<RecyclerView>(R.id.search_recyclerview)!!.adapter = null
     }
 
+    private fun addCurrentSearchToKeywords(view: View, searchTextBox: TextInputEditText) {
+    }
 
-    private fun onTextChanged(view: View, keyCode: Int, event: KeyEvent): Boolean {
-        if(event.action == KeyEvent.ACTION_DOWN
-            && keyCode == KeyEvent.KEYCODE_ENTER){
-            val searchButton = view.rootView.findViewById<AppCompatImageButton>(R.id.search_button)
+    private fun onTextChanged(
+        keyCode: Int,
+        event: KeyEvent,
+        searchButton: AppCompatImageButton
+    ): Boolean {
+        if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
             searchButton.performClick()
         }
         return true
@@ -109,7 +122,6 @@ class SearchFragment : Fragment() {
 
         return articles
     }
-
 
 
 }
