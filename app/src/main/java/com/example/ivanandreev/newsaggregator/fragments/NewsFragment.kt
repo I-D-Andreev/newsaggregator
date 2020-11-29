@@ -11,10 +11,10 @@ import com.example.ivanandreev.newsaggregator.adapters.NewsArticleAdapter
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonArticle
 import com.example.ivanandreev.newsaggregator.json.JsonNews
-import java.util.*
 import kotlin.collections.ArrayList
 
 class NewsFragment : Fragment() {
+    private val maxArticlesShown: Int = 10
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +39,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun loadRecyclerView() {
-        val articlesList: ArrayList<NewsEntry> = populateDummyData()
+        val articlesList: ArrayList<NewsEntry> = populateData()
         val recyclerView = view!!.findViewById<RecyclerView>(R.id.news_recyclerview)
         val layoutManager = LinearLayoutManager(context)
         val recyclerAdapter = NewsArticleAdapter(articlesList, context!!)
@@ -53,7 +53,7 @@ class NewsFragment : Fragment() {
         val news = JsonNews(jsonNewsString)
 
         val articles = ArrayList<NewsEntry>()
-        for (i in 0..10) {
+        for (i in 0..maxArticlesShown) {
             val entry: JsonArticle = news.articles[i]
             articles.add(
                 NewsEntry(
@@ -64,23 +64,6 @@ class NewsFragment : Fragment() {
                     entry.publishedAt
                 )
             )
-        }
-
-        return articles
-    }
-
-    // for testing purposes only, so as not to use up API calls
-    private fun populateDummyData(): ArrayList<NewsEntry> {
-        val publishers: Array<String> = resources.getStringArray(R.array.publisher_list)
-        val image = "https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg"
-        val articleUrl = "https://www.bbc.co.uk/news/uk-55118467"
-        val articles = ArrayList<NewsEntry>()
-        for (i in 0..10) {
-            val title = "Article $i Title"
-            val publisher = publishers[i%publishers.size]
-            val date = Calendar.getInstance()
-
-            articles.add(NewsEntry(title, publisher, articleUrl, image, date))
         }
 
         return articles

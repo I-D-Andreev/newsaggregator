@@ -32,7 +32,6 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <View style="@style/DividingLine" />
-    <!-- add a button and search box somewhere here -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_recyclerview"

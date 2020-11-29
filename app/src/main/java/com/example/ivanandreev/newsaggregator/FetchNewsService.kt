@@ -5,7 +5,6 @@ import android.content.Intent
 import java.util.*
 import android.os.IBinder
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
-import com.koushikdutta.ion.Ion
 import java.text.SimpleDateFormat
 
 class FetchNewsService : Service() {
@@ -23,13 +22,28 @@ class FetchNewsService : Service() {
 //                .load("GET", url)
 //                .setHeader("user-agent", "insomnia/2020.4.1")
 //                .asString().get()
-            // dummy data
-            val newsJSONString = "Hello World Hello World Hello"
+            val newsJSONString = populateDummyData()
             RWFile.writeToFile(tempNewsFileName, newsJSONString, this)
             stopSelf()
         }).start()
 
         return START_STICKY
+    }
+
+    // for testing purposes only, so as not to use up API calls
+    private fun populateDummyData(): String {
+        // contains Article 0 Title to Article 11 Title
+        return """
+            {"status":"ok","totalResults":12,"articles":[{"source":{"id":"bbc-news","name":"BBCNews"},"author":null,"title":"Article 0 Title","description":"Description 0","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355","urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg","publishedAt":"2020-11-14T01:01:17Z",
+            "content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"},{"source":{"id":"bbc-news","name":"BBCNews"},"author":null,"title":"Article 1 Title","description":"Description 1","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355",
+            "urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg","publishedAt":"2020-11-14T01:01:17Z","content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"},{"source":{"id":"bbc-news","name":"BBCNews"},"author":null,
+            "title":"Article 2 Title","description":"Description 2","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355","urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg","publishedAt":"2020-11-14T01:01:17Z","content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"},
+            {"source":{"id":"bbc-news","name":"The Independent"},"author":null,"title":"Article 3 Title","description":"Description 3","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355","urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg","publishedAt":"2020-11-14T01:01:17Z","content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"},{"source":{"id":"bbc-news","name":"TheGuardian"},
+            "author":null,"title":"Article 4 Title","description":"Description 4","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355","urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg","publishedAt":"2020-11-14T01:01:17Z","content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"},{"source":{"id":"bbc-news","name":"BBCNews"},"author":null,"title":"Article 5 Title","description":"Description 5","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355","urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg","publishedAt":"2020-11-14T01:01:17Z","content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"},{"source":{"id":"bbc-news","name":"BBCNews"},"author":null,"title":"Article 6 Title","description":"Description 6","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355","urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg",
+            "publishedAt":"2020-11-14T01:01:17Z","content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"},{"source":{"id":"bbc-news","name":"BBCNews"},"author":null,"title":"Article 7 Title","description":"Description 7","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355","urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg","publishedAt":"2020-11-14T01:01:17Z","content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"},
+            {"source":{"id":"bbc-news","name":"BBCNews"},"author":null,"title":"Article 8 Title","description":"Description 8","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355","urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg","publishedAt":"2020-11-14T01:01:17Z","content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"},{"source":{"id":"bbc-news","name":"BBCNews"},"author":null,"title":"Article 9 Title","description":"Description 9","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355","urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg","publishedAt":"2020-11-14T01:01:17Z","content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"},{"source":{"id":"bbc-news","name":"BBCNews"},"author":null,"title":"Article 10 Title","description":"Description 10","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355",
+            "urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg","publishedAt":"2020-11-14T01:01:17Z","content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"},{"source":{"id":"bbc-news","name":"BBCNews"},"author":null,"title":"Article 11 Title","description":"Description 11","url":"https://www.bbc.co.uk/news/av/world-us-canada-54937355","urlToImage":"https://ichef.bbci.co.uk/images/ic/400xn/p08yffwk.jpg","publishedAt":"2020-11-14T01:01:17Z","content":"AviralvideoofahugealligatorstrollingonagolfcourseinNaples,Florida,hasleftmanypeoplequestioningwhetherit'srealornot.\r\nSoweaskedgatorexpertJamesNifongfromtheUniversity…[+35chars]"}]}
+        """
     }
 
     private fun buildAPICall(): String {
