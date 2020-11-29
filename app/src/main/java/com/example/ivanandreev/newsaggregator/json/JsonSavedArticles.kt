@@ -5,11 +5,14 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class JsonSavedArticles(json: String) : JSONArray(json) {
-    val articles: MutableList<NewsEntry> = this
+    var articles: MutableList<NewsEntry> = this
         .let { 0.until(it.length()).map { i -> it.getJSONObject(i) } }
         .map { NewsEntry.fromJson(it.toString()) }.toMutableList()
 
     constructor() : this("[]")
+    constructor(articles_: MutableList<NewsEntry>) : this("[]"){
+        articles = articles_
+    }
 
     fun addArticle(entry: NewsEntry) {
         articles.add(entry)
@@ -24,7 +27,7 @@ class JsonSavedArticles(json: String) : JSONArray(json) {
         articles.removeAt(position)
     }
 
-    fun toJsonArray(): String {
+    fun toJsonArrayString(): String {
         val array: JSONArray = JSONArray()
         articles.forEach { entry ->
             // deals with additional \" symbols

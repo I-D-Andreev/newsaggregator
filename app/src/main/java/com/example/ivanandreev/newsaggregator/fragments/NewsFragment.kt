@@ -35,7 +35,7 @@ class NewsFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        // detach adapter to trigger a callback
+        // Trigger adapter detach callback
         view!!.findViewById<RecyclerView>(R.id.news_recyclerview)!!.adapter = null
         println("!!! Fragment onStop")
     }

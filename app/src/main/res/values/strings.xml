@@ -32,6 +32,7 @@
     <string name="cancel">Cancel</string>
     <string name="undo">Undo</string>
     <string name="keyword_removed">Keyword removed</string>
+    <string name="saved_article_removed">Saved article removed</string>
     <string name="choose_action">Choose an Action</string>
 
 

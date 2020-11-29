@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.R
 import com.google.android.material.snackbar.Snackbar
@@ -27,9 +28,9 @@ class KeywordAdapter(val keywordList: MutableList<String>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val ctx: Context = holder.layout.context
         val keyword = keywordList[position]
         holder.layout.keyword.text = keyword
-        val ctx: Context = holder.layout.context
 
         holder.layout.remove.setOnClickListener {
             keywordList.removeAt(position)
@@ -37,12 +38,12 @@ class KeywordAdapter(val keywordList: MutableList<String>) :
             this.notifyItemRangeChanged(position, itemCount)
 
             val snackBar = Snackbar.make(
-                holder.layout.rootView.findViewById(R.id.coordinatorLayout),
+                holder.layout.rootView.findViewById<CoordinatorLayout>(R.id.coordinatorLayout),
                 "${ctx.getString(R.string.keyword_removed)} : \"$keyword\"!",
                 Snackbar.LENGTH_LONG
             ).setAction(ctx.getString(R.string.undo)) {
                 keywordList.add(position, keyword)
-                notifyItemInserted(position)
+                this.notifyItemInserted(position)
             }
             snackBar.show()
         }

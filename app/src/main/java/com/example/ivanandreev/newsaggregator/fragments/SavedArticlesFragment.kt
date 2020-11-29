@@ -25,23 +25,34 @@ class SavedArticlesFragment : Fragment() {
         false
     )!!
 
+    override fun onResume() {
+        super.onResume()
+        populateDataIfExists()
+        loadRecyclerView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Trigger adapter detach callback
+        view!!.findViewById<RecyclerView>(R.id.saved_articles_recyclerview)!!.adapter = null
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        populateData()
-        loadRecyclerView(view)
+        populateDataIfExists()
+//        loadRecyclerView(view)
     }
 
-    private fun loadRecyclerView(view: View) {
-        val recyclerView = view.findViewById<RecyclerView>(R.id.saved_articles_recyclerview)
-        val layoutManager = LinearLayoutManager(view.context)
-        val recyclerAdapter = SavedArticleAdapter(currentSavedArticles.articles)
+    private fun loadRecyclerView() {
+        val recyclerView = view!!.findViewById<RecyclerView>(R.id.saved_articles_recyclerview)
+        val layoutManager = LinearLayoutManager(context)
+        val recyclerAdapter = SavedArticleAdapter(currentSavedArticles.articles, context!!)
 
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = recyclerAdapter
     }
 
-    private fun populateData(){
+    private fun populateDataIfExists(){
         val fileName: String = getString(R.string.saved_articles_file)
         val currentData: String = RWFile.readFromFile(fileName, context!!)
 

@@ -75,7 +75,7 @@ class NewsArticleAdapter(
 
     private fun saveSavedArticlesToFile() {
         println("!!! Articles saved to file")
-        RWFile.writeToFile(savedArticlesFileName, currentSavedArticles.toJsonArray(), context)
+        RWFile.writeToFile(savedArticlesFileName, currentSavedArticles.toJsonArrayString(), context)
     }
 
     private fun visitArticle(position: Int) {
