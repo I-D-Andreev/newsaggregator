@@ -11,17 +11,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.adapters.NewsArticleAdapter
+import com.example.ivanandreev.newsaggregator.firebase.FireDB
+import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
 import com.example.ivanandreev.newsaggregator.helpers.Keyboard
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonNews
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class SearchFragment : Fragment() {
     private val maxArticlesShown: Int = 10
+    private val db: FireDB = FireDB("userKeywords")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,6 +60,12 @@ class SearchFragment : Fragment() {
     }
 
     private fun addCurrentSearchToKeywords(view: View, searchTextBox: TextInputEditText) {
+        val text = view.rootView.findViewById<TextInputEditText>(R.id.search_text_box).text
+        if(!text.isNullOrEmpty()){
+            val keyword = text.toString()
+            val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
+            db.addToArray(userEmail!!, UserKeywords.getKeywordsFieldName(), keyword)
+        }
     }
 
     private fun onTextChanged(
