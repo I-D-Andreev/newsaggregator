@@ -3,13 +3,13 @@
     <item
         android:id="@+id/news"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_featured_play_list_24"
+        android:icon="@drawable/ic_baseline_news"
         android:title="@string/news" />
 
     <item
         android:id="@+id/saved_articles"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_bookmark_border_24"
+        android:icon="@drawable/ic_baseline_saved_articles"
         android:title="@string/saved_articles" />
 
 

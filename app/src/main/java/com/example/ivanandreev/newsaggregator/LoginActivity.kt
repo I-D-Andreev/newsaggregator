@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ivanandreev.newsaggregator.helpers.Keyboard
+import com.example.ivanandreev.newsaggregator.helpers.NotificationSender
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 
@@ -31,6 +32,13 @@ class LoginActivity : AppCompatActivity() {
         emailTextBox.clearFocus()
         passwordTextBox.clearFocus()
     }
+
+    fun notifButtonClick(view: View){
+        println("!!! Notif button clicked")
+        val ns = NotificationSender(view.context)
+        ns.sendNotification("Hello world", "First notification")
+    }
+
     private fun startNewsFetchService() {
         val serviceIntent = Intent(this, FetchNewsService::class.java)
         startService(serviceIntent)
@@ -59,11 +67,19 @@ class LoginActivity : AppCompatActivity() {
                         signInUser()
                     } else {
                         print("!!! Sign in failure: ${task.exception}")
-                        Toast.makeText(this, getString(R.string.authentication_failed), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            getString(R.string.authentication_failed),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
         } else {
-            Toast.makeText(this, getString(R.string.username_and_password_no_empty), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                getString(R.string.username_and_password_no_empty),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
