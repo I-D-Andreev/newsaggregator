@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         passwordTextBox.clearFocus()
     }
 
-    fun notifButtonClick(view: View){
+    fun notifButtonClick(view: View) {
         println("!!! Notif button clicked")
         val ns = NotificationSender(view.context)
         ns.sendNotification("Hello world", "First notification")
