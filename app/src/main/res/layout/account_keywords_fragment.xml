@@ -34,6 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight = "20"
-        android:id="@+id/coordinatorLayout"/>
+        android:id="@+id/coordinator_layout"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

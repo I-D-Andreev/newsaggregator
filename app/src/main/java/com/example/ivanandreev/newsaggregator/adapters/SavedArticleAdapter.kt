@@ -65,7 +65,7 @@ class SavedArticleAdapter(
             this.notifyItemRangeChanged(position, itemCount)
 
             val snackBar = Snackbar.make(
-                holder.layout.rootView.findViewById<CoordinatorLayout>(R.id.coordinatorLayout),
+                holder.layout.rootView.findViewById<CoordinatorLayout>(R.id.coordinator_layout),
                 ctx.getString(R.string.article_removed),
                 Snackbar.LENGTH_LONG
             ).setAction(ctx.getString(R.string.undo)) {

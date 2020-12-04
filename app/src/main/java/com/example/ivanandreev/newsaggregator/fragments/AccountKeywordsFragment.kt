@@ -3,10 +3,13 @@ package com.example.ivanandreev.newsaggregator.fragments
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +18,7 @@ import com.example.ivanandreev.newsaggregator.adapters.KeywordAdapter
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 
@@ -56,9 +60,17 @@ class AccountKeywordsFragment : Fragment() {
         val rv: RecyclerView = loadedView.findViewById<RecyclerView>(R.id.keywords_recyclerview)
         val adapter: KeywordAdapter = rv.adapter as KeywordAdapter
 
+        val message = if(adapter.keywordList.contains(keyword)){
+            "Keyword already exists"
+        } else {
+            adapter.keywordList.add(keyword)
+            adapter.notifyItemInserted(adapter.itemCount - 1)
+            "Keyword added"
+        }
 
-        adapter.keywordList.add(keyword)
-        adapter.notifyItemInserted(adapter.itemCount - 1)
+        val toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+        toast.setGravity(Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL, 0, 200)
+        toast.show()
     }
 
     private fun loadData() {
