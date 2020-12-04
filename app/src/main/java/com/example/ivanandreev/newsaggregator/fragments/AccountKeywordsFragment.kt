@@ -61,11 +61,11 @@ class AccountKeywordsFragment : Fragment() {
         val adapter: KeywordAdapter = rv.adapter as KeywordAdapter
 
         val message = if(adapter.keywordList.contains(keyword)){
-            "Keyword already exists"
+            getString(R.string.keyword_exits)
         } else {
             adapter.keywordList.add(keyword)
             adapter.notifyItemInserted(adapter.itemCount - 1)
-            "Keyword added"
+            getString(R.string.keyword_added)
         }
 
         val toast = Toast.makeText(context, message, Toast.LENGTH_LONG)

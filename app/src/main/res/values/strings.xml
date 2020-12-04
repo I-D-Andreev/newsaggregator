@@ -33,12 +33,14 @@
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
     <string name="undo">Undo</string>
-    <string name="keyword_removed">Keyword removed</string>
-    <string name="article_removed">Article removed</string>
+    <string name="keyword_removed">Keyword removed!</string>
+    <string name="article_removed">Article removed!</string>
     <string name="choose_action">Choose an Action</string>
     <string name="article_saved">Article saved!</string>
     <string name="article_already_saved">Article is already saved!</string>
     <string name="add_search_to_keywords">Add Search to Keywords</string>
+    <string name="keyword_exits">Keyword already exists!</string>
+    <string name="keyword_added">Keyword added!</string>
 
 
     <string-array name="topics_list">

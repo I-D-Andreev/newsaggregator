@@ -64,7 +64,7 @@ class SearchFragment : Fragment() {
         if(!text.isNullOrEmpty()){
             val keyword = text.toString()
             val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
-            db.addToArray(userEmail!!, UserKeywords.getKeywordsFieldName(), keyword)
+            db.addToArray(userEmail!!, UserKeywords::keywords.name, keyword)
         }
     }
 
