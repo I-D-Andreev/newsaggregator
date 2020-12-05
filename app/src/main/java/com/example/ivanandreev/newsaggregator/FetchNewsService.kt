@@ -1,6 +1,7 @@
 package com.example.ivanandreev.newsaggregator
 
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import java.util.*
 import android.os.IBinder
@@ -50,6 +51,7 @@ class FetchNewsService : Service() {
     private fun buildAPICall(): String {
         val domain: String = "http://newsapi.org/v2/everything?"
         val dateRange: String = dateRangeAPI()
+        println("!!! Date range is: $dateRange")
         val language: String = "language=en"
         val newsDomains: String = joinNewsDomainsAPI(
             resources.getStringArray(R.array.news_sites_domains_list)
@@ -61,13 +63,12 @@ class FetchNewsService : Service() {
     }
 
     private fun dateRangeAPI(): String {
-        val today = Calendar.getInstance()
-        val yesterday = Calendar.getInstance()
-        yesterday.add(Calendar.DAY_OF_YEAR, -1)
+        val now = Calendar.getInstance()
+        val from = Calendar.getInstance()
+        from.add(Calendar.HOUR, -12)
 
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.UK)
-        // get only from today?
-        return "from=${sdf.format(yesterday.time)}&to=${sdf.format(today.time)}"
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.UK)
+        return "from=${sdf.format(from.time)}&to=${sdf.format(now.time)}"
     }
 
     private fun joinNewsDomainsAPI(publishers: Array<String>): String {
@@ -95,5 +96,12 @@ class FetchNewsService : Service() {
         val oldFile = getFileStreamPath(tempNewsFileName)
         val newFile = getFileStreamPath(newsFileName)
         oldFile.renameTo(newFile)
+    }
+
+    companion object {
+        fun triggerFetch(context: Context){
+            val serviceIntent = Intent(context, FetchNewsService::class.java)
+            context.startService(serviceIntent)
+        }
     }
 }

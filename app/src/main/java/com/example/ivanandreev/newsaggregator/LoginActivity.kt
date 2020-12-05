@@ -13,6 +13,7 @@ import com.example.ivanandreev.newsaggregator.helpers.Keyboard
 import com.example.ivanandreev.newsaggregator.helpers.NotificationSender
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import java.util.*
 
 // user: t@t.com
 // password: 123456
@@ -43,18 +44,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun scheduleNewsFetchService() {
+        println("!!! In Schedule at time : ${Date()}")
+
+        // instantly trigger Fetch once as the Alarm has up to 10 seconds delay
+        FetchNewsService.triggerFetch(this)
+
+
         val intent = Intent(applicationContext, AlarmReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(
             this, AlarmReceiver.REQUEST_CODE,
             intent, PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val currentMilliseconds = System.currentTimeMillis()
-        val triggerIntervalMillis: Long = 5 * 60 * 1000;
+        val triggerIntervalMillis: Long = 1 * 60 * 1000;
 
         val alarm: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarm.setRepeating(
-            AlarmManager.RTC_WAKEUP, currentMilliseconds,
+            AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + triggerIntervalMillis,
             triggerIntervalMillis, pendingIntent
         )
     }
