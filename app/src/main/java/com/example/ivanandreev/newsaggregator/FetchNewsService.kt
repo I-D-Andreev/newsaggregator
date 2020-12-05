@@ -15,6 +15,7 @@ class FetchNewsService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        println("!!! In Service. Time = ${Date()}")
         Thread(Runnable {
             val url: String = buildAPICall()
             println("!!! URL is $url")

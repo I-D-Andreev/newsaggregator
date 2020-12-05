@@ -23,7 +23,7 @@
         <activity android:name=".RegisterActivity"/>
 
         <service android:name=".FetchNewsService" android:enabled="true" android:exported="false"/>
-
+        <receiver android:name=".helpers.AlarmReceiver" android:process=":remote"/>
     </application>
 
 </manifest>

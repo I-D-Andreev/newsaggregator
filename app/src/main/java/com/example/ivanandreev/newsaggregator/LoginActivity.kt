@@ -1,10 +1,14 @@
 package com.example.ivanandreev.newsaggregator
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ivanandreev.newsaggregator.helpers.AlarmReceiver
 import com.example.ivanandreev.newsaggregator.helpers.Keyboard
 import com.example.ivanandreev.newsaggregator.helpers.NotificationSender
 import com.google.android.material.textfield.TextInputEditText
@@ -19,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_screen)
-        startNewsFetchService()
+        scheduleNewsFetchService()
     }
 
     override fun onResume() {
@@ -34,14 +38,25 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun notifButtonClick(view: View) {
-        println("!!! Notif button clicked")
         val ns = NotificationSender(view.context)
         ns.sendNotification("Hello world", "First notification")
     }
 
-    private fun startNewsFetchService() {
-        val serviceIntent = Intent(this, FetchNewsService::class.java)
-        startService(serviceIntent)
+    private fun scheduleNewsFetchService() {
+        val intent = Intent(applicationContext, AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            this, AlarmReceiver.REQUEST_CODE,
+            intent, PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val currentMilliseconds = System.currentTimeMillis()
+        val triggerIntervalMillis: Long = 5 * 60 * 1000;
+
+        val alarm: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarm.setRepeating(
+            AlarmManager.RTC_WAKEUP, currentMilliseconds,
+            triggerIntervalMillis, pendingIntent
+        )
     }
 
     fun registerHere(view: View) {

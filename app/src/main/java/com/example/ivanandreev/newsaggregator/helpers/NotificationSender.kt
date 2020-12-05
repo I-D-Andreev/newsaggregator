@@ -41,7 +41,6 @@ class NotificationSender(val context: Context) {
 
     private fun createNotification(title: String, body: String): Notification {
         val intent: Intent = if (user != null) {
-            println("!!! ${user.email}")
             Intent(context, MainActivity::class.java)
         } else {
             Intent(context, LoginActivity::class.java)
