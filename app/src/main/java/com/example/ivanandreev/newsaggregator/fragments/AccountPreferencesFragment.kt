@@ -51,7 +51,6 @@ class AccountPreferencesFragment : Fragment() {
         tabLayout!!.tabGravity = TabLayout.GRAVITY_FILL
 
         val tabTitles = resources.getStringArray(R.array.account_preferences_tabs)
-//        val tabAdapter = TabsPagerAdapter(supportFragmentManager, tabTitles)
         val tabAdapter = TabsPagerAdapter(childFragmentManager, tabTitles)
         viewPager.adapter = tabAdapter
 

@@ -88,6 +88,7 @@
     <string-array name="account_preferences_tabs">
         <item>Topics</item>
         <item>Keywords</item>
+        <item>Settings</item>
     </string-array>
 
 </resources>

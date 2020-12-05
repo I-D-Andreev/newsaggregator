@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.ivanandreev.newsaggregator.fragments.AccountKeywordsFragment
+import com.example.ivanandreev.newsaggregator.fragments.AccountSettingsFragment
 import com.example.ivanandreev.newsaggregator.fragments.AccountTopicsFragment
 
 class TabsPagerAdapter(fm: FragmentManager, private val tabTitles: Array<String>) :
@@ -16,6 +17,7 @@ class TabsPagerAdapter(fm: FragmentManager, private val tabTitles: Array<String>
         when (position) {
             0 -> return AccountTopicsFragment()
             1 -> return AccountKeywordsFragment()
+            2 -> return AccountSettingsFragment()
         }
         return AccountTopicsFragment()
     }
