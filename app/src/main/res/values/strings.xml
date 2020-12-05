@@ -41,6 +41,10 @@
     <string name="add_search_to_keywords">Add Search to Keywords</string>
     <string name="keyword_exits">Keyword already exists!</string>
     <string name="keyword_added">Keyword added!</string>
+    <string name="shared_preferences_db_name">shared_preferences</string>
+    <string name="newest_article_date_key">newest_article</string>
+    <string name="send_notifications_field">send_notifications</string>
+    <string name="date_1970_iso">1970-01-01T00:00:00</string>
 
 
     <string-array name="topics_list">
@@ -76,6 +80,7 @@
         <item>bbc.co.uk</item>
         <item>theguardian.com</item>
         <item>thetimes.co.uk</item>
+        <!-- The list can be extended, but we can't get all the articles anyway because of API restrictions. -->
     </string-array>
 
     <string-array name="account_preferences_tabs">

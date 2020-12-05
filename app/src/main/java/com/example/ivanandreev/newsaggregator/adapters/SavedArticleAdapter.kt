@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.fragments.NewsEntry
 import com.example.ivanandreev.newsaggregator.helpers.ArticleReader
+import com.example.ivanandreev.newsaggregator.helpers.DateConverter
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonSavedArticles
 import com.google.android.material.snackbar.Snackbar
@@ -49,14 +50,13 @@ class SavedArticleAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ctx: Context = holder.layout.context
         val article = savedArticlesList[position]
-        val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.UK)
 
         Ion.with(holder.layout.image)
             .placeholder(R.drawable.white)
             .error(R.drawable.error)
             .load(article.imageUrl)
         holder.layout.article_title.text = article.title
-        holder.layout.article_date.text = sdf.format(article.date.time)
+        holder.layout.article_date.text = DateConverter.toDayMonthYearString(article.date)
         holder.layout.article_publisher.text = article.publisher
 
         holder.layout.remove.setOnClickListener {

@@ -3,12 +3,15 @@ package com.example.ivanandreev.newsaggregator
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import java.util.*
 import android.os.IBinder
+import com.example.ivanandreev.newsaggregator.helpers.DateConverter
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
-import java.text.SimpleDateFormat
+import com.example.ivanandreev.newsaggregator.json.JsonNews
+import java.util.*
 
 class FetchNewsService : Service() {
+    // We want this variable private for the class as it is really implementation dependant, so
+    // the string is not exported.
     private val tempNewsFileName = "tempNews.txt"
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -16,6 +19,10 @@ class FetchNewsService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        val sendNotifications: Boolean =
+            intent!!.extras!!.getBoolean(getString(R.string.send_notifications_field))
+
+
         println("!!! In Service. Time = ${Date()}")
         Thread(Runnable {
             val url: String = buildAPICall()
@@ -26,10 +33,34 @@ class FetchNewsService : Service() {
 //                .asString().get()
             val newsJSONString = populateDummyData()
             RWFile.writeToFile(tempNewsFileName, newsJSONString, this)
+            if (sendNotifications) {
+                sendNotifications(JsonNews(newsJSONString))
+            }
+
             stopSelf()
         }).start()
 
         return START_STICKY
+    }
+
+    private fun sendNotifications(news: JsonNews) {
+        // Get the date of the previous newest article. Get the current keywords. Filter the
+        // new articles. Find how many articles are newer than the previous newest.
+        // Send a notification and update the newest article date.
+        val sharedPreferences =
+            getSharedPreferences(
+                getString(R.string.shared_preferences_db_name),
+                Context.MODE_PRIVATE
+            )
+
+        val previousNewestArticleDateISO = sharedPreferences.getString(
+            getString(R.string.newest_article_date_key),
+            getString(R.string.date_1970_iso)
+        )
+
+//        val previousNewestArticleDate: Calendar =
+
+//        val articles: ArrayList<NewsEntry> = ArticlesFilter.filterArticles()
     }
 
     // for testing purposes only, so as not to use up API calls
@@ -67,8 +98,7 @@ class FetchNewsService : Service() {
         val from = Calendar.getInstance()
         from.add(Calendar.HOUR, -12)
 
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.UK)
-        return "from=${sdf.format(from.time)}&to=${sdf.format(now.time)}"
+        return "from=${DateConverter.toIsoString(from)}&to=${DateConverter.toIsoString(now)}"
     }
 
     private fun joinNewsDomainsAPI(publishers: Array<String>): String {
@@ -99,8 +129,12 @@ class FetchNewsService : Service() {
     }
 
     companion object {
-        fun triggerFetch(context: Context){
+        fun triggerFetch(context: Context, sendNotifications: Boolean) {
             val serviceIntent = Intent(context, FetchNewsService::class.java)
+            serviceIntent.putExtra(
+                context.getString(R.string.send_notifications_field),
+                sendNotifications
+            )
             context.startService(serviceIntent)
         }
     }

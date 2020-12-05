@@ -1,5 +1,6 @@
 package com.example.ivanandreev.newsaggregator.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,12 +11,11 @@ import com.example.ivanandreev.newsaggregator.R
 import com.example.ivanandreev.newsaggregator.adapters.NewsArticleAdapter
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
+import com.example.ivanandreev.newsaggregator.helpers.ArticlesFilter
+import com.example.ivanandreev.newsaggregator.helpers.DateConverter
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
-import com.example.ivanandreev.newsaggregator.json.JsonArticle
 import com.example.ivanandreev.newsaggregator.json.JsonNews
 import com.google.firebase.firestore.DocumentSnapshot
-import java.util.*
-import kotlin.collections.ArrayList
 
 class NewsFragment : Fragment() {
     private val maxArticlesShown: Int = 10
@@ -58,6 +58,7 @@ class NewsFragment : Fragment() {
                 }
 
                 val articlesList: ArrayList<NewsEntry> = populateData(keywords)
+                updateNewestArticle(articlesList)
                 loadRecyclerView(articlesList)
             }
         }
@@ -76,49 +77,23 @@ class NewsFragment : Fragment() {
     private fun populateData(keywords: ArrayList<String>): ArrayList<NewsEntry> {
         val jsonNewsString: String = RWFile.readFromFile(getString(R.string.news_file), context!!)
         val news = JsonNews(jsonNewsString)
-        val articles = ArrayList<NewsEntry>()
+        return ArticlesFilter.filterArticles(news, keywords, maxArticlesShown)
+    }
 
-        // firstly add articles that contain a certain keyword
-        for (article: JsonArticle in news.articles) {
-            for (keyword: String in keywords) {
-                if (keyword.toLowerCase(Locale.getDefault()) in article.title.toLowerCase(Locale.getDefault())) {
-                    articles.add(
-                        NewsEntry(
-                            article.title,
-                            article.publisher,
-                            article.url,
-                            article.urlToImage,
-                            article.publishedAt
-                        )
-                    )
-                    break
-                }
-            }
-
-            if (articles.size >= maxArticlesShown) {
-                break
-            }
+    private fun updateNewestArticle(articlesList: ArrayList<NewsEntry>) {
+        val newestArticle: NewsEntry? = ArticlesFilter.findNewestArticle(articlesList)
+        val newestArticleDateString: String = if (newestArticle != null) {
+            DateConverter.toIsoString(newestArticle.date)
+        } else {
+            getString(R.string.date_1970_iso)
         }
 
-        // then, if we don't have enough articles, fill in the rest with whatever
-        for (article: JsonArticle in news.articles) {
-            if (articles.size >= maxArticlesShown) {
-                break
-            }
-
-            val entry = NewsEntry(
-                article.title,
-                article.publisher,
-                article.url,
-                article.urlToImage,
-                article.publishedAt
-            )
-
-            if (!articles.contains(entry)) {
-                articles.add(entry)
-            }
-        }
-
-        return articles
+        val sharedPreferences = context!!.getSharedPreferences(
+            getString(R.string.shared_preferences_db_name),
+            Context.MODE_PRIVATE
+        )
+        val editor = sharedPreferences.edit()
+        editor.putString(getString(R.string.newest_article_date_key), newestArticleDateString)
+        editor.apply()
     }
 }

@@ -1,10 +1,8 @@
 package com.example.ivanandreev.newsaggregator.json
 
+import com.example.ivanandreev.newsaggregator.helpers.DateConverter
 import org.json.JSONObject
 import java.util.*
-import java.time.Instant
-import java.time.ZoneId
-import java.time.ZonedDateTime
 
 class JsonArticle(json: String) : JSONObject(json) {
     val publisher: String = this.getJSONObject("source").getString("name")
@@ -12,11 +10,6 @@ class JsonArticle(json: String) : JSONObject(json) {
     val title: String = this.getString("title")
     val url: String = this.getString("url")
     val urlToImage: String = this.getString("urlToImage")
-    val publishedAt: Calendar = GregorianCalendar.from(
-        ZonedDateTime.ofInstant(
-            Instant.parse(this.getString("publishedAt")),
-            ZoneId.systemDefault()
-        )
-    )
+    val publishedAt : Calendar = DateConverter.fromIsoString(this.getString("publishedAt"))
     val description: String = this.getString("description")
 }

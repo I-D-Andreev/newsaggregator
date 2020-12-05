@@ -7,7 +7,7 @@ import com.example.ivanandreev.newsaggregator.FetchNewsService
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        FetchNewsService.triggerFetch(context!!)
+        FetchNewsService.triggerFetch(context!!, true)
     }
 
     companion object {

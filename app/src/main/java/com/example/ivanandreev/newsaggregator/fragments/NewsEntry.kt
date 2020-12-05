@@ -1,5 +1,6 @@
 package com.example.ivanandreev.newsaggregator.fragments
 
+import com.example.ivanandreev.newsaggregator.helpers.DateConverter
 import org.json.JSONObject
 import java.time.Instant
 import java.time.ZoneId
@@ -46,12 +47,7 @@ class NewsEntry(
             val publisher: String = jsonObj.getString("publisher")
             val articleUrl: String = jsonObj.getString("articleUrl")
             val imageUrl: String = jsonObj.getString("imageUrl")
-
-            val date: Calendar = GregorianCalendar.from(
-                ZonedDateTime.ofInstant(
-                    Instant.parse(jsonObj.getString("date")), ZoneId.systemDefault()
-                )
-            )
+            val date = DateConverter.fromIsoString(jsonObj.getString("date"))
 
             return NewsEntry(title, publisher, articleUrl, imageUrl, date)
         }

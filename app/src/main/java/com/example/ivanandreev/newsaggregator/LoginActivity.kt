@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         println("!!! In Schedule at time : ${Date()}")
 
         // instantly trigger Fetch once as the Alarm has up to 10 seconds delay
-        FetchNewsService.triggerFetch(this)
+        FetchNewsService.triggerFetch(this, false)
 
 
         val intent = Intent(applicationContext, AlarmReceiver::class.java)
