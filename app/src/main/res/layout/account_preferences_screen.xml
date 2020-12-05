@@ -19,7 +19,6 @@
             android:layout_weight="1"
             android:gravity="center_vertical|start"
 
-            android:text="@string/username"
             android:autoSizeTextType="uniform"
             android:autoSizeMinTextSize="@dimen/text_normal"
             android:autoSizeMaxTextSize="@dimen/text_heading1"

@@ -32,6 +32,7 @@ class AccountPreferencesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         loadViewPager(view)
+        view.findViewById<MaterialTextView>(R.id.username).text = firebaseAuth.currentUser?.email
         view.findViewById<AppCompatImageButton>(R.id.sign_out_button).setOnClickListener(this::onSignOutClicked)
         view.findViewById<MaterialTextView>(R.id.sign_out_text_view).setOnClickListener(this::onSignOutClicked)
     }
