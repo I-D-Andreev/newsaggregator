@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ivanandreev.newsaggregator.helpers.AlarmReceiver
 import com.example.ivanandreev.newsaggregator.helpers.Keyboard
-import com.example.ivanandreev.newsaggregator.helpers.NotificationSender
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
@@ -38,10 +37,6 @@ class LoginActivity : AppCompatActivity() {
         passwordTextBox.clearFocus()
     }
 
-    fun notifButtonClick(view: View) {
-        val ns = NotificationSender(view.context)
-        ns.sendNotification("Hello world", "First notification")
-    }
 
     private fun scheduleNewsFetchService() {
         println("!!! In Schedule at time : ${Date()}")
