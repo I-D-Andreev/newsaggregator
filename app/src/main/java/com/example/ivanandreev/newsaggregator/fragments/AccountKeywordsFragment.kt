@@ -24,7 +24,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 
 class AccountKeywordsFragment : Fragment() {
     private val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
-    private val db: FireDB = FireDB("userKeywords")
+    private val db: FireDB = FireDB(FireDB.USER_KEYWORDS)
     private lateinit var loadedView: View
 
     override fun onCreateView(

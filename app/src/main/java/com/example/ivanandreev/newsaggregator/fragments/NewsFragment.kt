@@ -19,7 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 
 class NewsFragment : Fragment() {
     private val maxArticlesShown: Int = 10
-    private val db: FireDB = FireDB("userKeywords")
+    private val db: FireDB = FireDB(FireDB.USER_KEYWORDS)
     private val userEmail: String? =
         com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.email
 

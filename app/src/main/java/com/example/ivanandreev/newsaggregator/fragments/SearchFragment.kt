@@ -25,7 +25,7 @@ import kotlin.collections.ArrayList
 
 class SearchFragment : Fragment() {
     private val maxArticlesShown: Int = 10
-    private val db: FireDB = FireDB("userKeywords")
+    private val db: FireDB = FireDB(FireDB.USER_KEYWORDS)
 
     override fun onCreateView(
         inflater: LayoutInflater,

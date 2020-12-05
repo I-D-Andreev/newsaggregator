@@ -4,6 +4,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
+import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.helpers.DateConverter
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonNews
@@ -13,6 +14,7 @@ class FetchNewsService : Service() {
     // We want this variable private for the class as it is really implementation dependant, so
     // the string is not exported.
     private val tempNewsFileName = "tempNews.txt"
+    private val fireDB = FireDB(FireDB.USER_KEYWORDS)
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -58,7 +60,10 @@ class FetchNewsService : Service() {
             getString(R.string.date_1970_iso)
         )
 
-//        val previousNewestArticleDate: Calendar =
+        val previousNewestArticleDate: Calendar = DateConverter.fromIsoString(previousNewestArticleDateISO!!)
+
+
+
 
 //        val articles: ArrayList<NewsEntry> = ArticlesFilter.filterArticles()
     }

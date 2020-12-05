@@ -15,7 +15,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 
 class AccountTopicsFragment : Fragment() {
     private val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
-    private val db: FireDB = FireDB("userTopics")
+    private val db: FireDB = FireDB(FireDB.USER_TOPICS)
     private lateinit var userTopics: UserTopics
     private lateinit var loadedView: View
 
