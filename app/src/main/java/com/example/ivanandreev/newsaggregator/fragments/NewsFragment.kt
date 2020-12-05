@@ -18,7 +18,6 @@ import com.example.ivanandreev.newsaggregator.json.JsonNews
 import com.google.firebase.firestore.DocumentSnapshot
 
 class NewsFragment : Fragment() {
-    private val maxArticlesShown: Int = 10
     private val db: FireDB = FireDB(FireDB.USER_KEYWORDS)
     private val userEmail: String? =
         com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.email
@@ -75,6 +74,7 @@ class NewsFragment : Fragment() {
 
     // populate data from file that contains the specified keywords
     private fun populateData(keywords: ArrayList<String>): ArrayList<NewsEntry> {
+        val maxArticlesShown = resources.getInteger(R.integer.max_articles_shown)
         val jsonNewsString: String = RWFile.readFromFile(getString(R.string.news_file), context!!)
         val news = JsonNews(jsonNewsString)
         return ArticlesFilter.filterArticles(news, keywords, maxArticlesShown)

@@ -24,7 +24,6 @@ import kotlin.collections.ArrayList
 
 
 class SearchFragment : Fragment() {
-    private val maxArticlesShown: Int = 10
     private val db: FireDB = FireDB(FireDB.USER_KEYWORDS)
 
     override fun onCreateView(
@@ -39,6 +38,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val searchTextBox = view.findViewById<TextInputEditText>(R.id.search_text_box)
         val searchButton = view.findViewById<AppCompatImageButton>(R.id.search_button)
         val addToKeywordsButton = view.findViewById<MaterialButton>(R.id.add_to_keywords)
@@ -61,7 +61,7 @@ class SearchFragment : Fragment() {
 
     private fun addCurrentSearchToKeywords(view: View, searchTextBox: TextInputEditText) {
         val text = view.rootView.findViewById<TextInputEditText>(R.id.search_text_box).text
-        if(!text.isNullOrEmpty()){
+        if (!text.isNullOrEmpty()) {
             val keyword = text.toString()
             val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
             db.addToArray(userEmail!!, UserKeywords::keywords.name, keyword)
@@ -106,6 +106,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun populateData(searchPhrase: String): ArrayList<NewsEntry> {
+        val maxArticlesShown = resources.getInteger(R.integer.max_articles_shown)
         val jsonNewsString: String = RWFile.readFromFile(getString(R.string.news_file), context!!)
         val news = JsonNews(jsonNewsString)
 
