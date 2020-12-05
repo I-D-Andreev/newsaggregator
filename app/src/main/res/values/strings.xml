@@ -49,30 +49,6 @@
     <string name="new_articles_notification_body">" new article(s) match your preferences"</string>
     <string name="notification_settings">Notification Settings</string>
 
-
-    <string-array name="topics_list">
-        <item>Breaking News </item>
-        <item>Trending News </item>
-        <item>Local News </item>
-        <item>Business</item>
-        <item>Entertainment</item>
-        <item>Health </item>
-        <item>Politics</item>
-        <item>Science</item>
-        <item>Sports</item>
-        <item>Technology</item>
-        <item>World</item>
-        <item>Other</item>
-    </string-array>
-
-    <string-array name="publisher_list">
-        <item>BBC</item>
-        <item>The Guardian</item>
-        <item>The Independent</item>
-        <item>The Times</item>
-        <item>Bloomberg</item>
-    </string-array>
-
     <string-array name="news_article_actions">
         <!-- Do not reorder. -->
         <item>Read</item>
@@ -87,7 +63,6 @@
     </string-array>
 
     <string-array name="account_preferences_tabs">
-        <item>Topics</item>
         <item>Keywords</item>
         <item>Settings</item>
     </string-array>

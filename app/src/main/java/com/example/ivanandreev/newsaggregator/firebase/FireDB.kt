@@ -37,7 +37,6 @@ class FireDB(private val collectionName: String) {
 
     companion object {
         // We don't want these externalised as it will mess up our database.
-        const val USER_TOPICS = "userTopics"
         const val USER_KEYWORDS = "userKeywords"
     }
 }
