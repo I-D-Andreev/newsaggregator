@@ -44,7 +44,9 @@
     <string name="shared_preferences_db_name">shared_preferences</string>
     <string name="newest_article_date_key">newest_article</string>
     <string name="send_notifications_field">send_notifications</string>
-    <string name="date_1970_iso">1970-01-01T00:00:00</string>
+    <string name="date_1970_iso">1970-01-01T00:00:00Z</string>
+    <string name="new_articles_notification_title">New Articles!</string>
+    <string name="new_articles_notification_body">" new article(s) match your preferences"</string>
 
 
     <string-array name="topics_list">

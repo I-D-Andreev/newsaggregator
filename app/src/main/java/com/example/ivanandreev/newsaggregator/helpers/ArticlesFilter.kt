@@ -37,7 +37,7 @@ class ArticlesFilter {
                 }
             }
 
-            // then, if we don't have enough articles, fill in the rest with whatever
+            // then, if we don't have enough articles, fill in the rest with any of the other articles
             for (article: JsonArticle in news.articles) {
                 if (articles.size >= maxArticles) {
                     break
@@ -66,7 +66,7 @@ class ArticlesFilter {
 
             var article: NewsEntry = articles[0]
             for (entry in articles) {
-                if (entry.date < article.date) {
+                if (entry.date > article.date) {
                     article = entry
                 }
             }

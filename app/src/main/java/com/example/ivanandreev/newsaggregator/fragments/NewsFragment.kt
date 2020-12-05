@@ -12,7 +12,6 @@ import com.example.ivanandreev.newsaggregator.adapters.NewsArticleAdapter
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
 import com.example.ivanandreev.newsaggregator.helpers.ArticlesFilter
-import com.example.ivanandreev.newsaggregator.helpers.DateConverter
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonNews
 import com.google.firebase.firestore.DocumentSnapshot
@@ -57,7 +56,6 @@ class NewsFragment : Fragment() {
                 }
 
                 val articlesList: ArrayList<NewsEntry> = populateData(keywords)
-                updateNewestArticle(articlesList)
                 loadRecyclerView(articlesList)
             }
         }
@@ -78,22 +76,5 @@ class NewsFragment : Fragment() {
         val jsonNewsString: String = RWFile.readFromFile(getString(R.string.news_file), context!!)
         val news = JsonNews(jsonNewsString)
         return ArticlesFilter.filterArticles(news, keywords, maxArticlesShown)
-    }
-
-    private fun updateNewestArticle(articlesList: ArrayList<NewsEntry>) {
-        val newestArticle: NewsEntry? = ArticlesFilter.findNewestArticle(articlesList)
-        val newestArticleDateString: String = if (newestArticle != null) {
-            DateConverter.toIsoString(newestArticle.date)
-        } else {
-            getString(R.string.date_1970_iso)
-        }
-
-        val sharedPreferences = context!!.getSharedPreferences(
-            getString(R.string.shared_preferences_db_name),
-            Context.MODE_PRIVATE
-        )
-        val editor = sharedPreferences.edit()
-        editor.putString(getString(R.string.newest_article_date_key), newestArticleDateString)
-        editor.apply()
     }
 }

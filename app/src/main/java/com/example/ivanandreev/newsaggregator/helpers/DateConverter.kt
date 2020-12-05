@@ -18,7 +18,7 @@ class DateConverter {
         }
 
         fun toIsoString(calendar: Calendar): String {
-            val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.UK)
+            val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.UK)
             return sdf.format(calendar.time)
         }
 
