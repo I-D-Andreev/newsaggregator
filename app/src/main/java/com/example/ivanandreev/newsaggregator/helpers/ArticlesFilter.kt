@@ -25,6 +25,7 @@ class ArticlesFilter {
                                 article.publisher,
                                 article.url,
                                 article.urlToImage,
+                                article.description,
                                 article.publishedAt
                             )
                         )
@@ -48,6 +49,7 @@ class ArticlesFilter {
                     article.publisher,
                     article.url,
                     article.urlToImage,
+                    article.description,
                     article.publishedAt
                 )
 

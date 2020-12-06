@@ -124,6 +124,7 @@ class SearchFragment : Fragment() {
                         jsonArticle.publisher,
                         jsonArticle.url,
                         jsonArticle.urlToImage,
+                        jsonArticle.description,
                         jsonArticle.publishedAt
                     )
                 )

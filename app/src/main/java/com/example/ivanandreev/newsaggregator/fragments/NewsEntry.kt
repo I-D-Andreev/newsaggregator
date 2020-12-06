@@ -2,9 +2,6 @@ package com.example.ivanandreev.newsaggregator.fragments
 
 import com.example.ivanandreev.newsaggregator.helpers.DateConverter
 import org.json.JSONObject
-import java.time.Instant
-import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.util.*
 
 class NewsEntry(
@@ -12,6 +9,7 @@ class NewsEntry(
     val publisher: String,
     val articleUrl: String,
     val imageUrl: String,
+    val summary: String,
     val date: Calendar
 ) {
     fun toJson(): String {
@@ -20,6 +18,7 @@ class NewsEntry(
         newsEntryJson.put("publisher", publisher)
         newsEntryJson.put("articleUrl", articleUrl)
         newsEntryJson.put("imageUrl", imageUrl)
+        newsEntryJson.put("summary", summary)
         newsEntryJson.put("date", date.toInstant().toString())
 
         return newsEntryJson.toString()
@@ -47,12 +46,10 @@ class NewsEntry(
             val publisher: String = jsonObj.getString("publisher")
             val articleUrl: String = jsonObj.getString("articleUrl")
             val imageUrl: String = jsonObj.getString("imageUrl")
+            val summary: String = jsonObj.getString("summary")
             val date = DateConverter.fromIsoString(jsonObj.getString("date"))
 
-            return NewsEntry(title, publisher, articleUrl, imageUrl, date)
+            return NewsEntry(title, publisher, articleUrl, imageUrl, summary, date)
         }
     }
 }
-
-// summary?
-// author?
