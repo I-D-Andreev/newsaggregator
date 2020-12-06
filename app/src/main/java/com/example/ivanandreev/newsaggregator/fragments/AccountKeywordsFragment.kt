@@ -68,7 +68,7 @@ class AccountKeywordsFragment : Fragment() {
             getString(R.string.keyword_added)
         }
 
-        val toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+        val toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
         toast.setGravity(Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL, 0, 200)
         toast.show()
     }

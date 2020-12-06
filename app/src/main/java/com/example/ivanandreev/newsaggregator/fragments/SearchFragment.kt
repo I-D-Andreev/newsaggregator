@@ -1,12 +1,9 @@
 package com.example.ivanandreev.newsaggregator.fragments
 
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -65,7 +62,17 @@ class SearchFragment : Fragment() {
         if (!text.isNullOrEmpty()) {
             val keyword = text.toString()
             val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
-            db.addToArray(userEmail!!, UserKeywords::keywords.name, keyword)
+            db.addToArray(userEmail!!, UserKeywords::keywords.name, keyword) { task ->
+                val message = if(task.isSuccessful){
+                    getString(R.string.add_to_keywords_success)
+                } else {
+                    getString(R.string.add_to_keywords_fail)
+                }
+
+                val toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL, 0, 200)
+                toast.show()
+            }
         }
     }
 
