@@ -3,6 +3,7 @@ package com.example.ivanandreev.newsaggregator.adapters
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ class NewsArticleAdapter(
     RecyclerView.Adapter<NewsArticleAdapter.ViewHolder>() {
     private val savedArticlesFileName = context.getString(R.string.saved_articles_file)
     private lateinit var currentSavedArticles: JsonSavedArticles
+    private val logTag = NewsArticleAdapter::class.java.simpleName
 
     inner class ViewHolder(val layout: View) : RecyclerView.ViewHolder(layout) {
         init {
@@ -63,7 +65,7 @@ class NewsArticleAdapter(
 
 
     private fun loadSavedArticles(): JsonSavedArticles {
-        println("!!! Saved Articles loaded into variable")
+        Log.i(logTag, "Saved Articles loaded into variable")
         val currentData: String = RWFile.readFromFile(savedArticlesFileName, context)
         return if (currentData.isNotEmpty()) JsonSavedArticles(currentData) else JsonSavedArticles()
     }
@@ -82,7 +84,7 @@ class NewsArticleAdapter(
     }
 
     private fun saveSavedArticlesToFile() {
-        println("!!! Saved Articles saved to file")
+        Log.i(logTag, "Saved Articles saved to file")
         RWFile.writeToFile(savedArticlesFileName, currentSavedArticles.toJsonArrayString(), context)
     }
 
