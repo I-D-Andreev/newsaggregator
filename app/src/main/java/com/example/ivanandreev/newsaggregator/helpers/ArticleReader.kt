@@ -7,7 +7,7 @@ import com.example.ivanandreev.newsaggregator.ReadArticleActivity
 
 class ArticleReader {
     companion object {
-        fun readArticle(url: String, context: Context){
+        fun readArticle(url: String, context: Context) {
             val intent = Intent(context, ReadArticleActivity::class.java)
             intent.putExtra(context.getString(R.string.read_article_url_field), url)
             context.startActivity(intent)

@@ -45,11 +45,11 @@ class SavedArticlesFragment : Fragment() {
         recyclerView.adapter = recyclerAdapter
     }
 
-    private fun populateDataIfExists(){
+    private fun populateDataIfExists() {
         val fileName: String = getString(R.string.saved_articles_file)
         val currentData: String = RWFile.readFromFile(fileName, context!!)
 
-        if (currentData.isNotEmpty()){
+        if (currentData.isNotEmpty()) {
             currentSavedArticles = JsonSavedArticles(currentData)
         }
     }

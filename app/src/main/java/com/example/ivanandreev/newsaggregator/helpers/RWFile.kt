@@ -16,8 +16,8 @@ class RWFile {
                 val fileReader = InputStreamReader(fileIn)
                 data = fileReader.readText()
                 fileReader.close()
-            } catch (e: FileNotFoundException){
-                Log.i(logTag,"$fileName not found. Returning empty data.")
+            } catch (e: FileNotFoundException) {
+                Log.i(logTag, "$fileName not found. Returning empty data.")
             }
             return data
         }

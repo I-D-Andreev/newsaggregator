@@ -27,11 +27,11 @@ class SavedArticleAdapter(
     private val savedArticlesFileName = context.getString(R.string.saved_articles_file)
 
     inner class ViewHolder(var layout: View) : RecyclerView.ViewHolder(layout) {
-        init{
+        init {
             layout.setOnClickListener(this::onItemClicked)
         }
 
-        private fun onItemClicked(view: View){
+        private fun onItemClicked(view: View) {
             val articleUrl = savedArticlesList[layoutPosition].articleUrl
             ArticleReader.readArticle(articleUrl, context)
         }

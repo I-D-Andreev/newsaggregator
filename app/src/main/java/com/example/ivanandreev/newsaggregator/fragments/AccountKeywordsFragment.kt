@@ -27,7 +27,7 @@ class AccountKeywordsFragment : Fragment() {
     private lateinit var loadedView: View
     private val logTag = AccountKeywordsFragment::class.java.simpleName
 
-        override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,7 +60,7 @@ class AccountKeywordsFragment : Fragment() {
         val rv: RecyclerView = loadedView.findViewById<RecyclerView>(R.id.keywords_recyclerview)
         val adapter: KeywordAdapter = rv.adapter as KeywordAdapter
 
-        val message = if(adapter.keywordList.contains(keyword)){
+        val message = if (adapter.keywordList.contains(keyword)) {
             getString(R.string.keyword_exits)
         } else {
             adapter.keywordList.add(keyword)

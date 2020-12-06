@@ -63,7 +63,7 @@ class SearchFragment : Fragment() {
             val keyword = text.toString()
             val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
             db.addToArray(userEmail!!, UserKeywords::keywords.name, keyword) { task ->
-                val message = if(task.isSuccessful){
+                val message = if (task.isSuccessful) {
                     getString(R.string.add_to_keywords_success)
                 } else {
                     getString(R.string.add_to_keywords_fail)

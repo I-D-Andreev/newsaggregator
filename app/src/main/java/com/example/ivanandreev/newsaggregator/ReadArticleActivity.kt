@@ -17,17 +17,18 @@ class ReadArticleActivity : AppCompatActivity() {
         setContentView(R.layout.read_article_screen)
         val extras = intent.extras
 
-        if(extras != null){
-            val url: String = extras.getString(resources.getString(R.string.read_article_url_field))!!
+        if (extras != null) {
+            val url: String =
+                extras.getString(resources.getString(R.string.read_article_url_field))!!
             loadArticle(url)
         }
     }
-    
-    fun onBackButtonClicked(view: View){
+
+    fun onBackButtonClicked(view: View) {
         finish()
     }
 
-    private fun loadArticle(url: String){
+    private fun loadArticle(url: String) {
         val webView = findViewById<WebView>(R.id.webView)
         webView.settings.javaScriptEnabled = true
         webView.loadUrl(url)

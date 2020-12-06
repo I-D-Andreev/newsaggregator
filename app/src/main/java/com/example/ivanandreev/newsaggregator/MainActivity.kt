@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setBottomNavBar()
     }
 
-    private fun setBottomNavBar(){
+    private fun setBottomNavBar() {
         val navBar = findViewById<View>(R.id.bottom_navigation) as BottomNavigationView
 
         navBar.setOnNavigationItemSelectedListener { item ->

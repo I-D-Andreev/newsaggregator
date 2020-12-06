@@ -32,7 +32,7 @@ class AccountSettingsFragment : Fragment() {
             .setOnClickListener(this::onChangePasswordClicked)
     }
 
-    private fun onChangePasswordClicked(view: View){
+    private fun onChangePasswordClicked(view: View) {
         val intent = Intent(view.context, ChangePasswordActivity::class.java)
         view.context.startActivity(intent)
     }

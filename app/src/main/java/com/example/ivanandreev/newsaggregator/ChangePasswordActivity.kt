@@ -55,9 +55,12 @@ class ChangePasswordActivity : AppCompatActivity() {
             user.reauthenticate(credentials).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     if (newPassword != repeatPassword) {
-                        Toast.makeText(this, getString(R.string.passwords_must_match), Toast.LENGTH_SHORT).show()
-                    }
-                    else {
+                        Toast.makeText(
+                            this,
+                            getString(R.string.passwords_must_match),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
                         user.updatePassword(newPassword).addOnSuccessListener {
                             Toast.makeText(
                                 this, getString(R.string.password_changed_successfully),
@@ -72,7 +75,8 @@ class ChangePasswordActivity : AppCompatActivity() {
                         }
                     }
                 } else {
-                    Toast.makeText(this, getString(R.string.wrong_password), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.wrong_password), Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         } else {

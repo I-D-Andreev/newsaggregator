@@ -35,15 +35,20 @@ class RegisterActivity : AppCompatActivity() {
 
         if (email.isNotEmpty() && password.isNotEmpty() && repeatPassword.isNotEmpty()) {
             if (password == repeatPassword) {
-                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {task: Task<AuthResult> ->
-                    if(task.isSuccessful){
-                        Log.i(logTag, "User creation is successful!")
-                        signInUser()
-                    } else{
-                        Toast.makeText(this, getString(R.string.authentication_failed), Toast.LENGTH_SHORT).show()
-                    }
+                firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task: Task<AuthResult> ->
+                        if (task.isSuccessful) {
+                            Log.i(logTag, "User creation is successful!")
+                            signInUser()
+                        } else {
+                            Toast.makeText(
+                                this,
+                                getString(R.string.authentication_failed),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
 
-                }
+                    }
             } else {
                 Toast.makeText(this, getString(R.string.passwords_must_match), Toast.LENGTH_SHORT)
                     .show()
@@ -53,7 +58,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun signInUser(){
+    private fun signInUser() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

@@ -11,7 +11,7 @@ class JsonArticle(json: String) : JSONObject(json) {
     val title: String = this.getString("title")
     val url: String = this.getString("url")
     val urlToImage: String = this.getString("urlToImage")
-    val publishedAt : Calendar = DateConverter.fromIsoString(this.getString("publishedAt"))
+    val publishedAt: Calendar = DateConverter.fromIsoString(this.getString("publishedAt"))
     val description: String = this.getString("description")
 
     fun toNewsEntry(): NewsEntry {
