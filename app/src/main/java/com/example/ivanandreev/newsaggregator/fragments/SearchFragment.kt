@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -82,6 +83,7 @@ class SearchFragment : Fragment() {
     private fun onSearchButtonClicked(view: View) {
         val searchBox = view.rootView.findViewById<TextInputEditText>(R.id.search_text_box)
         val dividingLine = view.rootView.findViewById<View>(R.id.dividing_line)
+        val addToKeywordsButton = view.rootView.findViewById<MaterialButton>(R.id.add_to_keywords)
 
         val searchPhrase = searchBox.text.toString()
 
@@ -93,6 +95,7 @@ class SearchFragment : Fragment() {
         Keyboard.hideKeyboard(view)
 
         loadRecyclerView(view, searchPhrase)
+        addToKeywordsButton.visibility = View.VISIBLE
     }
 
     private fun loadRecyclerView(view: View, searchPhrase: String) {

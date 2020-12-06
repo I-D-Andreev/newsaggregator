@@ -55,6 +55,7 @@
             android:id="@+id/add_to_keywords"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_search_to_keywords" />
+            android:text="@string/add_search_to_keywords"
+            android:visibility="invisible"/>
     </RelativeLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>
