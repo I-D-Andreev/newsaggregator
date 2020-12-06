@@ -13,6 +13,7 @@ import com.example.ivanandreev.newsaggregator.helpers.NotificationSender
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonNews
 import com.google.firebase.firestore.DocumentSnapshot
+import com.koushikdutta.ion.Ion
 import java.util.*
 import kotlin.collections.ArrayList
 

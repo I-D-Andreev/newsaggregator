@@ -33,17 +33,17 @@ class NewsArticleAdapter(
         }
 
         private fun onItemClicked(view: View) {
-            val actions: Array<String> =
-                context.resources.getStringArray(R.array.news_article_actions)
             val articlePosition: Int = this.layoutPosition
+            val article = newsArticlesList[articlePosition]
 
             val dialog: AlertDialog = AlertDialog.Builder(view.context)
                 .setTitle(context.getString(R.string.choose_action))
-                .setItems(actions) { _: DialogInterface?, which: Int ->
-                    when (which) {
-                        0 -> readArticle(articlePosition)
-                        1 -> addArticle(articlePosition)
-                    }
+                .setMessage(article.summary)
+                .setNeutralButton(context.getString(R.string.read_article)) { _: DialogInterface, _: Int ->
+                    readArticle(article)
+                }
+                .setPositiveButton(context.getString(R.string.save_article)) { _: DialogInterface, _: Int ->
+                    addArticle(article)
                 }
                 .setNegativeButton(context.getString(R.string.cancel), null)
                 .create()
@@ -68,8 +68,7 @@ class NewsArticleAdapter(
         return if (currentData.isNotEmpty()) JsonSavedArticles(currentData) else JsonSavedArticles()
     }
 
-    private fun addArticle(position: Int) {
-        val article: NewsEntry = newsArticlesList[position]
+    private fun addArticle(article: NewsEntry) {
         val message: String = if (!currentSavedArticles.contains(article)) {
             currentSavedArticles.addArticle(article)
             context.getString(R.string.article_saved)
@@ -87,8 +86,7 @@ class NewsArticleAdapter(
         RWFile.writeToFile(savedArticlesFileName, currentSavedArticles.toJsonArrayString(), context)
     }
 
-    private fun readArticle(position: Int) {
-        val article: NewsEntry = newsArticlesList[position]
+    private fun readArticle(article: NewsEntry) {
         ArticleReader.readArticle(article.articleUrl, context)
     }
 

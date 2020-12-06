@@ -48,12 +48,9 @@
     <string name="new_articles_notification_title">New Articles!</string>
     <string name="new_articles_notification_body">" new article(s) match your preferences"</string>
     <string name="notification_settings">Notification Settings</string>
+    <string name="read_article">Read</string>
+    <string name="save_article">Save</string>
 
-    <string-array name="news_article_actions">
-        <!-- Do not reorder. -->
-        <item>Read</item>
-        <item>Save</item>
-    </string-array>
 
     <string-array name="news_sites_domains_list">
         <item>bbc.co.uk</item>
