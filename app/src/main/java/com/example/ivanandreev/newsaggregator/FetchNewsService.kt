@@ -37,11 +37,11 @@ class FetchNewsService : Service() {
             val url: String = buildAPICall()
             Log.i(logTag, "API URL is $url")
 
-//            val newsJSONString = Ion.with(this)
-//                .load("GET", url)
-//                .setHeader("user-agent", "insomnia/2020.4.1")
-//                .asString().get()
-            val newsJSONString = populateDummyData()
+            val newsJSONString = Ion.with(this)
+                .load("GET", url)
+                .setHeader("user-agent", "insomnia/2020.4.1")
+                .asString().get()
+//            val newsJSONString = populateDummyData()
             RWFile.writeToFile(tempNewsFileName, newsJSONString, this)
             if (sendNotifications) {
                 sendNotifications(JsonNews(newsJSONString))
