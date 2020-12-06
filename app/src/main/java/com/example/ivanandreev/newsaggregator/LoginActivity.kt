@@ -39,6 +39,12 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun scheduleNewsFetchService() {
+        if(alreadyScheduled){
+            Log.i(logTag, "Fetch is already scheduled.")
+            return
+        }
+
+        alreadyScheduled = true
         Log.i(logTag, "Schedule fetch at : ${Date()}")
 
         // instantly trigger Fetch once as the Alarm has up to 10 seconds delay
@@ -102,6 +108,10 @@ class LoginActivity : AppCompatActivity() {
     private fun signInUser() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+    }
+
+    companion object{
+        private var alreadyScheduled = false;
     }
 
 }
