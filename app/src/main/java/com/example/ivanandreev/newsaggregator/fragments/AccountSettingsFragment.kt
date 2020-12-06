@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.ivanandreev.newsaggregator.R
 import com.google.android.material.button.MaterialButton
 import android.provider.Settings
+import com.example.ivanandreev.newsaggregator.ChangePasswordActivity
 import com.example.ivanandreev.newsaggregator.helpers.NotificationSender
 
 
@@ -32,7 +33,8 @@ class AccountSettingsFragment : Fragment() {
     }
 
     private fun onChangePasswordClicked(view: View){
-        println("!!! Hello world")
+        val intent = Intent(view.context, ChangePasswordActivity::class.java)
+        view.context.startActivity(intent)
     }
 
     private fun onNotificationSettingsClicked(view: View) {

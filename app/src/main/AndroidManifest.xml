@@ -21,6 +21,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".ReadArticleActivity"/>
         <activity android:name=".RegisterActivity"/>
+        <activity android:name=".ChangePasswordActivity"/>
 
         <service android:name=".FetchNewsService" android:enabled="true" android:exported="false"/>
         <receiver android:name=".helpers.AlarmReceiver" android:process=":remote"/>
