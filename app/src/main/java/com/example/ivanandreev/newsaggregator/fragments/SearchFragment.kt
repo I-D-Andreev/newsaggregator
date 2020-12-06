@@ -51,6 +51,11 @@ class SearchFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        view!!.findViewById<AppCompatImageButton>(R.id.search_button).performClick()
+    }
+
     override fun onStop() {
         super.onStop()
         // Trigger adapter detach callback
@@ -94,15 +99,17 @@ class SearchFragment : Fragment() {
 
         val searchPhrase = searchBox.text.toString()
 
-        // Need to shift focus to another element in order to "un-focus" the search text box
-        // as there needs to be a focused element and clearFocus() will just refocus the search
-        // text box again...
-        dividingLine.requestFocus()
+        if(searchPhrase.isNotEmpty()) {
+            // Need to shift focus to another element in order to "un-focus" the search text box
+            // as there needs to be a focused element and clearFocus() will just refocus the search
+            // text box again...
+            dividingLine.requestFocus()
 
-        Keyboard.hideKeyboard(view)
+            Keyboard.hideKeyboard(view)
 
-        loadRecyclerView(view, searchPhrase)
-        addToKeywordsButton.visibility = View.VISIBLE
+            loadRecyclerView(view, searchPhrase)
+            addToKeywordsButton.visibility = View.VISIBLE
+        }
     }
 
     private fun loadRecyclerView(view: View, searchPhrase: String) {
