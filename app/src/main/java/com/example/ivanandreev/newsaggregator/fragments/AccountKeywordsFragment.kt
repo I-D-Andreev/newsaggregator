@@ -3,13 +3,13 @@ package com.example.ivanandreev.newsaggregator.fragments
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +18,6 @@ import com.example.ivanandreev.newsaggregator.adapters.KeywordAdapter
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 
@@ -26,8 +25,9 @@ class AccountKeywordsFragment : Fragment() {
     private val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
     private val db: FireDB = FireDB(FireDB.USER_KEYWORDS)
     private lateinit var loadedView: View
+    private val logTag = AccountKeywordsFragment::class.java.simpleName
 
-    override fun onCreateView(
+        override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -82,9 +82,9 @@ class AccountKeywordsFragment : Fragment() {
                     for (keyword: String in doc.data!![UserKeywords::keywords.name] as ArrayList<String>) {
                         keywords.add(keyword)
                     }
-                    println("!!! Successfully loaded Keywords from DB")
+                    Log.i(logTag, "Successfully loaded Keywords from DB!")
                 } else {
-                    println("!!! Doc data is empty")
+                    Log.i(logTag, "Document data is empty!")
                 }
 
                 loadRecyclerView(keywords)
@@ -104,7 +104,6 @@ class AccountKeywordsFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        println("!!! Keywords Stopped")
 
         if (userEmail != null) {
             val recyclerViewAdapter: KeywordAdapter =
@@ -113,7 +112,8 @@ class AccountKeywordsFragment : Fragment() {
             // need to wrap in POJO before saving to DB
             db.save(userEmail, UserKeywords(recyclerViewAdapter.keywordList))
 
-            println("!!! Keywords saved")
+            Log.i(logTag, "Keywords saved!")
+
         }
     }
 }

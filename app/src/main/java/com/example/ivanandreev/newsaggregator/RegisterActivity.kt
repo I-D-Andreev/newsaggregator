@@ -2,6 +2,7 @@ package com.example.ivanandreev.newsaggregator
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val logTag = RegisterActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +37,7 @@ class RegisterActivity : AppCompatActivity() {
             if (password == repeatPassword) {
                 firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {task: Task<AuthResult> ->
                     if(task.isSuccessful){
-                        println("!!! User creation is successful!")
+                        Log.i(logTag, "User creation is successful!")
                         signInUser()
                     } else{
                         Toast.makeText(this, getString(R.string.authentication_failed), Toast.LENGTH_SHORT).show()

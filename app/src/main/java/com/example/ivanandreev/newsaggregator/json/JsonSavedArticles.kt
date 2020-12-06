@@ -34,7 +34,6 @@ class JsonSavedArticles(json: String) : JSONArray(json) {
             array.put(obj)
         }
 
-        println("!!! JSON array is ${array.toString()}")
         return array.toString()
     }
 }

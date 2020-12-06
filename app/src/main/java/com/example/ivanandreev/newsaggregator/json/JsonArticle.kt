@@ -1,5 +1,6 @@
 package com.example.ivanandreev.newsaggregator.json
 
+import com.example.ivanandreev.newsaggregator.fragments.NewsEntry
 import com.example.ivanandreev.newsaggregator.helpers.DateConverter
 import org.json.JSONObject
 import java.util.*
@@ -12,4 +13,8 @@ class JsonArticle(json: String) : JSONObject(json) {
     val urlToImage: String = this.getString("urlToImage")
     val publishedAt : Calendar = DateConverter.fromIsoString(this.getString("publishedAt"))
     val description: String = this.getString("description")
+
+    fun toNewsEntry(): NewsEntry {
+        return NewsEntry(title, publisher, url, urlToImage, description, publishedAt)
+    }
 }

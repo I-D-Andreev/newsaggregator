@@ -2,7 +2,6 @@ package com.example.ivanandreev.newsaggregator.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,12 +34,6 @@ class SavedArticlesFragment : Fragment() {
         super.onStop()
         // Trigger adapter detach callback
         view!!.findViewById<RecyclerView>(R.id.saved_articles_recyclerview)!!.adapter = null
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        populateDataIfExists()
-//        loadRecyclerView(view)
     }
 
     private fun loadRecyclerView() {

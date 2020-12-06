@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ import java.util.*
 
 class LoginActivity : AppCompatActivity() {
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val logTag = LoginActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun scheduleNewsFetchService() {
-        println("!!! In Schedule at time : ${Date()}")
+        Log.i(logTag, "Schedule fetch at : ${Date()}")
 
         // instantly trigger Fetch once as the Alarm has up to 10 seconds delay
         FetchNewsService.triggerFetch(this, false)
@@ -51,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
             intent, PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val triggerIntervalMillis: Long = 10 * 60 * 1000;
+        val triggerIntervalMillis: Long = 15 * 60 * 1000;
 
         val alarm: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarm.setRepeating(
@@ -78,11 +80,11 @@ class LoginActivity : AppCompatActivity() {
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        println("!!! Sign in successful")
+                        Log.i(logTag, "Sign in successful")
 
                         signInUser()
                     } else {
-                        print("!!! Sign in failure: ${task.exception}")
+                        Log.i(logTag, "Sign in failure: ${task.exception}")
                         Toast.makeText(
                             this,
                             getString(R.string.authentication_failed),

@@ -30,6 +30,7 @@ class NewsEntry(
 
     override fun hashCode(): Int {
         // override hashCode() based on reference as we are not doing reference comparison anymore
+        // after overwriting the equals method
         return this.title.hashCode()
     }
 

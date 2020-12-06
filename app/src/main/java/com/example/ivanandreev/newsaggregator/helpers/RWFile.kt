@@ -1,12 +1,14 @@
 package com.example.ivanandreev.newsaggregator.helpers
 
 import android.content.Context
+import android.util.Log
 import java.io.FileNotFoundException
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 
 class RWFile {
     companion object {
+        private val logTag = RWFile::class.java.simpleName
         fun readFromFile(fileName: String, ctx: Context): String {
             var data: String = ""
             try {
@@ -15,7 +17,7 @@ class RWFile {
                 data = fileReader.readText()
                 fileReader.close()
             } catch (e: FileNotFoundException){
-                println("!!! File $fileName not found. Returning empty data.")
+                Log.i(logTag,"$fileName not found. Returning empty data.")
             }
             return data
         }

@@ -4,6 +4,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
+import android.util.Log
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
 import com.example.ivanandreev.newsaggregator.fragments.NewsEntry
@@ -24,6 +25,7 @@ class FetchNewsService : Service() {
     private val userEmail: String? =
         com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.email
     private val db = FireDB(FireDB.USER_KEYWORDS)
+    private val logTag = FetchNewsService::class.java.simpleName
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -33,11 +35,11 @@ class FetchNewsService : Service() {
         val sendNotifications: Boolean =
             intent!!.extras!!.getBoolean(getString(R.string.send_notifications_field))
 
-
-        println("!!! In Service. Time = ${Date()}")
+        Log.i(logTag, "In Service. Time = ${Date()}")
         Thread(Runnable {
             val url: String = buildAPICall()
-            println("!!! URL is $url")
+            Log.i(logTag, "API URL is $url")
+
 //            val newsJSONString = Ion.with(this)
 //                .load("GET", url)
 //                .setHeader("user-agent", "insomnia/2020.4.1")
@@ -55,7 +57,6 @@ class FetchNewsService : Service() {
     }
 
     private fun sendNotifications(news: JsonNews) {
-        println("!!! In send notifications")
         // Get the date of the previous newest article. Get the current keywords. Filter the
         // new articles. Find how many articles are newer than the previous newest.
         // Send a notification and update the newest article date.
@@ -70,7 +71,7 @@ class FetchNewsService : Service() {
             getString(R.string.date_1970_iso)
         )
 
-        println("!!! Previous newest article date $previousNewestArticleDateISO")
+        Log.i(logTag, "Previous newest article date $previousNewestArticleDateISO")
 
         val previousNewestArticleDate: Calendar =
             DateConverter.fromIsoString(previousNewestArticleDateISO!!)
@@ -91,7 +92,7 @@ class FetchNewsService : Service() {
                 )
 
                 val newArticlesCount = countNewArticles(newArticles, previousNewestArticleDate)
-                println("!!! new articles count $newArticlesCount")
+                Log.i(logTag, "Number of new articles after filtering : $newArticlesCount")
                 if (newArticlesCount > 0) {
                     val notificationSender = NotificationSender(this)
                     notificationSender.sendNotification(
@@ -120,7 +121,7 @@ class FetchNewsService : Service() {
             getString(R.string.date_1970_iso)
         }
 
-        println("!!! Newest article date : $newestArticleDateString")
+        Log.i(logTag, "Newest article date : $newestArticleDateString")
         val sharedPreferences = getSharedPreferences(
             getString(R.string.shared_preferences_db_name),
             Context.MODE_PRIVATE
@@ -157,7 +158,6 @@ class FetchNewsService : Service() {
     private fun buildAPICall(): String {
         val domain: String = "http://newsapi.org/v2/everything?"
         val dateRange: String = dateRangeAPI()
-        println("!!! Date range is: $dateRange")
         val language: String = "language=en"
         val newsDomains: String = joinNewsDomainsAPI(
             resources.getStringArray(R.array.news_sites_domains_list)
@@ -191,13 +191,13 @@ class FetchNewsService : Service() {
     override fun onDestroy() {
         super.onDestroy()
 
-        // On main thread!
+        // Executed on main thread!
         // Delete the news.txt file and rename the tempNews.txt file to become the new news.txt
         // Done to protect against simultaneous reading and writing to the news.txt file.
         val newsFileName = getString(R.string.news_file)
         deleteFile(newsFileName)
 
-        // rename tempNews.txt to news.txt
+        // Rename tempNews.txt to news.txt
         val oldFile = getFileStreamPath(tempNewsFileName)
         val newFile = getFileStreamPath(newsFileName)
         oldFile.renameTo(newFile)

@@ -118,16 +118,7 @@ class SearchFragment : Fragment() {
             if (searchPhrase.toLowerCase(Locale.getDefault()) in
                 jsonArticle.title.toLowerCase(Locale.getDefault())
             ) {
-                articles.add(
-                    NewsEntry(
-                        jsonArticle.title,
-                        jsonArticle.publisher,
-                        jsonArticle.url,
-                        jsonArticle.urlToImage,
-                        jsonArticle.description,
-                        jsonArticle.publishedAt
-                    )
-                )
+                articles.add(jsonArticle.toNewsEntry())
             }
 
             if (articles.size >= maxArticlesShown) {

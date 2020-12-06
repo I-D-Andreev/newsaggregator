@@ -17,7 +17,6 @@ class FireDB(private val collectionName: String) {
         val logTag = "$collectionName::$documentName"
         db.collection(collectionName).document(documentName).set(data)
             .addOnSuccessListener {
-                println("!!! Successfully written to DB!")
                 Log.i(logTag, "Successfully written to Database!")
             }
             .addOnFailureListener { exception ->

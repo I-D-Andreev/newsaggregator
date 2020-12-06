@@ -19,16 +19,7 @@ class ArticlesFilter {
             for (article: JsonArticle in news.articles) {
                 for (keyword: String in keywords) {
                     if (keyword.toLowerCase(Locale.getDefault()) in article.title.toLowerCase(Locale.getDefault())) {
-                        articles.add(
-                            NewsEntry(
-                                article.title,
-                                article.publisher,
-                                article.url,
-                                article.urlToImage,
-                                article.description,
-                                article.publishedAt
-                            )
-                        )
+                        articles.add(article.toNewsEntry())
                         break
                     }
                 }
@@ -44,14 +35,7 @@ class ArticlesFilter {
                     break
                 }
 
-                val entry = NewsEntry(
-                    article.title,
-                    article.publisher,
-                    article.url,
-                    article.urlToImage,
-                    article.description,
-                    article.publishedAt
-                )
+                val entry = article.toNewsEntry()
 
                 if (!articles.contains(entry)) {
                     articles.add(entry)
