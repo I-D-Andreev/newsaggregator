@@ -2,6 +2,7 @@ package com.example.ivanandreev.newsaggregator.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -12,6 +13,8 @@ import com.example.ivanandreev.newsaggregator.adapters.NewsArticleAdapter
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
 import com.example.ivanandreev.newsaggregator.helpers.ArticlesFilter
+import com.example.ivanandreev.newsaggregator.helpers.DateConverter
+import com.example.ivanandreev.newsaggregator.helpers.NewestArticle
 import com.example.ivanandreev.newsaggregator.helpers.RWFile
 import com.example.ivanandreev.newsaggregator.json.JsonNews
 import com.google.firebase.firestore.DocumentSnapshot
@@ -20,6 +23,7 @@ class NewsFragment : Fragment() {
     private val db: FireDB = FireDB(FireDB.USER_KEYWORDS)
     private val userEmail: String? =
         com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.email
+    private val logTag = NewsFragment::class.java.simpleName
 
 
     override fun onCreateView(
@@ -57,6 +61,7 @@ class NewsFragment : Fragment() {
 
                 val articlesList: ArrayList<NewsEntry> = populateData(keywords)
                 loadRecyclerView(articlesList)
+                NewestArticle.updateNewestArticle(articlesList, context!!)
             }
         }
     }

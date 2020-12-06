@@ -8,10 +8,7 @@ import android.util.Log
 import com.example.ivanandreev.newsaggregator.firebase.FireDB
 import com.example.ivanandreev.newsaggregator.firebase.UserKeywords
 import com.example.ivanandreev.newsaggregator.fragments.NewsEntry
-import com.example.ivanandreev.newsaggregator.helpers.ArticlesFilter
-import com.example.ivanandreev.newsaggregator.helpers.DateConverter
-import com.example.ivanandreev.newsaggregator.helpers.NotificationSender
-import com.example.ivanandreev.newsaggregator.helpers.RWFile
+import com.example.ivanandreev.newsaggregator.helpers.*
 import com.example.ivanandreev.newsaggregator.json.JsonNews
 import com.google.firebase.firestore.DocumentSnapshot
 import com.koushikdutta.ion.Ion
@@ -40,11 +37,11 @@ class FetchNewsService : Service() {
             val url: String = buildAPICall()
             Log.i(logTag, "API URL is $url")
 
-            val newsJSONString = Ion.with(this)
-                .load("GET", url)
-                .setHeader("user-agent", "insomnia/2020.4.1")
-                .asString().get()
-//            val newsJSONString = populateDummyData()
+//            val newsJSONString = Ion.with(this)
+//                .load("GET", url)
+//                .setHeader("user-agent", "insomnia/2020.4.1")
+//                .asString().get()
+            val newsJSONString = populateDummyData()
             RWFile.writeToFile(tempNewsFileName, newsJSONString, this)
             if (sendNotifications) {
                 sendNotifications(JsonNews(newsJSONString))
@@ -60,21 +57,7 @@ class FetchNewsService : Service() {
         // Get the date of the previous newest article. Get the current keywords. Filter the
         // new articles. Find how many articles are newer than the previous newest.
         // Send a notification and update the newest article date.
-        val sharedPreferences =
-            getSharedPreferences(
-                getString(R.string.shared_preferences_db_name),
-                Context.MODE_PRIVATE
-            )
-
-        val previousNewestArticleDateISO = sharedPreferences.getString(
-            getString(R.string.newest_article_date_key),
-            getString(R.string.date_1970_iso)
-        )
-
-        Log.i(logTag, "Previous newest article date $previousNewestArticleDateISO")
-
-        val previousNewestArticleDate: Calendar =
-            DateConverter.fromIsoString(previousNewestArticleDateISO!!)
+        val previousNewestArticleDate = NewestArticle.getCurrentNewestArticle(this)
 
         var keywords = ArrayList<String>()
         if (userEmail != null) {
@@ -99,7 +82,7 @@ class FetchNewsService : Service() {
                         getString(R.string.new_articles_notification_title),
                         newArticlesCount.toString() + getString(R.string.new_articles_notification_body)
                     )
-                    updateNewestArticle(newArticles)
+                    NewestArticle.updateNewestArticle(newArticles, this)
                 }
 
             }
@@ -113,23 +96,6 @@ class FetchNewsService : Service() {
         return newArticles.filter { it.date > previousNewestArticleDate }.count()
     }
 
-    private fun updateNewestArticle(articlesList: ArrayList<NewsEntry>) {
-        val newestArticle: NewsEntry? = ArticlesFilter.findNewestArticle(articlesList)
-        val newestArticleDateString: String = if (newestArticle != null) {
-            DateConverter.toIsoString(newestArticle.date)
-        } else {
-            getString(R.string.date_1970_iso)
-        }
-
-        Log.i(logTag, "Newest article date : $newestArticleDateString")
-        val sharedPreferences = getSharedPreferences(
-            getString(R.string.shared_preferences_db_name),
-            Context.MODE_PRIVATE
-        )
-        val editor = sharedPreferences.edit()
-        editor.putString(getString(R.string.newest_article_date_key), newestArticleDateString)
-        editor.apply()
-    }
 
     // for testing purposes only, so as not to use up API calls
     private fun populateDummyData(): String {
