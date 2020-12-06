@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
             intent, PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val triggerIntervalMillis: Long = 30 * 60 * 1000;
+        val triggerIntervalMillis: Long = 2 * 60 * 60 * 1000;
 
         val alarm: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarm.setRepeating(
