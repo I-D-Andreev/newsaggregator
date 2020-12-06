@@ -43,8 +43,8 @@ class ChangePasswordActivity : AppCompatActivity() {
         val newPassword = findViewById<TextInputEditText>(R.id.new_password).text.toString()
         val repeatPassword = findViewById<TextInputEditText>(R.id.repeat_password).text.toString()
 
-        if (oldPassword.isEmpty()) {
-            Toast.makeText(this, "Old password field is empty!", Toast.LENGTH_SHORT).show()
+        if (oldPassword.isEmpty() or newPassword.isEmpty() or repeatPassword.isEmpty()) {
+            Toast.makeText(this, getString(R.string.all_fields_filled), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -54,39 +54,29 @@ class ChangePasswordActivity : AppCompatActivity() {
 
             user.reauthenticate(credentials).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    when {
-                        newPassword.isEmpty() or repeatPassword.isEmpty() -> {
+                    if (newPassword != repeatPassword) {
+                        Toast.makeText(this, getString(R.string.passwords_must_match), Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        user.updatePassword(newPassword).addOnSuccessListener {
                             Toast.makeText(
-                                this,
-                                "New password or Repeat Password can't be empty!",
+                                this, getString(R.string.password_changed_successfully),
                                 Toast.LENGTH_SHORT
-                            )
-                                .show()
-                        }
-                        newPassword != repeatPassword -> {
-                            Toast.makeText(this, "Passwords must match!", Toast.LENGTH_SHORT).show()
-                        }
-                        else -> {
-                            user.updatePassword(newPassword).addOnSuccessListener { _ ->
-                                Toast.makeText(
-                                    this, "Passwords changed successfully!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                clearAllFields()
-                            }.addOnFailureListener { ex ->
-                                Toast.makeText(
-                                    this, "Failed to change password! ${ex.message}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+                            ).show()
+                            clearAllFields()
+                        }.addOnFailureListener { ex ->
+                            Toast.makeText(
+                                this, getString(R.string.failed_change_password) + ex.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 } else {
-                    Toast.makeText(this, "Wrong password!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.wrong_password), Toast.LENGTH_SHORT).show()
                 }
             }
         } else {
-            Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.not_logged_in), Toast.LENGTH_SHORT).show()
         }
     }
 
