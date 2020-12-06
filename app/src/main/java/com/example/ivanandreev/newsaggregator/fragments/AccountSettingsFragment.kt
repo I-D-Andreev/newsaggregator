@@ -26,6 +26,13 @@ class AccountSettingsFragment : Fragment() {
         loadedView = view
         view.findViewById<MaterialButton>(R.id.notification_settings)
             .setOnClickListener(this::onNotificationSettingsClicked)
+
+        view.findViewById<MaterialButton>(R.id.change_password)
+            .setOnClickListener(this::onChangePasswordClicked)
+    }
+
+    private fun onChangePasswordClicked(view: View){
+        println("!!! Hello world")
     }
 
     private fun onNotificationSettingsClicked(view: View) {
