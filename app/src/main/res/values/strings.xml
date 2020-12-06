@@ -59,6 +59,7 @@
     <string name="not_logged_in">Not logged in</string>
     <string name="add_to_keywords_success">Search added to keywords successfully!</string>
     <string name="add_to_keywords_fail">Adding search failed!</string>
+    <string name="fetch_news_now">Fetch News Now</string>
 
 
     <string-array name="news_sites_domains_list">

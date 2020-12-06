@@ -10,6 +10,7 @@ import com.example.ivanandreev.newsaggregator.R
 import com.google.android.material.button.MaterialButton
 import android.provider.Settings
 import com.example.ivanandreev.newsaggregator.ChangePasswordActivity
+import com.example.ivanandreev.newsaggregator.FetchNewsService
 import com.example.ivanandreev.newsaggregator.helpers.NotificationSender
 
 
@@ -30,6 +31,9 @@ class AccountSettingsFragment : Fragment() {
 
         view.findViewById<MaterialButton>(R.id.change_password)
             .setOnClickListener(this::onChangePasswordClicked)
+
+        view.findViewById<MaterialButton>(R.id.fetch_news_now)
+            .setOnClickListener(this::onFetchNewsNowClicked)
     }
 
     private fun onChangePasswordClicked(view: View) {
@@ -42,5 +46,9 @@ class AccountSettingsFragment : Fragment() {
         intent.putExtra(Settings.EXTRA_APP_PACKAGE, context?.packageName)
         intent.putExtra(Settings.EXTRA_CHANNEL_ID, NotificationSender.NOTIFICATION_CHANNEL_ID)
         startActivity(intent)
+    }
+
+    private fun onFetchNewsNowClicked(view: View){
+        FetchNewsService.triggerFetch(view.context, true)
     }
 }
