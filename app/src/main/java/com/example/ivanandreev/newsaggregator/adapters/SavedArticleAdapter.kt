@@ -71,6 +71,7 @@ class SavedArticleAdapter(
             ).setAction(ctx.getString(R.string.undo)) {
                 savedArticlesList.add(position, article)
                 this.notifyItemInserted(position)
+                this.notifyItemRangeChanged(position, itemCount)
             }
             snackBar.show()
         }

@@ -44,6 +44,7 @@ class KeywordAdapter(val keywordList: MutableList<String>) :
             ).setAction(ctx.getString(R.string.undo)) {
                 keywordList.add(position, keyword)
                 this.notifyItemInserted(position)
+                this.notifyItemRangeChanged(position, itemCount)
             }
             snackBar.show()
         }
