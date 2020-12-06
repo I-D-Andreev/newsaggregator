@@ -17,13 +17,13 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.koushikdutta.ion.Ion
 import java.util.*
 import kotlin.collections.ArrayList
+import com.google.firebase.auth.FirebaseAuth
 
 class FetchNewsService : Service() {
     // We want this variable private for the class as it is really implementation dependant, so
     // the string is not exported.
     private val tempNewsFileName = "tempNews.txt"
-    private val userEmail: String? =
-        com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.email
+    private val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
     private val db = FireDB(FireDB.USER_KEYWORDS)
     private val logTag = FetchNewsService::class.java.simpleName
 
@@ -40,11 +40,11 @@ class FetchNewsService : Service() {
             val url: String = buildAPICall()
             Log.i(logTag, "API URL is $url")
 
-//            val newsJSONString = Ion.with(this)
-//                .load("GET", url)
-//                .setHeader("user-agent", "insomnia/2020.4.1")
-//                .asString().get()
-            val newsJSONString = populateDummyData()
+            val newsJSONString = Ion.with(this)
+                .load("GET", url)
+                .setHeader("user-agent", "insomnia/2020.4.1")
+                .asString().get()
+//            val newsJSONString = populateDummyData()
             RWFile.writeToFile(tempNewsFileName, newsJSONString, this)
             if (sendNotifications) {
                 sendNotifications(JsonNews(newsJSONString))

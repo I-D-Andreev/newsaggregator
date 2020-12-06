@@ -47,7 +47,7 @@ class SavedArticlesFragment : Fragment() {
 
     private fun populateDataIfExists() {
         val fileName: String = getString(R.string.saved_articles_file)
-        val currentData: String = RWFile.readFromFile(fileName, context!!)
+        val currentData: String = RWFile.readFromFilePersonalized(fileName, context!!)
 
         if (currentData.isNotEmpty()) {
             currentSavedArticles = JsonSavedArticles(currentData)

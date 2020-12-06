@@ -80,6 +80,10 @@ class SavedArticleAdapter(
         super.onDetachedFromRecyclerView(recyclerView)
 
         val jsonSavedArticles = JsonSavedArticles(savedArticlesList)
-        RWFile.writeToFile(savedArticlesFileName, jsonSavedArticles.toJsonArrayString(), context)
+        RWFile.writeToFilePersonalized(
+            savedArticlesFileName,
+            jsonSavedArticles.toJsonArrayString(),
+            context
+        )
     }
 }

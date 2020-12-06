@@ -66,7 +66,7 @@ class NewsArticleAdapter(
 
     private fun loadSavedArticles(): JsonSavedArticles {
         Log.i(logTag, "Saved Articles loaded into variable")
-        val currentData: String = RWFile.readFromFile(savedArticlesFileName, context)
+        val currentData: String = RWFile.readFromFilePersonalized(savedArticlesFileName, context)
         return if (currentData.isNotEmpty()) JsonSavedArticles(currentData) else JsonSavedArticles()
     }
 
@@ -78,14 +78,18 @@ class NewsArticleAdapter(
             context.getString(R.string.article_already_saved)
         }
 
-        val toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+        val toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
         toast.setGravity(Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL, 0, 200)
         toast.show()
     }
 
     private fun saveSavedArticlesToFile() {
         Log.i(logTag, "Saved Articles saved to file")
-        RWFile.writeToFile(savedArticlesFileName, currentSavedArticles.toJsonArrayString(), context)
+        RWFile.writeToFilePersonalized(
+            savedArticlesFileName,
+            currentSavedArticles.toJsonArrayString(),
+            context
+        )
     }
 
     private fun readArticle(article: NewsEntry) {

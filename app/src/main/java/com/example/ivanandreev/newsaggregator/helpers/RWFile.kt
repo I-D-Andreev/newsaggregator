@@ -5,10 +5,12 @@ import android.util.Log
 import java.io.FileNotFoundException
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
+import com.google.firebase.auth.FirebaseAuth
 
 class RWFile {
     companion object {
         private val logTag = RWFile::class.java.simpleName
+
         fun readFromFile(fileName: String, ctx: Context): String {
             var data: String = ""
             try {
@@ -28,5 +30,18 @@ class RWFile {
             writer.write(data)
             writer.close()
         }
+
+        fun readFromFilePersonalized(fileName: String, ctx: Context): String {
+            val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
+            val userFileName = "${userEmail}_$fileName"
+            return readFromFile(userFileName, ctx)
+        }
+
+        fun writeToFilePersonalized(fileName: String, data: String, ctx: Context) {
+            val userEmail: String? = FirebaseAuth.getInstance().currentUser?.email
+            val userFileName = "${userEmail}_$fileName"
+            return writeToFile(userFileName, data, ctx)
+        }
+
     }
 }
